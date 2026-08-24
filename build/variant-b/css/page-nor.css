@@ -5,10 +5,41 @@
    Тексты — дословно со страницы клиента /norseafood/.
    ══════════════════════════════════════════════════════════════ */
 
-/* ─── 2. Подход — porcelain-полоса-передышка ─────────────────── */
+/* ─── 2. Цепочка — «Линия»: заголовок слева, под ним пять шагов ── */
 .section--approach { background: var(--color-porcelain); color: var(--color-navy); }
-.approach__title { grid-column: 1 / 8; font-size: 44px; line-height: 1.1; letter-spacing: -0.02em; }
-.approach__note { grid-column: 8 / 13; align-self: end; max-width: 34ch; color: var(--navy-80); }
+.approach__head { grid-column: 1 / 7; }
+.approach__title { font-size: 44px; line-height: 1.1; letter-spacing: -0.02em; }
+.approach__note { margin-top: 16px; max-width: 40ch; color: var(--navy-80); }
+.chain {
+  grid-column: 1 / 13;
+  margin: var(--space-block) 0 0; padding: 0; list-style: none;
+  display: grid; grid-template-columns: repeat(5, 1fr); column-gap: var(--col-gap);
+  border-top: 1px solid rgba(14, 32, 61, .25);
+}
+.chain__step {
+  position: relative; padding-top: 28px;
+  opacity: 0; transform: translateY(16px);
+  transition: opacity .7s ease, transform .8s cubic-bezier(.22, 1, .36, 1);
+}
+.chain__step.is-in { opacity: 1; transform: none; }
+.chain__step:nth-child(2) { transition-delay: .08s; } .chain__step:nth-child(3) { transition-delay: .16s; }
+.chain__step:nth-child(4) { transition-delay: .24s; } .chain__step:nth-child(5) { transition-delay: .32s; }
+/* точка на линии (в Elementor — виджет Icon: круг 7px, Position Absolute) */
+.chain__step::before { content: ""; position: absolute; top: -4px; left: 0; width: 7px; height: 7px; border-radius: 50%; background: var(--color-navy); }
+.chain__step--india::before { background: var(--color-blue); }
+.chain__ico {
+  display: block; width: 48px; height: 48px; margin-bottom: 20px;
+  background: var(--color-navy);
+  -webkit-mask: var(--ico) center / contain no-repeat;
+  mask: var(--ico) center / contain no-repeat;
+}
+.chain__step--farm  { --ico: url("../../../assets/icons/pictograms/sea-pen.svg"); }
+.chain__step--proc  { --ico: url("../../../assets/icons/pictograms/fillet.svg"); }
+.chain__step--cold  { --ico: url("../../../assets/icons/pictograms/cold-chain.svg"); }
+.chain__step--ship  { --ico: url("../../../assets/icons/pictograms/vessel.svg"); }
+.chain__step--india { --ico: url("../../../assets/icons/pictograms/route.svg"); }
+.chain__name { display: block; font: 500 13px/1.4 var(--font-text); color: var(--navy-65); }
+.chain__note { display: block; margin-top: 8px; font-family: var(--font-display); font-weight: 500; font-size: 17px; line-height: 1.3; max-width: 20ch; }
 
 /* ─── 3. Why NorSeafood — закреплённый заголовок + колонка текста ── */
 .section--reason { padding-block: var(--space-section); }
@@ -169,15 +200,17 @@
 .two__end { margin-top: var(--space-element); font-family: var(--font-text); font-weight: 500; color: var(--color-blue); }
 
 @media (prefers-reduced-motion: reduce) {
-  .prod, .guarantee, .spec { opacity: 1; transform: none; transition: none; }
+  .chain__step, .prod, .guarantee, .spec { opacity: 1; transform: none; transition: none; }
 }
 
 /* ══════════════════════════════════════════════════════════════
    ТАБЛЕТ ≤ 1024
    ══════════════════════════════════════════════════════════════ */
 @media (max-width: 1024px) {
-  .approach__title { grid-column: 1 / 13; font-size: 34px; }
-  .approach__note { grid-column: 1 / 13; margin-top: var(--space-element); max-width: none; }
+  .approach__head { grid-column: 1 / 13; }
+  .approach__title { font-size: 34px; }
+  .approach__note { max-width: none; }
+  .chain { grid-template-columns: repeat(2, 1fr); row-gap: 32px; }
 
   .reason__head { grid-column: 1 / 13; position: static; }
   .reason__body { grid-column: 1 / 13; margin-top: var(--space-element); max-width: none; }
@@ -206,6 +239,8 @@
    ══════════════════════════════════════════════════════════════ */
 @media (max-width: 767px) {
   .approach__title { font-size: 28px; }
+  .chain { grid-template-columns: 1fr; }
+  .chain__step { padding-top: 24px; }
   .reason__accent { font-size: 20px; }
   .punch__on { font-size: 26px; }
   .prods { grid-template-columns: 1fr; }

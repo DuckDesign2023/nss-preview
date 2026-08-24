@@ -61,15 +61,48 @@
     </div>
   </section>
 
-  <!-- ═══ 2. ПОДХОД — короткая порцелановая полоса-передышка после героя:
-       заголовок 1–7, утверждение 8–13 на нижней линии. ═══ -->
-  <section class="section section--approach" data-el="container" data-name="approach">
+  <!-- ═══ 2. ЦЕПОЧКА — «Линия» (решение 2026-08-24): porcelain, заголовок и
+       утверждение слева (1–7), под ними волосинка на всю ширину и пять шагов
+       цепочки: точка на линии, пиктограмма, название, фраза клиента; последняя
+       точка Ice Blue — Индия. В Elementor: контейнер-ряд из пяти контейнеров,
+       линия — Border Top у ряда, точки — иконка-кружок, появление —
+       Entrance Animation с задержкой 0/80/160/240/320 мс. ═══ -->
+  <section class="section section--approach" data-el="container" data-name="value-chain">
     <div class="container grid" data-el="container">
-      <h2 class="approach__title" data-el="heading">A Dedicated Value Chain.</h2>
-      <p class="approach__note lead" data-el="text-editor">
-        We believe successful seafood businesses are built through relationships,
-        not transactions.
-      </p>
+      <div class="approach__head" data-el="container">
+        <h2 class="approach__title" data-el="heading">A Dedicated Value Chain.</h2>
+        <p class="approach__note" data-el="text-editor">
+          We believe successful seafood businesses are built through relationships,
+          not transactions.
+        </p>
+      </div>
+      <ul class="chain" data-el="container">
+        <li class="chain__step chain__step--farm" data-el="container">
+          <span class="chain__ico" aria-hidden="true"></span>
+          <span class="chain__name" data-el="text-editor">Sourcing</span>
+          <span class="chain__note" data-el="heading">Carefully selected Norwegian farming operations.</span>
+        </li>
+        <li class="chain__step chain__step--proc" data-el="container">
+          <span class="chain__ico" aria-hidden="true"></span>
+          <span class="chain__name" data-el="text-editor">Processing</span>
+          <span class="chain__note" data-el="heading">Modern facilities along the Norwegian coast.</span>
+        </li>
+        <li class="chain__step chain__step--cold" data-el="container">
+          <span class="chain__ico" aria-hidden="true"></span>
+          <span class="chain__name" data-el="text-editor">Cold chain</span>
+          <span class="chain__note" data-el="heading">Integrated, from harvest to delivery.</span>
+        </li>
+        <li class="chain__step chain__step--ship" data-el="container">
+          <span class="chain__ico" aria-hidden="true"></span>
+          <span class="chain__name" data-el="text-editor">Shipping</span>
+          <span class="chain__note" data-el="heading">Bulk export packaging and container shipments.</span>
+        </li>
+        <li class="chain__step chain__step--india" data-el="container">
+          <span class="chain__ico" aria-hidden="true"></span>
+          <span class="chain__name" data-el="text-editor">India</span>
+          <span class="chain__note" data-el="heading">Supply for importers, processors and distributors.</span>
+        </li>
+      </ul>
     </div>
   </section>
 
@@ -357,7 +390,7 @@
      Entrance Animation с задержкой у каждого элемента). -->
 <script>
   (function () {
-    var items = document.querySelectorAll('.prod, .guarantee, .spec');
+    var items = document.querySelectorAll('.chain__step, .prod, .guarantee, .spec');
     if (!items.length) return;
     var io = new IntersectionObserver(function (en) { en.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }); }, { threshold: .3 });
     items.forEach(function (el) { io.observe(el); });
