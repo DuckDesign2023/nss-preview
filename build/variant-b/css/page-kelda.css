@@ -30,7 +30,12 @@
 @media (max-width: 767px)  { .page-kelda { --space-section: 64px; } }
 .page-kelda h1, .page-kelda h2, .page-kelda h3, .page-kelda h4 { font-family: var(--font-k); font-weight: 500; letter-spacing: -0.02em; }
 .page-kelda .lead { font-size: 18px; line-height: 1.5; }
-.page-kelda .site-footer { font-family: var(--font-text); } /* футер остаётся в системе NSS */
+/* Футер на Kelda: каркас и шрифты NSS, но цвета — фирменные Kelda:
+   Ink Black фон, страны Ember, полоса паттерна — геометрия A («Гребень» P1),
+   линии белые (assets/pattern-p1-white.svg, плитка 40×14). */
+.page-kelda .site-footer { font-family: var(--font-text); background: var(--k-ink); }
+.page-kelda .foot-label { color: var(--k-ember); }
+.page-kelda .foot-pattern { background-image: url("../../../assets/pattern-p1-white.svg"); background-size: 40px 14px; opacity: 1; }
 
 /* ─── 1. Hero — «Кинокадр» в стиле Kelda ────────────────────── */
 .k-hero { position: relative; height: 100vh; min-height: 680px; overflow: hidden; display: flex; flex-direction: column; background: var(--k-ink); color: var(--k-white); }
@@ -64,11 +69,11 @@
 .k-name__body p { color: var(--k-ink-72); }
 .k-name__body p + p { margin-top: var(--space-element); }
 .k-name__body .lead { color: var(--k-ink); }
-.k-script { grid-column: 1 / 13; margin-top: var(--space-block); padding-top: var(--space-block); border-top: 1px solid var(--k-hair); font-family: var(--font-k-script); font-size: 42px; line-height: 1.3; color: var(--k-ember); max-width: 26ch; }
+.k-script { grid-column: 7 / 13; margin-top: var(--space-block); padding-top: var(--space-block); border-top: 1px solid var(--k-hair); font-family: var(--font-k-script); font-size: 38px; line-height: 1.3; color: var(--k-ember); max-width: 26ch; }
 
 /* ─── 3. Today / Tomorrow — две карточки на Oat Sand ────────── */
 .k-growth { padding-block: var(--space-section); background: var(--k-oat); }
-.k-growth__head { grid-column: 1 / 6; }
+.k-growth__head { grid-column: 1 / 6; align-self: start; position: sticky; top: 120px; }
 .k-growth__head h2 { font-size: 48px; line-height: 1.1; max-width: 10ch; }
 .k-growth__head p { margin-top: 18px; max-width: 40ch; color: var(--k-ink-72); }
 .k-panels { grid-column: 7 / 13; display: grid; gap: var(--col-gap); }
@@ -140,10 +145,11 @@
   .k-hero__text h1 { font-size: 34px; }
 
   .k-name__title { grid-column: 1 / 13; position: static; font-size: 32px; }
+  .k-script { grid-column: 1 / 13; }
   .k-name__body { grid-column: 1 / 13; margin-top: var(--space-element); max-width: none; }
   .k-script { font-size: 30px; max-width: none; }
 
-  .k-growth__head { grid-column: 1 / 13; }
+  .k-growth__head { grid-column: 1 / 13; position: static; }
   .k-growth__head h2 { font-size: 32px; }
   .k-panels { grid-column: 1 / 13; margin-top: var(--space-block); grid-template-columns: 1fr 1fr; }
   .k-panel--today { min-height: 280px; }
