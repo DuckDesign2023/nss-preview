@@ -103,18 +103,22 @@
           and a commitment to quality.
         </p>
       </div>
-      <ul class="k-cards" data-el="container">
-        <li class="k-card" data-el="container">
-          <span data-el="text-editor">Today</span>
+      <!-- «Сегодня и завтра» (решение 2026-08-24): Today — фото продукта с
+           подписью поверх, Future — Ink Black панель. В Elementor: контейнеры
+           с Background Image + Overlay / Background Color. -->
+      <div class="k-panels" data-el="container">
+        <div class="k-panel k-panel--today" data-el="container">
+          <img src="../../assets/kelda-fillet.webp" alt="A portion of premium Norwegian salmon" width="1536" height="1750" loading="lazy">
+          <span class="k-panel__tag" data-el="text-editor">Today</span>
           <strong data-el="heading">Kelda Salmon</strong>
           <p data-el="text-editor">Premium Norwegian salmon, prepared for Indian homes, restaurants and food businesses.</p>
-        </li>
-        <li class="k-card" data-el="container">
-          <span data-el="text-editor">Future</span>
+        </div>
+        <div class="k-panel k-panel--future" data-el="container">
+          <span class="k-panel__tag" data-el="text-editor">Future</span>
           <strong data-el="heading">Additional premium seafood products</strong>
           <p data-el="text-editor">The range grows as the brand grows — always from Norwegian origin.</p>
-        </li>
-      </ul>
+        </div>
+      </div>
     </div>
   </section>
 
