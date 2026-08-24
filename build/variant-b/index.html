@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Norwegian Sustainable Seafood — Variant B (colour)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mozilla+Text:wght@300;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-arrow" viewBox="0 0 256 256"><path fill="currentColor" d="m220.24 132.24l-72 72a6 6 0 0 1-8.48-8.48L201.51 134H40a6 6 0 0 1 0-12h161.51l-61.75-61.76a6 6 0 0 1 8.48-8.48l72 72a6 6 0 0 1 0 8.48"/></symbol>
+  <symbol id="i-in" viewBox="0 0 256 256"><path fill="currentColor" d="M216 26H40a14 14 0 0 0-14 14v176a14 14 0 0 0 14 14h176a14 14 0 0 0 14-14V40a14 14 0 0 0-14-14m2 190a2 2 0 0 1-2 2H40a2 2 0 0 1-2-2V40a2 2 0 0 1 2-2h176a2 2 0 0 1 2 2ZM94 112v64a6 6 0 0 1-12 0v-64a6 6 0 0 1 12 0m88 28v36a6 6 0 0 1-12 0v-36a22 22 0 0 0-44 0v36a6 6 0 0 1-12 0v-64a6 6 0 0 1 12 0v2.11A34 34 0 0 1 182 140M98 84a10 10 0 1 1-10-10a10 10 0 0 1 10 10"/></symbol>
+</svg>
+
+<!-- ═══ HEADER — «Две цепочки» поверх фото героя (решение 2026-08-21): без фона,
+     абсолютно над первым экраном; логотип 1–4, бренды от линии 7, справа About +
+     кнопка L3 «Квадрат». В Elementor: Header-шаблон, контейнер Position: Absolute
+     (Advanced), фон прозрачный; Nav Menu → Pointer Underline / Slide 1px. ═══ -->
+<header class="site-header" data-el="container" data-name="header">
+  <div class="container grid" data-el="container">
+    <a class="site-header__logo" href="#" data-el="image">
+      <img src="../../assets/logo-nss-white-tight.svg" alt="Norwegian Sustainable Seafood">
+    </a>
+    <!-- Бургер: в Elementor это нативная опция виджета Nav Menu
+         (Dropdown → Breakpoint: Mobile). Здесь — только эмуляция. -->
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
+      <span></span><span></span>
+    </button>
+    <nav class="site-nav site-nav--brands" id="site-nav" aria-label="Brands" data-el="nav-menu">
+      <a href="#brands">NorSeafood</a>
+      <a href="#brands">Kelda</a>
+    </nav>
+    <div class="site-nav site-nav--util" data-el="container">
+      <a href="#people" data-el="button">About</a>
+      <a class="btn-split btn-split--light" href="#contact" data-el="button"><span class="btn-split__t">Get in touch</span><span class="btn-split__s"><svg class="link-sq__icon" aria-hidden="true"><use href="#i-arrow"/></svg></span></a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ═══ 1. HERO — «Кинокадр» (решение 2026-08-21): фото во весь экран (садки
+       во фьорде, генерация), вуаль-градиент, H1 64px внизу слева, лид справа на
+       той же базовой линии, кнопки под H1. На загрузке фото «садится» из 1.06,
+       текст поднимается (класс .is-ready — CUSTOM-JS #B5, 1 строка). В Elementor:
+       контейнер min-height 100vh, Background Image + Overlay (градиент),
+       Entrance Animation для текста; масштаб фото на загрузке — Custom CSS. ═══ -->
+  <section class="hero" data-el="container" data-name="hero">
+    <img class="hero__img" src="../../assets/hero-fjord-pens.webp" alt="Salmon sea pens in a Norwegian fjord, from above" width="2048" height="1152" fetchpriority="high">
+    <span class="hero__veil" aria-hidden="true"></span>
+    <div class="hero__body container grid" data-el="container">
+      <h1 data-el="heading">The taste of Norway. The future of seafood in India.</h1>
+      <p class="hero__lead lead" data-el="text-editor">
+        Connecting premium Norwegian seafood with the next generation of Indian
+        consumers, distributors and food businesses.
+      </p>
+      <!-- Один primary CTA (trade-facing → NorSeafood), второй — L3 split-кнопка -->
+      <div class="hero__actions" data-el="container">
+        <a class="btn btn--light" href="#brands" data-el="button">Explore NorSeafood</a>
+        <a class="btn-split btn-split--light" href="#brands" data-el="button"><span class="btn-split__t">Discover Kelda</span><span class="btn-split__s"><svg class="link-sq__icon" aria-hidden="true"><use href="#i-arrow"/></svg></span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 2–4. КИНОПОЛОСЫ (решение 2026-08-21): вместо «Real people» + фото-полосы I
+       + «Origin» — две сцены 100vh с крупной белой типографикой поверх вуали;
+       фото «садится» из масштаба 1.1 в 1.0 по мере скролла (CUSTOM-JS #B3),
+       текст поднимается при появлении. В Elementor: контейнер 100vh с
+       Background Image + Overlay (градиент), Motion Effects → Scrolling
+       Effects → Scale для фона (приближение), Entrance Animation для текста. -->
+  <!-- Переход между кинополосами (решение 2026-08-21): первая сцена закреплена
+       (sticky), вторая наезжает на неё при скролле с тенью по верхнему краю
+       (CUSTOM-CSS #B5). В Elementor: Advanced → Motion Effects → Sticky: Top
+       для первой сцены + z-index у второй. ≤1024 — обычный поток. -->
+  <div class="cine-stack" data-el="container" data-name="cine-stack">
+  <section class="cine cine--pin" data-el="container" data-name="real-people">
+    <img class="cine__img" src="../../assets/people-packing.webp" alt="Packing salmon at a Norwegian processing facility" width="1600" height="1067">
+    <span class="cine__veil" aria-hidden="true"></span>
+    <div class="container grid cine__body" data-el="container">
+      <h2 data-el="heading">Real people and relationships</h2>
+      <p class="lead" data-el="text-editor">Great seafood begins long before it reaches a plate. It begins with cold waters, responsible stewardship and generations of maritime expertise. But above all, it begins with people.</p>
+      <p data-el="text-editor">Norwegian Sustainable Seafood was founded to build a dedicated bridge between Norway and India. Through NorSeafood, we connect Norwegian producers with Indian importers, processors and distributors. Through Kelda, we bring premium Norwegian seafood closer to Indian consumers.</p>
+    </div>
+  </section>
+  <section class="cine" data-el="container" data-name="origin">
+    <img class="cine__img" src="../../assets/fjord-aerial.webp" alt="Sea farms in a Norwegian fjord, from above" width="1200" height="683" loading="lazy">
+    <span class="cine__veil" aria-hidden="true"></span>
+    <div class="container grid cine__body" data-el="container">
+      <h2 data-el="heading">Shaped by the North Atlantic</h2>
+      <p class="lead" data-el="text-editor">Everything begins in Norway. Quality. Consistency. Respect for the ocean.</p>
+      <p data-el="text-editor">Along one of the world's longest coastlines, cold waters and strong ocean currents create ideal conditions for premium seafood. This is not simply where our products come from. It is where our values come from.</p>
+    </div>
+  </section>
+  </div>
+
+  <!-- ═══ 5. BRANDS — полноэкранный сплит: две компании, две половины ═══ -->
+  <section class="brand-split" id="brands" data-el="container" data-name="brands">
+
+    <article class="half half--nor" data-el="container">
+      <img class="half__bg" src="../../assets/vessel.webp" alt="A vessel in the grey northern sea" width="1600" height="1067" loading="lazy">
+      <div class="half__veil" data-el="container"></div>
+      <div class="half__body" data-el="container">
+        <span class="half__role" data-el="text-editor">Trade brand · B2B</span>
+        <h3 data-el="heading">NorSeafood</h3>
+        <p data-el="text-editor">
+          Frozen whole Norwegian salmon supplied to importers, processors and
+          distributors seeking reliable long-term supply.
+        </p>
+        <p class="half__focus" data-el="text-editor">Current focus: frozen whole Atlantic salmon</p>
+        <a class="link-sq link-sq--light" href="#" data-el="button">Explore NorSeafood<span class="link-sq__box"><svg class="link-sq__icon" aria-hidden="true"><use href="#i-arrow"/></svg></span></a>
+      </div>
+    </article>
+
+    <article class="half half--kelda" data-el="container">
+      <img class="half__bg" src="../../assets/product-fillet.webp" alt="Fresh salmon on ice" width="1100" height="1467" loading="lazy">
+      <div class="half__veil" data-el="container"></div>
+      <div class="half__body" data-el="container">
+        <span class="half__role" data-el="text-editor">Consumer brand · B2C</span>
+        <h3 data-el="heading">Kelda</h3>
+        <p data-el="text-editor">
+          Inspired by Norway. Created for India. Consumer-ready seafood products
+          for the Indian market, built on Norwegian origin and designed for modern
+          Indian consumers and food experiences.
+        </p>
+        <a class="link-sq link-sq--light" href="#" data-el="button">Explore Kelda<span class="link-sq__box"><svg class="link-sq__icon" aria-hidden="true"><use href="#i-arrow"/></svg></span></a>
+      </div>
+    </article>
+
+  </section>
+
+  <!-- ═══ 6. COMMITMENT — «Реестр» (решение 2026-08-21): porcelain-полоса между
+       сплитом и «Шторками»; четыре нумерованные строки: номер · иконка (Recraft,
+       mask → цвет из background, CUSTOM-CSS #B4) · имя · формула крупно. Hover —
+       строка заливается navy снизу вверх (::before, CUSTOM-CSS #B4), текст белый,
+       номер Ice Blue. В Elementor: контейнер-строка с Hover-background и
+       Transition; заливку снизу вверх даёт только Custom CSS. -->
+  <section class="section section--commitment" data-el="container" data-name="commitment">
+    <div class="container grid" data-el="container">
+      <h2 class="anchor__title" data-el="heading">Our commitment</h2>
+      <p class="anchor__note" data-el="text-editor">
+        Every decision we make is guided by a commitment to responsible sourcing,
+        uncompromising quality standards, and long-term partnerships that create
+        lasting value.
+      </p>
+      <ol class="ledger" data-el="container">
+        <li class="ledger__row ledger__row--quality" data-el="container">
+          <span class="ledger__n" data-el="text-editor">01</span>
+          <span class="ledger__icon" aria-hidden="true" data-el="html"></span>
+          <h3 class="ledger__name" data-el="heading">Quality</h3>
+          <p class="ledger__line" data-el="heading">Without compromise.</p>
+        </li>
+        <li class="ledger__row ledger__row--traceability" data-el="container">
+          <span class="ledger__n" data-el="text-editor">02</span>
+          <span class="ledger__icon" aria-hidden="true" data-el="html"></span>
+          <h3 class="ledger__name" data-el="heading">Traceability</h3>
+          <p class="ledger__line" data-el="heading">Without shortcuts.</p>
+        </li>
+        <li class="ledger__row ledger__row--partnerships" data-el="container">
+          <span class="ledger__n" data-el="text-editor">03</span>
+          <span class="ledger__icon" aria-hidden="true" data-el="html"></span>
+          <h3 class="ledger__name" data-el="heading">Partnerships</h3>
+          <p class="ledger__line" data-el="heading">Without end dates.</p>
+        </li>
+        <li class="ledger__row ledger__row--growth" data-el="container">
+          <span class="ledger__n" data-el="text-editor">04</span>
+          <span class="ledger__icon" aria-hidden="true" data-el="html"></span>
+          <h3 class="ledger__name" data-el="heading">Growth</h3>
+          <p class="ledger__line" data-el="heading">Without sacrificing responsibility.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ═══ 7–8. WHY INDIA — «Шторки на всю ширину» (решение 2026-08-21) ═══
+       Фото-полоса II снята: секция сама полноэкранная. Трек 300vh со
+       sticky-сценой 100vh; три кадра Индии сменяются вертикальной шторкой
+       (clip-path) с лёгким масштабом; текст — porcelain-карточка слева внизу
+       с индексом и подписью. Активный шаг — по линии центра вьюпорта
+       (CUSTOM-JS #B1). ≤1024 — кадры стопкой, карточка в потоке.
+       В Elementor: секция-трек → Sticky-контейнер (Top 0, 100vh) с тремя
+       Image (Position Absolute) + контейнер-карточка; смена — Custom Code. -->
+  <section class="section section--why" data-el="container" data-name="why-india">
+    <div class="why__track" data-el="container">
+      <div class="why__stage" data-el="container">
+        <img class="why__img is-active" src="../../assets/india-mumbai-lux.webp" alt="Marine Drive, Mumbai, at dusk" width="2016" height="1344">
+        <img class="why__img" src="../../assets/india-restaurant.webp" alt="A restaurant in Mumbai: a plate of Norwegian salmon is served" width="2016" height="1344" loading="lazy">
+        <img class="why__img" src="../../assets/india-retail.webp" alt="A premium seafood counter in a modern Indian supermarket" width="2016" height="1344" loading="lazy">
+        <div class="why__card" data-el="container">
+          <h2 data-el="heading">Why India. Why now.</h2>
+          <p class="lead" data-el="text-editor">India is entering a new chapter in food consumption.</p>
+          <p data-el="text-editor">A growing middle class. Rising disposable income. Greater demand for premium international food experiences.</p>
+          <div class="why__meta" data-el="container">
+            <span class="why__cap" data-cap data-el="text-editor"><b>Mumbai</b> — the market</span>
+            <span class="why__idx" data-idx data-el="text-editor">01 / 03</span>
+          </div>
+        </div>
+      </div>
+      <div class="why__steps" aria-hidden="true" data-el="container">
+        <div class="why__step" data-step="0"></div>
+        <div class="why__step" data-step="1"></div>
+        <div class="why__step" data-step="2"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 9. NAVY-ЯКОРЬ — основатель (портрет с текущего сайта клиента) ═══ -->
+  <section class="section section--anchor section--people" id="people" data-el="container" data-name="people">
+    <div class="container grid" data-el="container">
+      <figure class="people__media" data-el="container">
+        <img src="../../assets/henning.webp" alt="Henning B. Figenschou, Founder &amp; CEO of Norwegian Sustainable Seafood" width="1400" height="1788" loading="lazy">
+      </figure>
+      <div class="people__text" data-el="container">
+        <h2 data-el="heading">Built between two countries</h2>
+        <blockquote class="quote" data-el="blockquote">
+          <p data-el="text-editor">
+            The strongest businesses are built when people, cultures and
+            opportunities come together around a shared vision.
+          </p>
+          <cite data-el="text-editor">Henning B. Figenschou<span>Founder &amp; CEO</span></cite>
+        </blockquote>
+        <p class="people__note" data-el="text-editor">
+          Henning and his partners, Amit and Prakash, are based between Norway
+          and India, working directly with first-wave import and HoReCa partners
+          to understand what the Indian market needs from a Norwegian seafood
+          supplier.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 10. CONTACT ═══ -->
+  <section class="section section--contact" id="contact" data-el="container" data-name="contact">
+    <div class="container grid" data-el="container">
+      <div class="contact__head" data-el="container">
+        <h2 data-el="heading">Let's start a conversation</h2>
+        <p class="lead" data-el="text-editor">Looking for a long-term seafood partner?</p>
+        <p data-el="text-editor">
+          Whether you are interested in Kelda products, seafood sourcing or
+          distribution partnerships, we would like to hear from you.
+        </p>
+      </div>
+      <form class="form" data-el="form" novalidate>
+        <div class="form__row" data-el="container">
+          <label class="field" data-el="container">
+            <span>Name</span>
+            <input type="text" name="name" autocomplete="name">
+          </label>
+          <label class="field" data-el="container">
+            <span>Company</span>
+            <input type="text" name="company" autocomplete="organization">
+          </label>
+        </div>
+        <label class="field" data-el="container">
+          <span>Email</span>
+          <input type="email" name="email" autocomplete="email">
+        </label>
+        <label class="field" data-el="container">
+          <span>Message</span>
+          <textarea name="message" rows="4"></textarea>
+        </label>
+        <button class="btn" type="submit" data-el="button">Send enquiry</button>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<!-- ═══ FOOTER — navy (F3, выбран 2026-08-21): белый полный логотип + клейм
+     слева, адреса справа (страны капсом Ice Blue), навигация + LinkedIn
+     строкой, юр. строка, полоса текущего паттерна B на 50% прозрачности. -->
+<footer class="site-footer" data-el="container" data-name="footer">
+  <div class="container" data-el="container">
+    <div class="grid foot-row" data-el="container">
+      <div class="foot-brand" data-el="container">
+        <a class="foot-logo" href="#" data-el="image"><img src="../../assets/logo-nss-white-tight.svg" alt="Norwegian Sustainable Seafood"></a>
+        <p class="foot-claim" data-el="text-editor">Building a dedicated Norway–India seafood value chain.</p>
+      </div>
+      <div class="foot-office foot-office--no" data-el="container">
+        <span class="foot-label" data-el="heading">Norway</span>
+        <p class="foot-addr" data-el="text-editor">Norwegian Sustainable Seafood AS<br>Lensmannslia 4, 1386 Asker</p>
+      </div>
+      <div class="foot-office foot-office--in" data-el="container">
+        <span class="foot-label" data-el="heading">India</span>
+        <p class="foot-addr" data-el="text-editor">Norwegian Sustainable Seafood PVT.&nbsp;LTD.<br>413 Ascent Avenue, Amanora Park Town<br>Hadapsar, Pune 411028</p>
+      </div>
+    </div>
+    <div class="grid foot-row foot-row--nav" data-el="container">
+      <nav class="foot-nav" data-el="nav-menu" aria-label="Footer">
+        <a href="#">Home</a>
+        <a href="#brands">NorSeafood</a>
+        <a href="#brands">Kelda</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="foot-in" href="#" data-el="button"><svg class="foot-in__icon" aria-hidden="true"><use href="#i-in"/></svg>LinkedIn</a>
+    </div>
+    <div class="grid foot-row foot-row--legal" data-el="container">
+      <p class="foot-legal" data-el="text-editor">© 2026 Norwegian Sustainable Seafood AS · Org.no. 937 910 460<br>
+      NorSeafood is the commercial platform of Norwegian Sustainable Seafood AS.
+      Kelda is a consumer brand owned by Norwegian Sustainable Seafood AS.</p>
+    </div>
+  </div>
+  <!-- Полоса паттерна: отдельная зона внизу футера, без контента. -->
+  <div class="foot-pattern" data-el="container" aria-hidden="true"></div>
+</footer>
+
+<!-- CUSTOM-JS #B3 — Кинополосы: прогресс сцены → масштаб фото 1.1→1.0;
+     текст поднимается при появлении (.is-in). -->
+<script>
+  (function () {
+    var scenes = document.querySelectorAll('.cine'); if (!scenes.length) return;
+    var io = new IntersectionObserver(function (en) { en.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }); }, { threshold: .25 });
+    scenes.forEach(function (sc) { io.observe(sc.querySelector('.cine__body')); });
+    var tick = false;
+    function upd() { tick = false; var vh = window.innerHeight; scenes.forEach(function (sc) { var r = sc.getBoundingClientRect(); var p = Math.max(0, Math.min(1, (vh - r.top) / (vh + r.height))); sc.style.setProperty('--p', p.toFixed(3)); }); }
+    function onS() { if (!tick) { tick = true; requestAnimationFrame(upd); } }
+    window.addEventListener('scroll', onS, { passive: true }); window.addEventListener('resize', onS); upd();
+  })();
+</script>
+
+<!-- CUSTOM-JS #B1 — Why India «Шторки»: активный кадр = шаг, пересекающий
+     линию центра вьюпорта; переключает кадр, подпись и индекс. -->
+<script>
+  (function () {
+    var sec = document.querySelector('.section--why'); if (!sec) return;
+    var imgs = sec.querySelectorAll('.why__img'), steps = sec.querySelectorAll('.why__step');
+    var cap = sec.querySelector('[data-cap]'), idx = sec.querySelector('[data-idx]');
+    var caps = ['<b>Mumbai</b> — the market', '<b>Premium dining</b> — new food experiences', '<b>Modern retail</b> — a growing middle class'];
+    var act = 0, tick = false;
+    function pick() {
+      tick = false; if (window.innerWidth <= 1024) return;
+      var mid = window.innerHeight / 2, i = -1;
+      steps.forEach(function (st, k) { var r = st.getBoundingClientRect(); if (r.top <= mid && r.bottom > mid) i = k; });
+      if (i < 0 || i === act) return; act = i;
+      imgs.forEach(function (im, k) { im.classList.toggle('is-active', k === i); im.classList.toggle('is-past', k < i); });
+      cap.innerHTML = caps[i]; idx.textContent = '0' + (i + 1) + ' / 03';
+    }
+    function onS() { if (!tick) { tick = true; requestAnimationFrame(pick); } }
+    window.addEventListener('scroll', onS, { passive: true }); window.addEventListener('resize', onS); pick();
+  })();
+</script>
+
+<!-- Эмуляция мобильного меню. В Elementor не нужно: Nav Menu → Dropdown. -->
+<script>
+  (function () {
+    document.documentElement.classList.add('js'); // CUSTOM-JS #B5
+    window.addEventListener('load', function () { document.documentElement.classList.add('is-ready'); });
+    var btn = document.querySelector('.nav-toggle');
+    var header = document.querySelector('.site-header');
+    if (!btn || !header) return;
+    btn.addEventListener('click', function () {
+      var open = header.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  })();
+</script>
+</body>
+</html>

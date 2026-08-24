@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>NSS — homepage concepts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Mozilla+Text:wght@300;500;600&family=Plus+Jakarta+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --navy:#0E203D; --porcelain:#EFECE5; --blue:#8DB4E3; }
+  * { margin:0; box-sizing:border-box; }
+  body { min-height:100vh; display:flex; flex-direction:column; justify-content:center; padding:32px; background:var(--porcelain); color:var(--navy); font-family:'Plus Jakarta Sans',system-ui,sans-serif; }
+  img.logo { height:52px; width:auto; display:block; margin-bottom:56px; }
+  h1 { font-family:'Mozilla Text',serif; font-weight:500; font-size:clamp(28px,4vw,44px); letter-spacing:-0.02em; line-height:1.1; max-width:18ch; }
+  p.note { margin-top:18px; font-size:14px; color:rgba(14,32,61,.65); max-width:52ch; }
+  nav { margin-top:48px; display:flex; flex-direction:column; gap:0; max-width:640px; border-top:1px solid rgba(14,32,61,.18); }
+  nav a { display:flex; justify-content:space-between; align-items:baseline; gap:24px; padding:26px 0; border-bottom:1px solid rgba(14,32,61,.18); text-decoration:none; color:inherit; transition:padding-left .35s cubic-bezier(.22,1,.36,1); }
+  nav a:hover { padding-left:12px; }
+  nav a b { font-family:'Mozilla Text',serif; font-weight:500; font-size:24px; }
+  nav a span { font-size:13px; color:rgba(14,32,61,.65); }
+  nav a:hover span { color:var(--navy); }
+</style>
+</head>
+<body>
+  <img class="logo" src="assets/logo-nss-navy-tight.svg" alt="Norwegian Sustainable Seafood">
+  <h1>Homepage — two design directions</h1>
+  <p class="note">Work in progress. Best viewed on desktop; sections use scroll-driven interactions.</p>
+  <nav>
+    <a href="build/variant-a/index.html"><b>Variant A</b><span>Light</span></a>
+    <a href="build/variant-b/index.html"><b>Variant B</b><span>Colour</span></a>
+  </nav>
+</body>
+</html>

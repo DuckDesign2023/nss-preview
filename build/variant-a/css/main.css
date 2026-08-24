@@ -1,0 +1,784 @@
+/* ══════════════════════════════════════════════════════════════
+   Norseafood — Вариант A «Светлый»
+   Единая сетка 12 колонок для всех секций. Секции различаются только
+   тем, какие колонки занимает контент.
+   Палитра: белое ведёт, porcelain — вторая поверхность, navy — текст
+   и мелкие элементы. Цветных заливок минимум (цветной — вариант B).
+   Desktop-first. Медиазапросы только max-width: 1024px / 767px.
+   ══════════════════════════════════════════════════════════════ */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--color-white);
+  color: var(--color-navy);
+  font-family: var(--font-text);
+  font-weight: 300;
+  font-size: 14px;          /* базовый размер текста — по требованию */
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+h1, h2, h3, h4 { margin: 0; font-family: var(--font-display); font-weight: 600; }
+h1 { font-size: 56px; line-height: 1.10; letter-spacing: -0.02em; }
+h2 { font-size: 36px; line-height: 1.16; letter-spacing: -0.015em; }
+h3 { font-size: 20px; line-height: 1.25; letter-spacing: -0.01em; font-weight: 500; }
+h4 { font-size: 14px; line-height: 1.30; font-weight: 500; }
+
+p { margin: 0; }
+a { color: inherit; }
+
+/* Крупный текст — редкость: только важные подзаголовки */
+.lead { font-size: 18px; line-height: 1.45; font-weight: 400; }
+
+/* ══ КАРКАС: контейнер и сетка одинаковы во всех секциях ═══════ */
+
+.container {
+  max-width: var(--content-width);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: var(--col-gap);
+}
+
+/* ══ ВЕРТИКАЛЬНЫЙ РИТМ ═══════════════════════════════════════════
+   Правило: между любым контентом и соседней секцией — ровно один
+   --space-section. Белая секция после белой берёт отступ сверху 0
+   (зазор даёт нижний паддинг предыдущей). Тонированная секция
+   (porcelain) и секция СРАЗУ ПОСЛЕ неё получают полный отступ сверху,
+   иначе заливка начинается вплотную к заголовку. Значения заданы
+   каждой секции явно — так они и переносятся в Elementor
+   (Advanced → Padding), без хитрых соседних селекторов. */
+
+.section { padding-block: 0 var(--space-section); }
+.section--intro,
+.section--tinted,
+.section--commitment,   /* идёт сразу после porcelain */
+.section--contact { padding-top: var(--space-section); }
+
+.section--tinted { background: var(--color-porcelain); }
+.section--contact { border-top: 1px solid var(--hairline); }
+
+
+/* Утилиты ─────────────────────────────────────────────────────── */
+
+/* Ссылка-стрелка: текст + иконка (inline SVG, currentColor, 18px).
+   Покой: 1px Ice Blue под текстом. Hover: линия navy выезжает слева и
+   вытесняет голубую вправо, стрелка уходит на 5px.
+   CUSTOM-CSS: в Elementor — виджет Button (тип link, иконка справа)
+   + Custom CSS из этого блока (см. Custom Code Registry в паспорте). */
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--color-navy);
+}
+.link-arrow__label {
+  padding-bottom: 5px;
+  background-image:
+    linear-gradient(var(--color-navy), var(--color-navy)),
+    linear-gradient(var(--color-blue), var(--color-blue));
+  background-repeat: no-repeat;
+  background-size: 0 1px, 100% 1px;
+  background-position: 0 100%, 100% 100%;
+  transition: background-size .55s cubic-bezier(.22, 1, .36, 1);
+}
+.link-arrow__icon {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  margin-bottom: 4px;          /* оптическая компенсация padding-bottom подписи */
+  transition: transform .55s cubic-bezier(.22, 1, .36, 1);
+}
+.link-arrow:hover .link-arrow__label,
+.link-arrow:focus-visible .link-arrow__label { background-size: 100% 1px, 0 1px; }
+.link-arrow:hover .link-arrow__icon,
+.link-arrow:focus-visible .link-arrow__icon { transform: translateX(5px); }
+.link-arrow:focus-visible { outline: 1px solid var(--color-blue); outline-offset: 4px; }
+
+/* Подчёркивание 1px, выезжающее слева — для пунктов меню и ссылок футера.
+   В Elementor для Nav Menu это нативно (Pointer: Underline, Animation: Slide,
+   Pointer Width 1px, цвет Accent); для одиночных ссылок — Custom CSS. */
+.site-nav a:not(.btn-outline),
+.foot-nav a,
+.foot-in {
+  background-image: linear-gradient(var(--color-blue), var(--color-blue));
+  background-repeat: no-repeat;
+  background-size: 0 1px;
+  background-position: 0 100%;
+  transition: background-size .45s cubic-bezier(.22, 1, .36, 1), color .25s ease;
+}
+.site-nav a:not(.btn-outline):hover,
+.site-nav a:not(.btn-outline):focus-visible,
+.site-nav a.is-active,
+.foot-nav a:hover,
+.foot-nav a:focus-visible,
+.foot-in:hover,
+.foot-in:focus-visible { background-size: 100% 1px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .link-arrow__label, .link-arrow__icon, .site-nav a, .foot-nav a, .foot-in, .btn, .btn-outline { transition: none; }
+}
+
+.btn {
+  display: inline-block;
+  padding: 15px 32px;
+  background: var(--color-navy);
+  color: var(--color-white);
+  border: 0;
+  font-family: var(--font-text);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background .25s ease;
+}
+.btn:hover { background: var(--color-brown); }
+
+/* ═══ HEADER — «Две цепочки» ═══════════════════════════════════
+   Без фона и линии-разделителя: хедер — первая строка сетки, от
+   контента его отделяет только воздух. Структура меню повторяет тезис
+   «One company. Two value chains»: на линии 7 (где начинается текст
+   секций) — два бренда; справа — About и тихая кнопка-контур. */
+
+.site-header { background: transparent; padding-block: 30px; }
+.site-header .container { align-items: center; }
+.site-header__logo { grid-column: 1 / 4; align-self: center; }
+/* viewBox обрезан по содержимому: у файла нет внутренних полей,
+   поэтому знак прижат к левому краю сетки. Размер задаём высотой. */
+.site-header__logo img { height: 44px; width: auto; display: block; }
+
+.site-nav { display: flex; align-items: center; }
+.site-nav--brands { grid-column: 7 / 10; gap: 40px; }
+.site-nav--util   { grid-column: 10 / 13; justify-content: flex-end; gap: 36px; }
+.site-nav a:not(.btn-outline) {
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--color-navy);
+  padding-bottom: 6px;
+}
+.site-nav a:focus-visible { outline: 1px solid var(--color-blue); outline-offset: 4px; }
+
+/* Кнопка-контур: 1px, на hover заливается navy. В Elementor: Button →
+   Style: Background transparent, Border 1px Primary, Hover: bg Primary. */
+.btn-outline {
+  display: inline-block;
+  padding: 10px 18px;
+  white-space: nowrap;
+  border: 1px solid var(--color-navy);
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--color-navy);
+  background: transparent;
+  transition: background .3s ease, color .3s ease;
+}
+.btn-outline:hover,
+.btn-outline:focus-visible { background: var(--color-navy); color: var(--color-white); }
+
+/* Бургер — только на мобильном. В Elementor это встроенный Dropdown
+   виджета Nav Menu; в эталоне эмулируем двумя линиями 1px. */
+.nav-toggle { display: none; }
+
+/* ═══ 1. INTRO ════════════════════════════════════════════════ */
+
+.intro__title { grid-column: 1 / 11; }
+.intro__lead {
+  grid-column: 1 / 6;
+  margin-top: 32px;
+  font-size: 18px;
+  line-height: 1.45;
+  font-weight: 400;
+  color: var(--navy-80);
+}
+.intro__links {
+  grid-column: 1 / 6;
+  margin-top: var(--space-element);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 36px;
+}
+
+/* ═══ 2. ТРИПТИХ — лесенка: пропорции заданы, сдвиги ступенчатые ═
+   Высоты контролируются aspect-ratio (в Elementor: Image → Height +
+   Object Fit: Cover), а не исходным размером файла — иначе
+   вертикальное фото выше соседей вдвое. */
+
+/* Сборка в ряд при скролле — движение СВЕРХУ ВНИЗ, туда, где есть запас:
+   слева над кадром стоит текст интро, справа до заголовка пусто. Старт:
+   левый чуть выше слота (−60), средний выше (−240), правый — высоко в пустой
+   зоне справа (−400); финиш — почти одна линия (0 / 16 / 32px, по замечанию
+   «пусть не совсем в прямую»). Сдвиг — transform (композитинг):
+   translateY = e + (s − e)·(1 − p), где --s/--e старт/финиш, --p прогресс
+   0 (положение при загрузке / вход снизу) → 1 (верх секции на 15%
+   вьюпорта) — CUSTOM-JS #4. Без JS / при reduced-motion --p = 1 → финиш.
+   В Elementor ближайшее нативное — Motion Effects → Scrolling Effects →
+   Vertical Scroll (down) у кадров с разной скоростью; точные конечные
+   сдвиги даёт только JS. */
+.section--triptych { --p: 1; }
+.shot {
+  margin: 0;
+  transform: translateY(calc(var(--e, 0px) + (var(--s, 0px) - var(--e, 0px)) * (1 - var(--p))));
+  will-change: transform;
+}
+.shot img { width: 100%; object-fit: cover; }
+.shot figcaption { margin-top: 12px; font-size: 13px; color: var(--navy-65); }
+.shot--a { grid-column: 1 / 6;  --s: -60px;  --e: 0px; }
+.shot--a img { aspect-ratio: 4 / 3; }
+.shot--b { grid-column: 6 / 9;  --s: -240px; --e: 16px; }
+.shot--b img { aspect-ratio: 3 / 4; }
+.shot--c { grid-column: 9 / 13; --s: -400px; --e: 32px; }
+.shot--c img { aspect-ratio: 4 / 3; }
+@media (prefers-reduced-motion: reduce) { .shot { transform: translateY(var(--e, 0px)); } }
+
+/* ═══ 3. ORIGIN — кадр слева 1–9 (~65%), текст справа 10–13 ══════
+   Оба закреплены (sticky top 120 — в Elementor Sticky: Top, Offset 120,
+   Stay in Column). Кадр — три изображения друг над другом (Position
+   Absolute), активное видно; смена по скроллу — CUSTOM-JS (реестр #3):
+   три невидимых «шага» под кадром задают длину прокрутки на кадр.
+   Анимируется только opacity — без перерисовки макета. */
+
+.origin__media { grid-column: 1 / 9; grid-row: 1; position: relative; }
+.origin__text {
+  grid-column: 10 / 13;
+  grid-row: 1;
+  align-self: start;
+  position: sticky;
+  top: 120px;
+}
+.origin__text h2 { max-width: 14ch; }
+.origin__text .lead { margin-top: 20px; color: var(--color-navy); }
+.origin__text > p:not(.lead):not(.origin__cap) { margin-top: 20px; max-width: 44ch; color: var(--navy-80); }
+
+/* три «удара» из текста клиента; активный — navy 500, остальные — Light 65% */
+.origin__beats {
+  margin: var(--space-block) 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.origin__beats li {
+  font-family: var(--font-display);
+  font-size: 20px;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  font-weight: 300;
+  color: var(--navy-65);
+  transition: color .45s ease;
+}
+.origin__beats li.is-active { color: var(--color-navy); font-weight: 500; }
+.origin__cap { margin-top: 18px; font-size: 13px; line-height: 1.5; min-height: 40px; color: var(--navy-65); }
+
+.origin__sticky { position: sticky; top: 120px; }
+.origin__frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+}
+.origin__frame img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity .7s ease;
+}
+.origin__frame img.is-active { opacity: 1; }
+.origin__idx { margin-top: 10px; font-size: 13px; font-variant-numeric: tabular-nums; color: var(--navy-65); }
+.origin__step { height: 72vh; }
+.origin__step:first-child { height: 40vh; }   /* первый кадр уже показан — короче */
+
+@media (prefers-reduced-motion: reduce) {
+  .origin__frame img, .origin__beats li { transition: none; }
+}
+
+/* ═══ 4. BRANDS — «Створки» ════════════════════════════════════
+   Две фото-панели 50/50 на всю ширину сетки. Покой: имя бренда внизу
+   панели, описание и кнопка спрятаны под нижним краем. Hover/focus:
+   панель раскрывается до ~70% (flex-grow), описание разворачивается
+   (grid-template-rows 0fr → 1fr — точная высота без магических чисел),
+   имя поднимается вместе с ним. Вход: при появлении блока тексты
+   «падают» сверху на место (.is-in от JS #5). CUSTOM-CSS (реестр #5):
+   в Elementor два контейнера-ссылки с Background Image + Overlay, всё
+   поведение — Custom CSS. ≤1024: ховера нет, описание раскрыто. */
+
+.brands__title { grid-column: 1 / 9; margin-bottom: var(--space-block); }
+
+.panels { grid-column: 1 / 13; display: flex; gap: var(--col-gap); height: 560px; }
+.panel {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  display: block;
+  overflow: hidden;
+  text-decoration: none;
+  color: var(--color-white);
+  transition: flex-grow .7s cubic-bezier(.22, 1, .36, 1);
+}
+.panels:hover .panel,
+.panels:focus-within .panel { flex-grow: .62; }
+.panels .panel:hover,
+.panels .panel:focus-visible { flex-grow: 1.9; }
+.panel:focus-visible { outline: 1px solid var(--color-blue); outline-offset: 4px; }
+
+.panel__bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(.22, 1, .36, 1); }
+.panel:hover .panel__bg { transform: scale(1.04); }
+.panel__veil { position: absolute; inset: 0; }
+.panel--nor   .panel__veil { background: linear-gradient(180deg, rgba(14,32,61,.15) 0%, rgba(14,32,61,.85) 100%); }
+.panel--kelda .panel__veil { background: linear-gradient(180deg, rgba(88,75,60,.15) 0%, rgba(88,75,60,.85) 100%); }
+
+.panel__body {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 40px 40px 36px;
+  max-width: 36rem;
+}
+.panel__role { display: block; font-size: 13px; font-weight: 500; color: rgba(255,255,255,.75); }
+.panel h3 { margin-top: 8px; font-size: 40px; line-height: 1.15; font-weight: 600; letter-spacing: -0.015em; white-space: nowrap; }
+
+.panel__more { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .65s cubic-bezier(.22, 1, .36, 1); }
+.panel__more-in {
+  min-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity .4s ease, transform .65s cubic-bezier(.22, 1, .36, 1);
+}
+.panel:hover .panel__more,
+.panel:focus-visible .panel__more { grid-template-rows: 1fr; }
+.panel:hover .panel__more-in,
+.panel:focus-visible .panel__more-in { opacity: 1; transform: none; transition-delay: .08s; }
+.panel__more-in p { padding-top: 22px; max-width: 44ch; color: rgba(255,255,255,.85); }
+.panel__focus { padding-top: 10px !important; font-size: 13px; font-weight: 500; color: var(--color-white); }
+.panel__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 22px;
+  padding: 10px 18px;
+  border: 1px solid rgba(255,255,255,.8);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-white);
+  transition: background .3s ease, color .3s ease;
+}
+.panel:hover .panel__cta:hover { background: var(--color-white); color: var(--color-navy); }
+.panel__cta-icon { width: 16px; height: 16px; }
+
+/* вход: тексты «падают» сверху на место (только при работающем JS) */
+.js .section--brands:not(.is-in) .panel__body { transform: translateY(-32px); opacity: 0; }
+.panel__body { transition: transform .9s cubic-bezier(.22, 1, .36, 1), opacity .6s ease; }
+.panel--kelda .panel__body { transition-delay: .12s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .panel, .panel__bg, .panel__more, .panel__more-in, .panel__body, .panel__cta { transition: none; }
+  .js .section--brands:not(.is-in) .panel__body { transform: none; opacity: 1; }
+}
+
+/* ═══ 5. WHY INDIA — «Лента» ══════════════════════════════════════
+   Секция-трек высотой 260vh; внутри закреплённая сцена 100vh. Слева
+   (1–4) узкая колонка: заголовок, лид, абзац — переносы строк задаются
+   шириной колонки и max-width, не <br>; ниже карта Норвегия→Индия (SVG
+   через mask — цвет из background) и линия прогресса. Справа (5–13)
+   лента из 4 кадров: translateX = −p·over (CUSTOM-JS #6), уходит за
+   правый край экрана, слева обрезана по своей колонке. Porcelain-фон. */
+
+.section--why { padding: 0; }
+.why__track { position: relative; height: 360vh; }
+.why__pin { position: sticky; top: 0; height: 100vh; overflow: hidden; }
+.why__pin > .container { height: 100%; align-items: stretch; }
+
+.why__text { grid-column: 1 / 4; align-self: center; }
+.why__text h2 { max-width: 10ch; }
+.why__text .lead { margin-top: 20px; max-width: 262px; color: var(--color-navy); }  /* строка 1 «India is entering a new chapter» = 254px, «…chapter in» = 272px → 262 даёт перенос перед «in food consumption.» */
+.why__text > p:not(.lead) { margin-top: 20px; max-width: 58ch; color: var(--navy-80); }
+.why__map {
+  width: 80%;                  /* карта — 80% ширины колонки (по замечанию) */
+  aspect-ratio: 1;
+  margin-top: var(--space-block);
+  background: var(--color-navy);
+  -webkit-mask: url("../../../assets/illustrations/map-norway-india.svg") center / contain no-repeat;
+  mask: url("../../../assets/illustrations/map-norway-india.svg") center / contain no-repeat;
+}
+.why__bar { position: relative; margin-top: 28px; height: 1px; background: var(--hairline); }
+.why__bar i { position: absolute; left: 0; top: 0; bottom: 0; width: calc(var(--p, 0) * 100%); background: var(--color-blue); }
+
+.why__strip { grid-column: 4 / 13; min-width: 0; height: 100%; clip-path: inset(0 -100vw 0 0); }
+.why__rail { display: flex; gap: var(--col-gap); width: max-content; height: 100%; transform: translateX(calc(-1 * var(--p, 0) * var(--over, 0px))); will-change: transform; }
+/* кадр — на всю высоту блока (100vh), ширина 56vw с кадрированием; подпись
+   внутри кадра снизу на мягкой вуали */
+.why__item { position: relative; margin: 0; width: 56vw; max-width: 960px; height: 100%; flex: none; overflow: hidden; }
+.why__item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.why__veil { position: absolute; left: 0; right: 0; bottom: 0; height: 38%; background: linear-gradient(180deg, rgba(14,32,61,0) 0%, rgba(14,32,61,.55) 100%); pointer-events: none; }
+.why__cap { position: absolute; left: 28px; right: 28px; bottom: 26px; font-size: 13px; color: rgba(255,255,255,.8); }
+.why__cap b { font-weight: 500; color: var(--color-white); }
+
+/* ═══ 6. COMMITMENT — «Манифест» ═════════════════════════════════
+   Слева заголовок + абзац (1–5). Справа (6–13) четыре строки: иконка
+   64px (Recraft-пиктограммы через mask → цвет из currentColor), ярлык
+   принципа 13px, утверждение «Without …» Mozilla 34px. В покое линий нет;
+   на hover под строкой рисуется 1px Ice Blue слева направо (тот же
+   приём, что у ссылок) — CUSTOM-CSS (реестр #7). Появление лесенкой
+   (.is-in, JS #7; в Elementor — Entrance Animation). */
+
+.commitment__head { grid-column: 1 / 5; }
+.commitment__head h2 { max-width: 12ch; }
+.commitment__head p { margin-top: 20px; max-width: 40ch; color: var(--navy-80); }
+
+/* список сидит на колонках 7–13: строка начинается ИКОНКОЙ ровно на линии 7
+   (как текст People ниже), текст — за иконкой */
+.principles { grid-column: 7 / 13; margin: 0; padding: 0; list-style: none; }
+.principle {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  column-gap: 28px;
+  align-items: start;
+  padding: 26px 0;
+  /* линия под строкой: 0 → 100% на hover */
+  background-image: linear-gradient(var(--color-blue), var(--color-blue));
+  background-repeat: no-repeat;
+  background-size: 0 1px;
+  background-position: 0 100%;
+  transition: background-size .6s cubic-bezier(.22, 1, .36, 1), opacity .7s ease, transform .9s cubic-bezier(.22, 1, .36, 1);
+  opacity: 0;
+  transform: translateY(24px);
+}
+.principle.is-in { opacity: 1; transform: none; }
+.principle:hover { background-size: 100% 1px; }
+.principle__icon {
+  display: block;
+  width: 56px;
+  height: 56px;
+  margin-top: 0;
+  background: currentColor;
+  -webkit-mask: var(--ico) center / contain no-repeat;
+  mask: var(--ico) center / contain no-repeat;
+}
+.principle--quality      { --ico: url("../../../assets/icons/pictograms/weight-class.svg"); }
+.principle--traceability { --ico: url("../../../assets/icons/pictograms/route.svg"); }
+.principle--partnerships { --ico: url("../../../assets/icons/pictograms/people.svg"); }
+.principle--growth       { --ico: url("../../../assets/icons/pictograms/growth-bars.svg"); }
+.principle__label { font-family: var(--font-text); font-size: 13px; line-height: 1.5; font-weight: 500; color: var(--navy-65); }
+.principle__line {
+  margin-top: 4px;
+  font-family: var(--font-display);
+  font-size: 22px;                        /* масштаб H3/акцентной фразы, не H2 */
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  font-weight: 500;
+  color: var(--color-navy);
+}
+@media (prefers-reduced-motion: reduce) { .principle { transition: none; opacity: 1; transform: none; } }
+
+/* ═══ 7. PEOPLE — портрет 1–6, текст 7–13 ═════════════════════ */
+
+.people__media { grid-column: 1 / 6; margin: 0; }
+.people__media img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+.people__text { grid-column: 7 / 13; }
+.people__text h2 { max-width: 15ch; }
+.people__text > p { margin-top: 24px; max-width: 50ch; color: var(--navy-80); }
+.people__text > p + p { margin-top: 16px; }
+.people__note { margin-top: var(--space-element); }
+
+.quote { margin: var(--space-block) 0 0; padding-top: 28px; border-top: 2px solid var(--color-blue); }
+.quote p {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.38;
+  letter-spacing: -0.01em;
+  max-width: 32ch;
+}
+.quote cite {
+  display: block;
+  margin-top: 20px;
+  font-family: var(--font-text);
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+}
+.quote cite span { display: block; margin-top: 3px; font-weight: 300; color: var(--navy-65); }
+
+/* ═══ 8. CONTACT ══════════════════════════════════════════════ */
+
+.contact__head { grid-column: 1 / 6; }
+.contact__head h2 { max-width: 12ch; }
+.contact__head .lead { margin-top: 20px; color: var(--color-navy); }
+.contact__head p:not(.lead) { margin-top: 12px; max-width: 46ch; color: var(--navy-80); }
+
+.form { grid-column: 7 / 13; display: flex; flex-direction: column; gap: 22px; }
+.form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+
+.field { display: flex; flex-direction: column; gap: 8px; }
+.field span { font-size: 13px; font-weight: 500; letter-spacing: 0.03em; color: var(--navy-65); }
+.field input,
+.field textarea {
+  font-family: var(--font-text);
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--color-navy);
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--hairline);
+  padding: 9px 0;
+  transition: border-color .25s ease;
+}
+.field input:focus,
+.field textarea:focus { outline: none; border-bottom-color: var(--color-blue); }
+.field textarea { resize: vertical; }
+.form .btn { align-self: flex-start; margin-top: 10px; }
+
+/* ═══ FOOTER — F2 «высокий» ═══════════════════════════════════════
+   Порядок строк: логотип (1–5) + крупный клейм (7–13) → два офиса-героя
+   (1–6 / 7–13: страна капсом navy, адрес 18px, почта) → навигация (1–9) +
+   LinkedIn с иконкой (10–13, справа) → юр. строка → полоса паттерна.
+   Линий нет — строки разводятся воздухом 112/112/28. */
+
+.site-footer { background: var(--color-porcelain); color: var(--color-navy); padding-top: 160px; }
+.site-footer > .container { padding-bottom: 56px; }
+.foot-row + .foot-row { margin-top: 64px; }
+.foot-row--offices, .foot-row--nav { margin-top: 112px; }
+.foot-row--legal { margin-top: 28px; }
+
+.foot-logo { grid-column: 1 / 6; align-self: end; }
+.foot-logo img { height: 44px; width: auto; display: block; }
+.foot-claim {
+  grid-column: 7 / 13;
+  align-self: end;
+  font-family: var(--font-display);
+  font-size: 32px;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  font-weight: 500;
+  max-width: 22ch;
+}
+.foot-office--no { grid-column: 1 / 6; }
+.foot-office--in { grid-column: 7 / 13; }
+.foot-label { display: block; font-size: 13px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--color-navy); }
+.foot-addr { margin-top: 16px; font-size: 18px; line-height: 1.5; font-weight: 400; color: var(--color-navy); max-width: 40ch; }   /* «PVT. LTD.» — неразрывный пробел, в одну строку */
+.foot-mail {
+  display: inline-block;
+  margin-top: 14px;
+  padding-bottom: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-navy);
+  text-decoration: none;
+  background-image: linear-gradient(var(--color-blue), var(--color-blue));
+  background-repeat: no-repeat;
+  background-size: 100% 1px;
+  background-position: 0 100%;
+}
+
+.foot-nav { grid-column: 1 / 10; display: flex; flex-wrap: wrap; gap: 16px 32px; }
+.foot-nav a { font-size: 14px; font-weight: 500; text-decoration: none; color: var(--color-navy); padding-bottom: 4px; }
+.foot-in { grid-column: 10 / 13; justify-self: end; display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; text-decoration: none; color: var(--color-navy); padding-bottom: 4px; }
+.foot-in__icon { width: 18px; height: 18px; margin-bottom: 2px; }
+/* подчёркивание 1px slide-in — единое с меню и ссылками */
+.foot-nav a, .foot-in {
+  background-image: linear-gradient(var(--color-blue), var(--color-blue));
+  background-repeat: no-repeat;
+  background-size: 0 1px;
+  background-position: 0 100%;
+  transition: background-size .45s cubic-bezier(.22, 1, .36, 1);
+}
+.foot-nav a:hover, .foot-nav a:focus-visible, .foot-in:hover, .foot-in:focus-visible { background-size: 100% 1px; }
+.foot-legal { grid-column: 1 / 10; font-size: 13px; line-height: 1.6; color: var(--navy-65); }
+
+/* ══ ПАТТЕРН — отдельная полоса внизу футера («Гребень», P1) ══ */
+.foot-pattern {
+  height: 112px;
+  background-image: url("../../../assets/pattern-on-porcelain.svg");
+  background-repeat: repeat;
+  background-size: 40px 14px;
+  background-position: 0 0;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   TABLET — max-width: 1024px
+   ══════════════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  :root {
+    --gutter: 26px;
+    --col-gap: 20px;
+    --space-section: 88px;
+    --space-block: 48px;
+  }
+
+  h1 { font-size: 42px; }
+  h2 { font-size: 30px; }
+  h3 { font-size: 19px; }
+  .lead { font-size: 18px; }
+
+  .site-header__logo { grid-column: 1 / 5; }
+  .site-header__logo img { height: 38px; }
+  .site-nav--brands { grid-column: 6 / 9; gap: 28px; }
+  .site-nav--util   { grid-column: 9 / 13; gap: 24px; }
+
+  .intro__title { grid-column: 1 / 13; }
+  .intro__lead { grid-column: 1 / 9; }
+  .intro__links { grid-column: 1 / 13; }
+
+  /* триптих: широкий кадр сверху, два меньших лесенкой ниже */
+  .shot--a { grid-column: 1 / 13; --s: 0px; --e: 0px; }
+  .shot--a img { aspect-ratio: 16 / 9; }
+  .shot--b { grid-column: 1 / 6; margin-top: var(--space-block); --s: 0px; --e: 0px; }
+  .shot--c { grid-column: 7 / 13; margin-top: var(--space-block); --s: -40px; --e: 24px; }
+
+  /* Origin: sticky выключен, текст → три кадра стопкой */
+  .origin__text { grid-column: 1 / 13; grid-row: auto; position: static; }
+  .origin__text h2 { max-width: 20ch; }
+  .origin__beats { flex-direction: row; flex-wrap: wrap; gap: 8px 28px; margin-top: var(--space-element); }
+  .origin__beats li { color: var(--color-navy); font-weight: 500; }
+  .origin__cap { display: none; }
+  .origin__media { grid-column: 1 / 13; grid-row: auto; margin-top: var(--space-block); }
+  .origin__sticky { position: static; }
+  .origin__frame { aspect-ratio: auto; overflow: visible; }
+  .origin__frame img { position: static; opacity: 1; aspect-ratio: 3 / 2; margin-bottom: var(--space-element); }
+  .origin__idx, .origin__steps { display: none; }
+
+  .brands__title { grid-column: 1 / 13; }
+  .panels { height: 480px; }
+  .panel h3 { font-size: 32px; }
+  /* без ховера: описание раскрыто, панели не меняют ширину */
+  .panels:hover .panel, .panels .panel:hover, .panels:focus-within .panel { flex-grow: 1; }
+  .panel__more { grid-template-rows: 1fr; }
+  .panel__more-in { opacity: 1; transform: none; }
+  .panel__body { padding: 32px 28px 30px; }
+
+  /* Why India: без закрепления — текст, затем кадры стопкой */
+  .section--why { padding-block: var(--space-section); }
+  .why__track { height: auto; }
+  .why__pin { position: static; height: auto; overflow: visible; }
+  .why__text { grid-column: 1 / 13; }
+  .why__text h2 { max-width: 18ch; }
+  .why__bar { display: none; }
+  .why__strip { grid-column: 1 / 13; margin-top: var(--space-block); clip-path: none; }
+  .why__rail { display: grid; grid-template-columns: 1fr 1fr; gap: var(--col-gap); width: auto; height: auto; transform: none; }
+  .why__item { width: 100%; max-width: none; height: auto; aspect-ratio: 3 / 2; }
+  .why__map { max-width: 220px; }
+
+  .commitment__head { grid-column: 1 / 13; margin-bottom: var(--space-block); }
+  .principles { grid-column: 1 / 13; }
+  .principle__line { font-size: 20px; }
+
+  .people__media { grid-column: 1 / 7; }
+  .people__text  { grid-column: 1 / 13; margin-top: var(--space-block); }
+  .quote p { font-size: 20px; }
+
+  .contact__head { grid-column: 1 / 13; }
+  .contact__head h2 { max-width: 18ch; }
+  .form { grid-column: 1 / 13; margin-top: var(--space-block); }
+
+  .site-footer { padding-top: 96px; }
+  .foot-row--offices, .foot-row--nav { margin-top: 72px; }
+  .foot-logo, .foot-brand, .foot-claim { grid-column: 1 / 13; }
+  .foot-claim { margin-top: 24px; }
+  .foot-office--no { grid-column: 1 / 7; }
+  .foot-office--in { grid-column: 7 / 13; }
+  .foot-nav { grid-column: 1 / 9; }
+  .foot-in { grid-column: 9 / 13; }
+  .foot-legal { grid-column: 1 / 13; }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   MOBILE — max-width: 767px
+   ══════════════════════════════════════════════════════════════ */
+@media (max-width: 767px) {
+  :root {
+    --gutter: 20px;
+    --col-gap: 16px;
+    --space-section: 64px;
+    --space-block: 36px;
+    --space-element: 22px;
+  }
+
+  h1 { font-size: 32px; }
+  h2 { font-size: 26px; }
+  h3 { font-size: 18px; }
+  .lead { font-size: 17px; }
+
+  /* хедер: лого + бургер в одну строку, меню раскрывается колонкой */
+  .site-header { padding-block: 16px; }
+  .site-header__logo { grid-column: 1 / 10; }
+  .site-header__logo img { height: 32px; }
+  .nav-toggle {
+    grid-column: 10 / 13;
+    justify-self: end;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    width: 44px;
+    height: 44px;
+    margin-right: -10px;
+    padding: 0 10px;
+    background: none;
+    border: 0;
+    cursor: pointer;
+  }
+  .nav-toggle span { display: block; height: 1px; background: var(--color-navy); }
+  /* .site-header .site-nav (0,2,0) перекрывает десктопные .site-nav--* */
+  .site-header .site-nav {
+    grid-column: 1 / 13;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .site-header.is-open .site-nav { display: flex; }
+  .site-header.is-open .site-nav--brands { margin-top: 22px; }
+  .site-header.is-open .site-nav--util { margin-top: 14px; }
+  .site-header.is-open .btn-outline { margin-top: 6px; }
+
+  .intro__lead { grid-column: 1 / 13; margin-top: 24px; font-size: 17px; }
+
+  .shot--a, .shot--b, .shot--c { grid-column: 1 / 13; margin-top: 0; --s: 0px; --e: 0px; }
+  .shot--a img { aspect-ratio: 4 / 3; }
+  .shot--b, .shot--c { margin-top: var(--space-block); }
+
+  .origin__media { margin-top: var(--space-block); }
+  .origin__beats li { font-size: 18px; }
+  .origin__frame img { aspect-ratio: 4 / 3; }
+
+  .why__rail { grid-template-columns: 1fr; }
+
+  .panels { flex-direction: column; height: auto; }
+  .panel { min-height: 320px; flex: none !important; }
+  .panel h3 { font-size: 28px; }
+  .panel__body { padding: 28px 22px 26px; max-width: none; }
+
+  .people__media { grid-column: 1 / 13; }
+
+  .principle { grid-template-columns: 48px 1fr; column-gap: 18px; padding: 20px 0; }
+  .principle__icon { width: 44px; height: 44px; }
+  .principle__line { font-size: 19px; }
+
+  .quote p { font-size: 19px; max-width: none; }
+
+  .form__row { grid-template-columns: 1fr; }
+
+  .site-footer { padding-top: 64px; }
+  .foot-row + .foot-row, .foot-row--offices, .foot-row--nav { margin-top: 40px; }
+  .foot-office--no, .foot-office--in, .foot-nav, .foot-in, .foot-legal { grid-column: 1 / 13; }
+  .foot-office--in { margin-top: 28px; }
+  .foot-in { justify-self: start; margin-top: 20px; }
+  .foot-legal { margin-top: 24px; }
+  .foot-pattern { height: 112px; }
+}

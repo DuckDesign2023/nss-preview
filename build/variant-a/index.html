@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Norwegian Sustainable Seafood — Variant A (light)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mozilla+Text:wght@300;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<!-- Иконка-стрелка: Phosphor «arrow-right-light» (ph:arrow-right-light), inline SVG, currentColor.
+     В Elementor: Button → Icon → загрузить этот SVG как custom icon. -->
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-arrow" viewBox="0 0 256 256"><path fill="currentColor" d="m220.24 132.24l-72 72a6 6 0 0 1-8.48-8.48L201.51 134H40a6 6 0 0 1 0-12h161.51l-61.75-61.76a6 6 0 0 1 8.48-8.48l72 72a6 6 0 0 1 0 8.48"/></symbol>
+  <symbol id="i-in" viewBox="0 0 256 256"><path fill="currentColor" d="M216 26H40a14 14 0 0 0-14 14v176a14 14 0 0 0 14 14h176a14 14 0 0 0 14-14V40a14 14 0 0 0-14-14m2 190a2 2 0 0 1-2 2H40a2 2 0 0 1-2-2V40a2 2 0 0 1 2-2h176a2 2 0 0 1 2 2ZM94 112v64a6 6 0 0 1-12 0v-64a6 6 0 0 1 12 0m88 28v36a6 6 0 0 1-12 0v-36a22 22 0 0 0-44 0v36a6 6 0 0 1-12 0v-64a6 6 0 0 1 12 0v2.11A34 34 0 0 1 182 140M98 84a10 10 0 1 1-10-10a10 10 0 0 1 10 10"/></symbol>
+</svg>
+
+<!-- ═══ HEADER — «Две цепочки»: бренды на линии 7, служебное справа ═══
+     Без фона и линии: хедер — первая строка сетки, отделяется воздухом.
+     В Elementor: контейнер-grid; лого 1–4; Nav Menu (NorSeafood, Kelda)
+     на 7–10, Pointer: Underline / Animation: Slide / Width 1px;
+     справа контейнер с Button «About» (тип link) и Button «Get in touch»
+     (outline 1px). Мобильный — нативный Dropdown у Nav Menu. -->
+<header class="site-header" data-el="container" data-name="header">
+  <div class="container grid" data-el="container">
+    <a class="site-header__logo" href="#" data-el="image">
+      <img src="../../assets/logo-nss-navy-tight.svg" alt="Norwegian Sustainable Seafood">
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
+      <span></span><span></span>
+    </button>
+    <nav class="site-nav site-nav--brands" id="site-nav" aria-label="Brands" data-el="nav-menu">
+      <a href="#brands">NorSeafood</a>
+      <a href="#brands">Kelda</a>
+    </nav>
+    <div class="site-nav site-nav--util" data-el="container">
+      <a href="#people" data-el="button">About</a>
+      <a class="btn-outline" href="#contact" data-el="button">Get in touch</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ═══ 1. INTRO ═══ -->
+  <section class="section section--intro" data-el="container" data-name="intro">
+    <div class="container grid" data-el="container">
+      <h1 class="intro__title" data-el="heading">The taste of Norway.<br>The future of seafood in India.</h1>
+      <p class="intro__lead" data-el="text-editor">
+        Connecting premium Norwegian seafood with the next generation of Indian
+        consumers, distributors and food businesses.
+      </p>
+      <div class="intro__links" data-el="container">
+        <a class="link-arrow" href="#brands" data-el="button"><span class="link-arrow__label">Explore NorSeafood</span><svg class="link-arrow__icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="link-arrow" href="#brands" data-el="button"><span class="link-arrow__label">Discover Kelda</span><svg class="link-arrow__icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 2. ТРИПТИХ — три сюжета фотостиля: побережье / продукт / люди ═══ -->
+  <section class="section section--triptych" data-el="container" data-name="triptych">
+    <div class="container grid" data-el="container">
+      <figure class="shot shot--a" data-el="container">
+        <img src="../../assets/hero-coast.webp" alt="The Norwegian coastline in fog" width="1920" height="1080" loading="lazy">
+        <figcaption data-el="text-editor">The North Atlantic coastline</figcaption>
+      </figure>
+      <figure class="shot shot--b" data-el="container">
+        <img src="../../assets/product-fillet.webp" alt="Fresh salmon on ice" width="1100" height="1467" loading="lazy">
+        <figcaption data-el="text-editor">Superior grade, documented</figcaption>
+      </figure>
+      <figure class="shot shot--c" data-el="container">
+        <img src="../../assets/people-packing.webp" alt="Packing salmon at a Norwegian processing facility" width="1600" height="1067" loading="lazy">
+        <figcaption data-el="text-editor">Responsible processing</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ═══ 3. ORIGIN — закреплённый кадр слева (1–9), закреплённый текст справа (10–13) ═══
+       По мере скролла три изображения сменяются кроссфейдом, в тексте
+       подсвечивается текущий «удар» (Quality / Consistency / Respect for the
+       ocean — фраза с сайта клиента). В Elementor: оба контейнера — Advanced →
+       Motion Effects → Sticky: Top, Offset 120, Stay in Column; три Image
+       в кадре Position: Absolute; смена — CUSTOM-JS (реестр #3). -->
+  <section class="section section--origin" data-el="container" data-name="origin">
+    <div class="container grid" data-el="container">
+      <div class="origin__text" data-el="container">
+        <h2 data-el="heading">Shaped by the North Atlantic</h2>
+        <p class="lead" data-el="text-editor">Everything begins in Norway.</p>
+        <p data-el="text-editor">
+          Along one of the world's longest coastlines, cold waters and strong ocean
+          currents create ideal conditions for premium seafood. This is not simply
+          where our products come from. It is where our values come from.
+        </p>
+        <ol class="origin__beats" data-beats data-el="container">
+          <li class="is-active" data-el="heading">Quality.</li>
+          <li data-el="heading">Consistency.</li>
+          <li data-el="heading">Respect for the ocean.</li>
+        </ol>
+        <p class="origin__cap" data-cap data-el="text-editor">Cold waters and strong ocean currents.</p>
+      </div>
+      <div class="origin__media" data-el="container">
+        <div class="origin__sticky" data-el="container">
+          <div class="origin__frame" data-el="container">
+            <img class="is-active" src="../../assets/sea-pens.webp" alt="Sea pens on calm northern water" width="1600" height="1200">
+            <img src="../../assets/fjord-aerial.webp" alt="Sea farms in a Norwegian fjord, from above" loading="lazy">
+            <img src="../../assets/vessel.webp" alt="A vessel in the grey northern sea" width="1600" height="1067" loading="lazy">
+          </div>
+          <p class="origin__idx" data-idx data-el="text-editor">01 / 03</p>
+        </div>
+        <div class="origin__steps" aria-hidden="true" data-el="container">
+          <div class="origin__step" data-step="0"></div>
+          <div class="origin__step" data-step="1"></div>
+          <div class="origin__step" data-step="2"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 4. BRANDS — «Створки»: две фото-панели 50/50 ═══
+       Имя бренда в покое сидит внизу панели; наведение раскрывает панель
+       до ~70% ширины и поднимает имя вместе с описанием и кнопкой. При
+       появлении блока имена «падают» на место (CUSTOM-JS #5 → .is-in).
+       В Elementor: контейнер-flex с двумя контейнерами-ссылками (Background
+       Image + Overlay), поведение — Custom CSS (реестр #5). ≤1024 — без
+       ховера, описание раскрыто. -->
+  <section class="section section--brands" id="brands" data-el="container" data-name="brands">
+    <div class="container grid" data-el="container">
+      <h2 class="brands__title" data-el="heading">One company. Two value chains.</h2>
+      <div class="panels" data-el="container">
+        <a class="panel panel--nor" href="#" data-el="container">
+          <img class="panel__bg" src="../../assets/fish-fresh.webp" alt="" width="1400" height="933" loading="lazy">
+          <span class="panel__veil" aria-hidden="true"></span>
+          <div class="panel__body" data-el="container">
+            <span class="panel__role" data-el="text-editor">Trade brand · B2B</span>
+            <h3 data-el="heading">NorSeafood</h3>
+            <div class="panel__more"><div class="panel__more-in">
+              <p data-el="text-editor">Frozen whole Norwegian salmon supplied to importers, processors and distributors seeking reliable long-term supply.</p>
+              <p class="panel__focus" data-el="text-editor">Current focus: frozen whole Atlantic salmon</p>
+              <span class="panel__cta" data-el="button">Explore NorSeafood<svg class="panel__cta-icon" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+            </div></div>
+          </div>
+        </a>
+        <a class="panel panel--kelda" href="#" data-el="container">
+          <img class="panel__bg" src="../../assets/india-kitchen.webp" alt="" width="2016" height="1344" loading="lazy">
+          <span class="panel__veil" aria-hidden="true"></span>
+          <div class="panel__body" data-el="container">
+            <span class="panel__role" data-el="text-editor">Consumer brand · B2C</span>
+            <h3 data-el="heading">Kelda</h3>
+            <div class="panel__more"><div class="panel__more-in">
+              <p data-el="text-editor">Inspired by Norway. Created for India. Consumer-ready seafood products for the Indian market, built on Norwegian origin and designed for modern Indian consumers and food experiences.</p>
+              <span class="panel__cta" data-el="button">Explore Kelda<svg class="panel__cta-icon" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+            </div></div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 5. WHY INDIA — «Лента»: узкая закреплённая колонка текста + карта
+       Норвегия→Индия слева (1–4), справа горизонтальная лента из четырёх
+       кадров Индии едет по мере вертикального скролла (CUSTOM-JS #6),
+       линия прогресса Ice Blue. Porcelain-фон секции сохранён. ≤1024 —
+       текст, затем кадры стопкой. В Elementor: секция с Sticky-контейнером
+       (Top, 0) внутри высокого контейнера-трека; лента — Custom CSS/JS. -->
+  <section class="section section--why section--tinted" data-el="container" data-name="why-india">
+    <div class="why__track" data-el="container">
+      <div class="why__pin" data-el="container">
+        <div class="container grid" data-el="container">
+          <div class="why__text" data-el="container">
+            <h2 data-el="heading">Why India. Why now.</h2>
+            <p class="lead" data-el="text-editor">India is entering a new chapter in food consumption.</p>
+            <p data-el="text-editor">A growing middle class. Rising disposable income. Greater demand for premium international food experiences.</p>
+            <div class="why__map" role="img" aria-label="Route from Norway to India" data-el="image"></div>
+            <div class="why__bar" aria-hidden="true"><i></i></div>
+          </div>
+          <div class="why__strip" data-el="container">
+            <div class="why__rail" data-el="container">
+              <figure class="why__item" data-el="container">
+                <img src="../../assets/india-mumbai-lux.webp" alt="Mumbai at dusk" width="2016" height="1344" loading="lazy">
+                <span class="why__veil" aria-hidden="true"></span>
+                <figcaption class="why__cap" data-el="text-editor"><b>Mumbai</b> — the market</figcaption>
+              </figure>
+              <figure class="why__item" data-el="container">
+                <img src="../../assets/india-restaurant.webp" alt="A restaurant in Mumbai: a plate of Norwegian salmon is served" width="2016" height="1344" loading="lazy">
+                <span class="why__veil" aria-hidden="true"></span>
+                <figcaption class="why__cap" data-el="text-editor"><b>Premium dining</b> — new food experiences</figcaption>
+              </figure>
+              <figure class="why__item" data-el="container">
+                <img src="../../assets/india-retail.webp" alt="A premium seafood counter in a modern Indian supermarket" width="2016" height="1344" loading="lazy">
+                <span class="why__veil" aria-hidden="true"></span>
+                <figcaption class="why__cap" data-el="text-editor"><b>Modern retail</b> — a growing middle class</figcaption>
+              </figure>
+              <figure class="why__item" data-el="container">
+                <img src="../../assets/india-coldstore.webp" alt="Indian and Norwegian partners in a cold-storage facility" width="2016" height="1344" loading="lazy">
+                <span class="why__veil" aria-hidden="true"></span>
+                <figcaption class="why__cap" data-el="text-editor"><b>Trade partners</b> — built between two countries</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 6. COMMITMENT — «Манифест»: четыре утверждения «Without …» ═══
+       Слева заголовок и абзац (1–5), справа (6–13) четыре строки: крупная
+       иконка (Recraft-пиктограммы, mask → currentColor) + мелкий ярлык
+       принципа + утверждение 34px. В покое линий нет; при наведении под
+       строкой рисуется линия 1px Ice Blue слева направо (как у ссылок).
+       Строки появляются лесенкой (CUSTOM-JS #7; в Elementor — Entrance
+       Animation с задержками). -->
+  <section class="section section--commitment" data-el="container" data-name="commitment">
+    <div class="container grid" data-el="container">
+      <div class="commitment__head" data-el="container">
+        <h2 data-el="heading">Our commitment</h2>
+        <p data-el="text-editor">
+          Every decision we make is guided by a commitment to responsible sourcing,
+          uncompromising quality standards, and long-term partnerships that create
+          lasting value.
+        </p>
+      </div>
+      <ul class="principles" data-el="container">
+        <li class="principle principle--quality" data-el="container">
+          <span class="principle__icon" data-el="icon" aria-hidden="true"></span>
+          <div class="principle__body" data-el="container">
+            <h3 class="principle__label" data-el="heading">Quality</h3>
+            <p class="principle__line" data-el="text-editor">Without compromise.</p>
+          </div>
+        </li>
+        <li class="principle principle--traceability" data-el="container">
+          <span class="principle__icon" data-el="icon" aria-hidden="true"></span>
+          <div class="principle__body" data-el="container">
+            <h3 class="principle__label" data-el="heading">Traceability</h3>
+            <p class="principle__line" data-el="text-editor">Without shortcuts.</p>
+          </div>
+        </li>
+        <li class="principle principle--partnerships" data-el="container">
+          <span class="principle__icon" data-el="icon" aria-hidden="true"></span>
+          <div class="principle__body" data-el="container">
+            <h3 class="principle__label" data-el="heading">Partnerships</h3>
+            <p class="principle__line" data-el="text-editor">Without end dates.</p>
+          </div>
+        </li>
+        <li class="principle principle--growth" data-el="container">
+          <span class="principle__icon" data-el="icon" aria-hidden="true"></span>
+          <div class="principle__body" data-el="container">
+            <h3 class="principle__label" data-el="heading">Growth</h3>
+            <p class="principle__line" data-el="text-editor">Without sacrificing responsibility.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══ 7. PEOPLE — портрет основателя (фото с текущего сайта клиента) ═══ -->
+  <section class="section section--people" id="people" data-el="container" data-name="people">
+    <div class="container grid" data-el="container">
+      <figure class="people__media" data-el="container">
+        <img src="../../assets/henning.webp" alt="Henning B. Figenschou, Founder &amp; CEO of Norwegian Sustainable Seafood" width="1400" height="1788" loading="lazy">
+      </figure>
+      <div class="people__text" data-el="container">
+        <h2 data-el="heading">Built between two countries</h2>
+        <p data-el="text-editor">
+          Great seafood begins long before it reaches a plate. It begins with cold
+          waters, responsible stewardship and generations of maritime expertise.
+          But above all, it begins with people.
+        </p>
+        <p data-el="text-editor">
+          Norwegian Sustainable Seafood was founded to build a dedicated bridge
+          between Norway and India. Through NorSeafood, we connect Norwegian
+          producers with Indian importers, processors and distributors. Through
+          Kelda, we bring premium Norwegian seafood closer to Indian consumers.
+          We believe lasting value is built through trust, transparency and
+          long-term partnerships.
+        </p>
+        <blockquote class="quote" data-el="blockquote">
+          <p data-el="text-editor">
+            The strongest businesses are built when people, cultures and
+            opportunities come together around a shared vision.
+          </p>
+          <cite data-el="text-editor">Henning B. Figenschou<span>Founder &amp; CEO</span></cite>
+        </blockquote>
+        <p class="people__note" data-el="text-editor">
+          Henning and his partners, Amit and Prakash, are based between Norway
+          and India, working directly with first-wave import and HoReCa partners
+          to understand what the Indian market needs from a Norwegian seafood
+          supplier.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 8. CONTACT ═══ -->
+  <section class="section section--contact" id="contact" data-el="container" data-name="contact">
+    <div class="container grid" data-el="container">
+      <div class="contact__head" data-el="container">
+        <h2 data-el="heading">Let's start a conversation</h2>
+        <p class="lead" data-el="text-editor">Looking for a long-term seafood partner?</p>
+        <p data-el="text-editor">
+          Whether you are interested in Kelda products, seafood sourcing or
+          distribution partnerships, we would like to hear from you.
+        </p>
+      </div>
+      <form class="form" data-el="form" novalidate>
+        <div class="form__row" data-el="container">
+          <label class="field" data-el="container">
+            <span>Name</span>
+            <input type="text" name="name" autocomplete="name">
+          </label>
+          <label class="field" data-el="container">
+            <span>Company</span>
+            <input type="text" name="company" autocomplete="organization">
+          </label>
+        </div>
+        <label class="field" data-el="container">
+          <span>Email</span>
+          <input type="email" name="email" autocomplete="email">
+        </label>
+        <label class="field" data-el="container">
+          <span>Message</span>
+          <textarea name="message" rows="4"></textarea>
+        </label>
+        <button class="btn" type="submit" data-el="button">Send enquiry</button>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<!-- ═══ FOOTER — высокий (F2, выбран 2026-08-21): логотип + крупный клейм,
+     два офиса-героя (страна капсом, адрес 18px, почта), навигация + LinkedIn
+     строкой, юр. строка, полоса паттерна «Гребень». Линий нет — воздух. -->
+<footer class="site-footer" data-el="container" data-name="footer">
+  <div class="container" data-el="container">
+    <div class="grid foot-row" data-el="container">
+      <a class="foot-logo" href="#" data-el="image"><img src="../../assets/logo-nss-navy-tight.svg" alt="Norwegian Sustainable Seafood"></a>
+      <p class="foot-claim" data-el="text-editor">Building a dedicated Norway–India seafood value chain.</p>
+    </div>
+    <div class="grid foot-row foot-row--offices" data-el="container">
+      <div class="foot-office foot-office--no" data-el="container">
+        <span class="foot-label" data-el="heading">Norway</span>
+        <p class="foot-addr" data-el="text-editor">Norwegian Sustainable Seafood AS<br>Lensmannslia 4, 1386 Asker</p>
+        <a class="foot-mail" href="mailto:contact@norseafood.com" data-el="button">contact@norseafood.com</a>
+      </div>
+      <div class="foot-office foot-office--in" data-el="container">
+        <span class="foot-label" data-el="heading">India</span>
+        <p class="foot-addr" data-el="text-editor">Norwegian Sustainable Seafood PVT.&nbsp;LTD.<br>413 Ascent Avenue, Amanora Park Town<br>Hadapsar, Pune 411028</p>
+        <a class="foot-mail" href="mailto:contact@norseafood.com" data-el="button">contact@norseafood.com</a>
+      </div>
+    </div>
+    <div class="grid foot-row foot-row--nav" data-el="container">
+      <nav class="foot-nav" data-el="nav-menu" aria-label="Footer">
+        <a href="#">Home</a>
+        <a href="#brands">NorSeafood</a>
+        <a href="#brands">Kelda</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="foot-in" href="#" data-el="button"><svg class="foot-in__icon" aria-hidden="true"><use href="#i-in"/></svg>LinkedIn</a>
+    </div>
+    <div class="grid foot-row foot-row--legal" data-el="container">
+      <p class="foot-legal" data-el="text-editor">© 2026 Norwegian Sustainable Seafood AS · Org.no. 937 910 460<br>
+      NorSeafood is the commercial platform of Norwegian Sustainable Seafood AS.
+      Kelda is a consumer brand owned by Norwegian Sustainable Seafood AS.</p>
+    </div>
+  </div>
+  <!-- Полоса паттерна: отдельная зона внизу футера, без контента. -->
+  <div class="foot-pattern" data-el="container" aria-hidden="true"></div>
+</footer>
+
+<!-- CUSTOM-JS #7 — Commitment: строки появляются лесенкой (.is-in);
+     в Elementor вместо этого — Entrance Animation с задержкой 0.14s·n. -->
+<script>
+  (function () {
+    var sec = document.querySelector('.section--commitment'); if (!sec) return;
+    var items = sec.querySelectorAll('.principle');
+    if (!('IntersectionObserver' in window)) { items.forEach(function (i) { i.classList.add('is-in'); }); return; }
+    var io = new IntersectionObserver(function (en) { en.forEach(function (e) { if (e.isIntersecting) { items.forEach(function (it, i) { setTimeout(function () { it.classList.add('is-in'); }, i * 140); }); io.disconnect(); } }); }, { threshold: .3 });
+    io.observe(sec);
+  })();
+</script>
+
+<!-- CUSTOM-JS #6 — Why India «Лента»: прогресс трека (0→1) двигает ленту
+     по горизонтали и линию прогресса; ширина хода измеряется при загрузке
+     и ресайзе. ≤1024 не работает (лента в столбик). -->
+<script>
+  (function () {
+    var sec = document.querySelector('.section--why'); if (!sec) return;
+    var track = sec.querySelector('.why__track'), rail = sec.querySelector('.why__rail');
+    var over = 0, tick = false;
+    function measure() {
+      if (window.innerWidth <= 1024) { sec.style.setProperty('--p', 0); return; }
+      rail.style.transform = 'none'; var left0 = rail.getBoundingClientRect().left; rail.style.transform = '';
+      over = Math.max(0, rail.scrollWidth - (window.innerWidth - left0) + 32);
+      rail.style.setProperty('--over', over + 'px');
+    }
+    function update() {
+      tick = false; if (window.innerWidth <= 1024) return;
+      var r = track.getBoundingClientRect(), p = (-r.top) / (r.height - window.innerHeight);
+      sec.style.setProperty('--p', Math.max(0, Math.min(1, p)).toFixed(3));
+    }
+    function onS() { if (!tick) { tick = true; requestAnimationFrame(update); } }
+    measure(); update();
+    window.addEventListener('scroll', onS, { passive: true });
+    window.addEventListener('resize', function () { measure(); onS(); });
+  })();
+</script>
+
+<!-- CUSTOM-JS #5 — Brands «Створки»: при появлении блока имена «падают» на
+     место (.is-in). Без JS панели видны сразу (класс .js на <html>). -->
+<script>
+  document.documentElement.classList.add('js');
+  (function () {
+    var sec = document.querySelector('.section--brands'); if (!sec || !('IntersectionObserver' in window)) { if (sec) sec.classList.add('is-in'); return; }
+    var io = new IntersectionObserver(function (en) { en.forEach(function (e) { if (e.isIntersecting) { sec.classList.add('is-in'); io.disconnect(); } }); }, { threshold: .3 });
+    io.observe(sec);
+  })();
+</script>
+
+<!-- CUSTOM-JS #4 — Триптих: прогресс скролла --p (0 → 1), кадры из лесенки
+     собираются в один ряд. rAF, passive scroll; reduced-motion → --p = 1. -->
+<script>
+  (function () {
+    var sec = document.querySelector('.section--triptych'); if (!sec) return;
+    var mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    var ticking = false;
+    function ease(t) { return 1 - Math.pow(1 - t, 3); }
+    function update() {
+      ticking = false;
+      if (mq.matches) { sec.style.setProperty('--p', 1); return; }
+      var r = sec.getBoundingClientRect(), vh = window.innerHeight;
+      /* старт = положение верха секции при загрузке (она видна уже в первом
+         экране), либо нижний край вьюпорта; финиш — верх секции на 15% высоты */
+      var start = Math.min(r.top + window.scrollY, vh), end = vh * 0.15;
+      var p = (start - r.top) / (start - end);
+      p = Math.max(0, Math.min(1, p));
+      sec.style.setProperty('--p', ease(p).toFixed(3));
+    }
+    function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    update();
+  })();
+</script>
+
+<!-- CUSTOM-JS #3 — Origin: смена кадра по скроллу (IntersectionObserver).
+     В Elementor: Custom Code (Pro), этот блок как есть. -->
+<script>
+  (function () {
+    var root = document.querySelector('.section--origin'); if (!root) return;
+    var imgs = root.querySelectorAll('.origin__frame img');
+    var beats = root.querySelectorAll('[data-beats] li');
+    var cap = root.querySelector('[data-cap]'), idx = root.querySelector('[data-idx]');
+    var caps = [
+      'Cold waters and strong ocean currents.',
+      'Sea farms along one of the world\'s longest coastlines.',
+      'Responsible stewardship at sea.'
+    ];
+    function setActive(i) {
+      imgs.forEach(function (im, k) { im.classList.toggle('is-active', k === i); });
+      beats.forEach(function (b, k) { b.classList.toggle('is-active', k === i); });
+      cap.textContent = caps[i]; idx.textContent = '0' + (i + 1) + ' / 03';
+    }
+    /* активный шаг — тот, что пересекает линию центра вьюпорта (устойчиво на границах шагов) */
+    var steps = root.querySelectorAll('.origin__step'), act = 0, tick = false;
+    function pick() { tick = false; var mid = window.innerHeight / 2, i = -1; steps.forEach(function (s, k) { var r = s.getBoundingClientRect(); if (r.top <= mid && r.bottom > mid) i = k; }); if (i >= 0 && i !== act) { act = i; setActive(i); } }
+    function onS() { if (!tick) { tick = true; requestAnimationFrame(pick); } }
+    window.addEventListener('scroll', onS, { passive: true }); window.addEventListener('resize', onS); pick();
+  })();
+</script>
+
+<!-- Эмуляция мобильного меню. В Elementor не нужно: Nav Menu → Dropdown. -->
+<script>
+  (function () {
+    var btn = document.querySelector('.nav-toggle');
+    var header = document.querySelector('.site-header');
+    if (!btn || !header) return;
+    btn.addEventListener('click', function () {
+      var open = header.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  })();
+</script>
+</body>
+</html>

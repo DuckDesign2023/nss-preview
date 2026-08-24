@@ -1,0 +1,586 @@
+/* ══════════════════════════════════════════════════════════════
+   Norseafood — Вариант B «Цветной»
+   Та же единая сетка 12 колонок, что и в варианте A. Отличие — доля
+   цвета: navy ведёт в герое, в блоке принципов, в блоке людей и в
+   футере; светлые секции работают паузами между ними.
+   Desktop-first. Медиазапросы только max-width: 1024px / 767px.
+   ══════════════════════════════════════════════════════════════ */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--color-white);
+  color: var(--color-navy);
+  font-family: var(--font-text);
+  font-weight: 300;
+  font-size: 14px;          /* базовый размер текста — по требованию */
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+h1, h2, h3, h4 { margin: 0; font-family: var(--font-display); font-weight: 600; }
+h1 { font-size: 54px; line-height: 1.12; letter-spacing: -0.02em; }
+h2 { font-size: 36px; line-height: 1.16; letter-spacing: -0.015em; }
+h3 { font-size: 20px; line-height: 1.25; letter-spacing: -0.01em; font-weight: 500; }
+h4 { font-size: 14px; line-height: 1.30; font-weight: 500; }
+
+p { margin: 0; }
+a { color: inherit; }
+
+/* Крупный текст — редкость: только важные подзаголовки */
+.lead { font-size: 18px; line-height: 1.45; font-weight: 400; }
+
+/* ══ КАРКАС — идентичен варианту A ═════════════════════════════ */
+
+.container {
+  max-width: var(--content-width);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: var(--col-gap);
+}
+
+/* Линии сетки для полноэкранных секций (сплит брендов, «Шторки»): текст
+   full-width блоков стоит на тех же линиях колонок, что и остальные секции.
+   Считается от 100% ширины блока (не 100vw — иначе мешает полоса прокрутки
+   Windows): край → колонка 1 = max(0, (ширина − Content Width)/2) + gutter. */
+
+/* Ритм: каждая секция — полный --space-section сверху и снизу.
+   Фото-полосы и сплит брендов без паддингов: зазор дают соседи. */
+.section { padding-block: var(--space-section); }
+
+/* Утилиты ─────────────────────────────────────────────────────── */
+
+/* ══ L3 «Квадрат» (решение 2026-08-21) — система ссылок и вторичных
+   кнопок варианта B, отличная от A. Ссылка: текст + стрелка в квадрате 1px;
+   hover — квадрат заливается (navy на светлом / белый на navy), ссылка
+   уезжает на 4px. Вторичная кнопка: контур 1px с отсечённой ячейкой-стрелкой
+   справа (split), hover — ячейка заливается. CUSTOM-CSS (реестр #B2):
+   в Elementor — Button с иконкой справа + Custom CSS. */
+.link-sq {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  color: inherit;
+  transition: transform .5s cubic-bezier(.22, 1, .36, 1);
+}
+.link-sq__box {
+  width: 32px; height: 32px;
+  border: 1px solid currentColor;
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: background .35s ease, color .35s ease;
+}
+.link-sq__icon { width: 18px; height: 18px; }
+.link-sq:hover, .link-sq:focus-visible { transform: translateX(4px); }
+.link-sq:hover .link-sq__box, .link-sq:focus-visible .link-sq__box { background: var(--color-navy); color: var(--color-white); }
+.link-sq--light:hover .link-sq__box, .link-sq--light:focus-visible .link-sq__box { background: var(--color-white); color: var(--color-navy); }
+.link-sq:focus-visible { outline: 1px solid var(--color-blue); outline-offset: 4px; }
+
+.btn-split {
+  display: inline-flex;
+  align-items: stretch;
+  border: 1px solid currentColor;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  color: inherit;
+}
+.btn-split__t { padding: 13px 22px; }
+.btn-split__s { width: 46px; border-left: 1px solid currentColor; display: inline-flex; align-items: center; justify-content: center; transition: background .35s ease, color .35s ease; }
+.btn-split:hover .btn-split__s, .btn-split:focus-visible .btn-split__s { background: var(--color-navy); color: var(--color-white); }
+.btn-split--light:hover .btn-split__s, .btn-split--light:focus-visible .btn-split__s { background: var(--color-white); color: var(--color-navy); }
+.btn-split:focus-visible { outline: 1px solid var(--color-blue); outline-offset: 4px; }
+
+@media (prefers-reduced-motion: reduce) { .link-sq, .link-sq__box, .btn-split__s { transition: none; } }
+
+.btn {
+  display: inline-block;
+  padding: 15px 32px;
+  background: var(--color-navy);
+  color: var(--color-white);
+  border: 0;
+  font-family: var(--font-text);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background .25s ease, color .25s ease;
+}
+.btn:hover { background: var(--color-brown); }
+.btn--light { background: var(--color-white); color: var(--color-navy); }
+.btn--light:hover { background: var(--color-blue); color: var(--color-navy); }
+
+/* ═══ HEADER — «Две цепочки» поверх героя: без фона, absolute ═══════
+   Логотип 1–4, бренды 7–10, справа About + btn-split (L3). Подчёркивания
+   1px Ice Blue slide-in (Nav Menu → Pointer Underline / Slide). */
+
+.site-header { position: absolute; top: 0; left: 0; right: 0; z-index: 5; color: var(--color-white); padding-block: 44px 22px; } /* сверху больше воздуха — хедер не прилипает к краю фото */
+.site-header .container { align-items: center; }
+.site-header__logo { grid-column: 1 / 4; align-self: center; }
+/* viewBox обрезан по содержимому — знак прижат к левому краю сетки */
+.site-header__logo img { height: 44px; width: auto; display: block; }
+
+.site-nav { display: flex; align-items: center; }
+.site-nav--brands { grid-column: 7 / 10; gap: 40px; }
+.site-nav--util   { grid-column: 10 / 13; justify-content: flex-end; gap: 36px; }
+.site-nav a:not(.btn-split) {
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  color: inherit;
+  padding-bottom: 6px;
+  background-image: linear-gradient(var(--color-blue), var(--color-blue));
+  background-repeat: no-repeat;
+  background-size: 0 1px;
+  background-position: 0 100%;
+  transition: background-size .45s cubic-bezier(.22, 1, .36, 1);
+}
+.site-nav a:not(.btn-split):hover,
+.site-nav a:not(.btn-split):focus-visible,
+.site-nav a.is-active { background-size: 100% 1px; }
+.site-nav a:focus-visible { outline: 1px solid var(--color-blue); outline-offset: 4px; }
+.site-header .btn-split { font-size: 14px; }
+.site-header .btn-split__t { padding: 10px 18px; white-space: nowrap; }
+.site-header .btn-split__s { width: 40px; }
+
+/* Бургер — только на мобильном (нативный Dropdown виджета Nav Menu) */
+.nav-toggle { display: none; }
+
+/* ═══ 1. HERO — «Кинокадр»: фото во весь экран, текст внизу ══════════
+   H1 1–8 (64px), лид 9–13 на нижней базовой линии, кнопки под H1.
+   На загрузке (.is-ready, JS #B5) фото садится 1.06→1, текст поднимается. */
+
+.hero { position: relative; height: 100vh; min-height: 680px; overflow: hidden; display: flex; flex-direction: column; background: var(--color-navy); color: var(--color-white); }
+.hero__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.06); transition: transform 2.4s cubic-bezier(.22, 1, .36, 1); }
+.is-ready .hero__img { transform: none; }
+.hero__veil { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(14,32,61,.35) 0%, rgba(14,32,61,.05) 35%, rgba(14,32,61,.78) 100%); }
+.hero__body { position: relative; z-index: 1; margin-top: auto; width: 100%; padding-bottom: 72px; }
+.hero__body h1 { grid-column: 1 / 9; font-size: 64px; line-height: 1.06; max-width: 16ch; }
+.hero__lead { grid-column: 9 / 13; align-self: end; max-width: 36ch; color: rgba(255,255,255,.82); }
+.hero__actions { grid-column: 1 / 9; margin-top: 36px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px 32px; }
+.js .hero__body > * { opacity: 0; transform: translateY(20px); transition: opacity .8s ease .3s, transform 1s cubic-bezier(.22, 1, .36, 1) .3s; }
+.is-ready .hero__body > * { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .hero__img, .js .hero__body > * { transition: none; opacity: 1; transform: none; } }
+
+/* ═══ 2–4. КИНОПОЛОСЫ — две сцены 100vh ═══════════════════════════
+   Фото на всю ширину и высоту экрана, вуаль-градиент navy к низу, крупная
+   белая типографика (H2 48px) в сетке; фото масштабируется 1.1→1.0 по
+   прогрессу сцены (--p от JS #B3), текст поднимается при появлении. */
+
+.cine { position: relative; height: 100vh; min-height: 640px; overflow: hidden; display: flex; align-items: flex-end; color: var(--color-white); background: var(--color-navy); }
+.cine__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(calc(1.1 - var(--p, 0) * .1)); will-change: transform; }
+.cine__veil { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(14,32,61,.1) 30%, rgba(14,32,61,.82) 100%); }
+.cine__body { position: relative; z-index: 1; width: 100%; padding-bottom: 88px; opacity: 0; transform: translateY(24px); transition: opacity .8s ease, transform 1s cubic-bezier(.22, 1, .36, 1); }
+.cine__body.is-in { opacity: 1; transform: none; }
+.cine__body h2 { grid-column: 1 / 8; font-size: 48px; line-height: 1.08; letter-spacing: -0.02em; max-width: 14ch; }
+.cine__body .lead { grid-column: 1 / 7; margin-top: 24px; max-width: 40ch; color: rgba(255,255,255,.9); }
+.cine__body > p:not(.lead) { grid-column: 8 / 13; align-self: end; max-width: 46ch; color: rgba(255,255,255,.78); }
+/* Переход между сценами — «наезд»: первая закреплена, вторая наезжает с тенью (CUSTOM-CSS #B5) */
+.cine-stack { position: relative; }
+.cine--pin { position: sticky; top: 0; }
+.cine-stack .cine + .cine { position: relative; z-index: 1; box-shadow: 0 -48px 96px rgba(14,32,61,.55); }
+@media (prefers-reduced-motion: reduce) { .cine__img { transform: none; } .cine__body { transition: none; opacity: 1; transform: none; } }
+
+/* ═══ 5. BRANDS — полноэкранный сплит 50/50 ═══════════════════
+   Две компании разведены на две половины экрана: каждая со своим
+   изображением, вуалью и текстом. Ширина — весь вьюпорт, поэтому
+   раздел читается как граница между двумя бизнесами.
+   В Elementor: контейнер Full Width, flex-row, два дочерних по 50%,
+   у каждого Background → Image + Overlay. */
+
+.brand-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+}
+.half {
+  position: relative;
+  min-height: 620px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+.half__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.half__veil { position: absolute; inset: 0; }
+.half--nor   .half__veil { background: linear-gradient(180deg, rgba(14,32,61,.30) 0%, rgba(14,32,61,.88) 100%); }
+.half--kelda .half__veil { background: linear-gradient(180deg, rgba(88,75,60,.30) 0%, rgba(88,75,60,.88) 100%); }
+
+.half__body {
+  position: relative;
+  z-index: 1;
+  padding: 56px 48px 56px;
+  color: var(--color-white);
+  max-width: 30rem;
+}
+/* текст половин стоит на линиях сетки: NorSeafood — колонка 1, Kelda — колонка 7 */
+.half--nor   .half__body { padding-inline: calc(max(0px, 100% - var(--content-width) / 2) + var(--gutter)) calc(var(--col-gap) / 2); }
+.half--kelda .half__body { padding-inline: calc(var(--col-gap) / 2) calc(max(0px, 100% - var(--content-width) / 2) + var(--gutter)); }
+.half__role {
+  display: block;
+  margin-bottom: 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255,255,255,.75);
+}
+.half h3 { font-size: 34px; font-weight: 600; letter-spacing: -0.015em; }
+.half p { margin-top: 18px; color: rgba(255,255,255,.82); }
+.half .half__focus { margin-top: 12px; font-size: 13px; font-weight: 500; color: var(--color-white); }
+.half .link-sq { margin-top: 26px; }
+
+/* ═══ NAVY-ЯКОРЯ ═════════════════════════════════════════════ */
+
+.section--anchor {
+  background: var(--color-navy);
+  color: var(--color-white);
+}
+.anchor__title { grid-column: 1 / 6; margin-bottom: var(--space-block); }
+.anchor__note {
+  grid-column: 7 / 13;
+  align-self: end;
+  margin-bottom: var(--space-block);
+  max-width: 52ch;
+  color: rgba(255,255,255,.72);
+}
+
+/* 6. COMMITMENT — «Реестр»: porcelain, нумерованные строки, hover-инверсия.
+   Иконки Recraft через mask (цвет = currentColor) — CUSTOM-CSS #B4;
+   заливка строки navy снизу вверх через ::before — CUSTOM-CSS #B4. */
+.section--commitment { background: var(--color-porcelain); color: var(--color-navy); }
+.section--commitment .anchor__note { color: var(--navy-80); }
+.ledger { grid-column: 1 / 13; margin: 0; padding: 0; list-style: none; border-top: 1px solid rgba(14,32,61,.18); }
+.ledger__row {
+  position: relative; display: grid; grid-template-columns: repeat(12, 1fr); column-gap: var(--col-gap);
+  align-items: center; padding: 36px 0; border-bottom: 1px solid rgba(14,32,61,.18);
+  transition: color .4s ease;
+}
+.ledger__row::before { content: ""; position: absolute; inset: 0 calc(-1 * var(--gutter)); background: var(--color-navy); transform: scaleY(0); transform-origin: 50% 100%; transition: transform .45s cubic-bezier(.22, 1, .36, 1); }
+.ledger__row > * { position: relative; }
+.ledger__row:hover, .ledger__row:focus-within { color: var(--color-white); }
+.ledger__row:hover::before, .ledger__row:focus-within::before { transform: scaleY(1); }
+.ledger__n { grid-column: 1 / 2; font-family: var(--font-display); font-weight: 300; font-size: 16px; line-height: 1; color: var(--navy-65); transition: color .4s ease; }
+.ledger__row:hover .ledger__n { color: var(--color-blue); }
+.ledger__icon { grid-column: 2 / 3; width: 56px; height: 56px; background: currentColor; -webkit-mask: var(--ico) center / contain no-repeat; mask: var(--ico) center / contain no-repeat; }
+.ledger__row--quality      { --ico: url("../../../assets/icons/pictograms/weight-class.svg"); }
+.ledger__row--traceability { --ico: url("../../../assets/icons/pictograms/route.svg"); }
+.ledger__row--partnerships { --ico: url("../../../assets/icons/pictograms/people.svg"); }
+.ledger__row--growth       { --ico: url("../../../assets/icons/pictograms/growth-bars.svg"); }
+.ledger__name { grid-column: 3 / 6; font-family: var(--font-text); font-weight: 500; font-size: 18px; line-height: 1.3; margin: 0; }
+.ledger__line { grid-column: 6 / 13; margin: 0; font-family: var(--font-display); font-weight: 300; font-size: 40px; line-height: 1.1; letter-spacing: -0.02em; transition: transform .45s cubic-bezier(.22, 1, .36, 1); }
+.ledger__row:hover .ledger__line { transform: translateX(12px); }
+@media (prefers-reduced-motion: reduce) { .ledger__row, .ledger__row::before, .ledger__line, .ledger__n { transition: none; } .ledger__row:hover .ledger__line { transform: none; } }
+
+/* 9. Люди — портрет 1–5 (4:5), цитата 7–13 */
+.people__media { grid-column: 1 / 5; margin: 0; align-self: center; }
+.people__media img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+.people__text { grid-column: 7 / 13; align-self: center; }
+.people__text h2 { max-width: 14ch; }
+.people__note { margin-top: var(--space-element); max-width: 52ch; color: rgba(255,255,255,.72); }
+
+.quote { margin: 32px 0 0; padding-top: 28px; border-top: 2px solid var(--color-blue); }
+.quote p {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.36;
+  letter-spacing: -0.01em;
+  max-width: 30ch;
+}
+.quote cite {
+  display: block;
+  margin-top: 22px;
+  font-family: var(--font-text);
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+}
+.quote cite span { display: block; margin-top: 3px; font-weight: 300; color: rgba(255,255,255,.60); }
+
+/* ═══ 7–8. WHY INDIA — «Шторки на всю ширину» ═══════════════════
+   Секция-трек 300vh, внутри sticky-сцена 100vh во всю ширину экрана.
+   Три кадра друг над другом (absolute); активный открывается шторкой снизу
+   (clip-path inset 100%→0) с масштабом 1.06→1, прошедшие остаются под ним.
+   Карточка-текст porcelain слева внизу; заголовок в одну строку. */
+
+.section--why { padding: 0; }
+.why__track { position: relative; height: 300vh; }
+.why__stage { position: sticky; top: 0; height: 100vh; overflow: hidden; background: var(--color-navy); }
+.why__img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  clip-path: inset(100% 0 0 0);
+  transform: scale(1.06);
+  transition: clip-path .9s cubic-bezier(.22, 1, .36, 1), transform 1.4s cubic-bezier(.22, 1, .36, 1);
+}
+.why__img.is-active { clip-path: inset(0 0 0 0); transform: none; z-index: 1; }
+.why__img.is-past   { clip-path: inset(0 0 0 0); transform: none; z-index: 0; }
+.why__card {
+  /* плашка от края экрана, текст — на колонке 1, правый край текста — конец колонки 5 */
+  --edge: calc(max(0px, (100% - var(--content-width)) / 2) + var(--gutter));
+  --col: calc((min(100%, var(--content-width)) - 2 * var(--gutter) - 11 * var(--col-gap)) / 12);
+  position: absolute; left: 0; bottom: 56px; z-index: 2;
+  width: calc(var(--edge) + 5 * var(--col) + 4 * var(--col-gap) + 40px);
+  padding: 40px 40px 36px var(--edge);
+  background: var(--color-porcelain);
+  color: var(--color-navy);
+}
+.why__card h2 { white-space: nowrap; }
+.why__card .lead { margin-top: 20px; color: var(--color-navy); }
+.why__card > p:not(.lead) { margin-top: 20px; max-width: 46ch; color: var(--navy-80); }
+.why__meta { margin-top: 22px; display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+.why__cap { font-size: 13px; color: var(--navy-65); }
+.why__cap b { font-weight: 500; color: var(--color-navy); }
+.why__idx { font-size: 13px; font-variant-numeric: tabular-nums; color: var(--navy-65); }
+.why__steps { position: absolute; inset: 0; pointer-events: none; }
+.why__step { height: 100vh; }
+@media (prefers-reduced-motion: reduce) { .why__img { transition: none; } }
+
+/* ═══ 10. CONTACT ════════════════════════════════════════════ */
+
+.section--contact { border-top: 1px solid var(--hairline); }
+.contact__head { grid-column: 1 / 6; }
+.contact__head h2 { max-width: 12ch; }
+.contact__head .lead { margin-top: 20px; color: var(--color-navy); }
+.contact__head p:not(.lead) { margin-top: 12px; max-width: 46ch; color: var(--navy-80); }
+
+.form { grid-column: 7 / 13; display: flex; flex-direction: column; gap: 22px; }
+.form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+
+.field { display: flex; flex-direction: column; gap: 8px; }
+.field span { font-size: 13px; font-weight: 500; letter-spacing: 0.03em; color: var(--navy-65); }
+.field input,
+.field textarea {
+  font-family: var(--font-text);
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--color-navy);
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--hairline);
+  padding: 9px 0;
+  transition: border-color .25s ease;
+}
+.field input:focus,
+.field textarea:focus { outline: none; border-bottom-color: var(--color-blue); }
+.field textarea { resize: vertical; }
+.form .btn { align-self: flex-start; margin-top: 10px; }
+
+/* ═══ FOOTER — F3 «navy-инверсия» ═══════════════════════════════
+   Белый полный логотип + клейм (18px) слева (1–5); адреса справа (7–9 /
+   10–13) — страна капсом Ice Blue; навигация (1–9) + LinkedIn с иконкой
+   (10–13); юр. строка; полоса текущего паттерна B (80×56) на 50%. */
+
+.site-footer { background: var(--color-navy); color: var(--color-white); padding-top: 120px; }
+.site-footer > .container { padding-bottom: 56px; }
+.foot-row + .foot-row { margin-top: 64px; }
+.foot-row--legal { margin-top: 28px; }
+
+.foot-brand { grid-column: 1 / 6; }
+.foot-logo img { height: 44px; width: auto; display: block; }
+.foot-claim {
+  margin-top: 24px;
+  font-family: var(--font-display);
+  font-size: 18px;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  font-weight: 500;
+  max-width: 26ch;
+  color: rgba(255,255,255,.92);
+}
+.foot-office--no { grid-column: 7 / 10; }
+.foot-office--in { grid-column: 10 / 13; }
+.foot-label { display: block; font-size: 13px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--color-blue); }
+.foot-addr { margin-top: 12px; font-size: 14px; line-height: 1.65; color: rgba(255,255,255,.75); }
+
+.foot-nav { grid-column: 1 / 10; display: flex; flex-wrap: wrap; gap: 16px 32px; }
+.foot-nav a { font-size: 14px; font-weight: 500; text-decoration: none; color: var(--color-white); padding-bottom: 4px; }
+.foot-in { grid-column: 10 / 13; justify-self: end; display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; text-decoration: none; color: var(--color-white); padding-bottom: 4px; }
+.foot-in__icon { width: 18px; height: 18px; margin-bottom: 2px; }
+.foot-nav a, .foot-in {
+  background-image: linear-gradient(var(--color-blue), var(--color-blue));
+  background-repeat: no-repeat;
+  background-size: 0 1px;
+  background-position: 0 100%;
+  transition: background-size .45s cubic-bezier(.22, 1, .36, 1);
+}
+.foot-nav a:hover, .foot-nav a:focus-visible, .foot-in:hover, .foot-in:focus-visible { background-size: 100% 1px; }
+.foot-legal { grid-column: 1 / 10; font-size: 13px; line-height: 1.6; color: rgba(255,255,255,.55); }
+
+/* ══ ПАТТЕРН — текущий паттерн B (pattern-on-navy.svg, плитка 80×56) на 50% ══ */
+.foot-pattern {
+  height: 112px;
+  background-image: url("../../../assets/pattern-on-navy.svg");
+  background-repeat: repeat;
+  background-size: 80px 56px;
+  background-position: 0 0;
+  opacity: .5;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   TABLET — max-width: 1024px
+   ══════════════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  :root {
+    --gutter: 26px;
+    --col-gap: 20px;
+    --space-section: 88px;
+    --space-block: 48px;
+  }
+
+  h1 { font-size: 40px; }
+  h2 { font-size: 30px; }
+  h3 { font-size: 19px; }
+
+  .site-header { padding-top: 32px; }
+  .site-header__logo { grid-column: 1 / 5; }
+  .site-header__logo img { height: 38px; }
+  .site-nav--brands { grid-column: 5 / 8; gap: 28px; }
+  .site-nav--util   { grid-column: 8 / 13; gap: 24px; }
+
+  .hero__body h1 { grid-column: 1 / 13; font-size: 48px; max-width: 18ch; }
+  .hero__lead { grid-column: 1 / 13; margin-top: 20px; }
+  .hero__actions { grid-column: 1 / 13; margin-top: 28px; }
+
+  .cine--pin { position: relative; } /* не static: иначе .cine__img теряет containing block и вылезает за overflow */
+  .cine-stack .cine + .cine { box-shadow: none; }
+
+  .cine { height: auto; min-height: 70vh; }
+  .cine__body { padding-top: 40vh; padding-bottom: 64px; }
+  .cine__body h2 { font-size: 34px; }
+  .cine__body h2, .cine__body .lead, .cine__body > p:not(.lead) { grid-column: 1 / 13; }
+  .cine__body > p:not(.lead) { margin-top: 16px; }
+
+  .anchor__title { grid-column: 1 / 13; margin-bottom: var(--space-element); }
+  .anchor__note  { grid-column: 1 / 13; }
+  .ledger__row { padding: 28px 0; }
+  .ledger__icon { width: 44px; height: 44px; }
+  .ledger__name { grid-column: 3 / 13; }
+  .ledger__line { grid-column: 3 / 13; font-size: 30px; margin-top: 8px; }
+
+  .people__media { grid-column: 1 / 7; }
+  .people__text { grid-column: 1 / 13; margin-top: var(--space-block); }
+  .quote p { font-size: 21px; }
+
+  /* Why India: без закрепления — кадры стопкой, карточка в потоке */
+  .why__track { height: auto; }
+  .why__stage { position: static; height: auto; overflow: visible; background: none; }
+  .why__img { position: static; height: 56vh; clip-path: none; transform: none; }
+  .why__img + .why__img { margin-top: var(--col-gap); }
+  .why__card { position: static; width: auto; margin: var(--space-block) 0 0; padding-inline: var(--gutter); }
+  .why__card h2 { white-space: normal; }
+  .why__steps { display: none; }
+
+  .contact__head { grid-column: 1 / 13; }
+  .contact__head h2 { max-width: 18ch; }
+  .form { grid-column: 1 / 13; margin-top: var(--space-block); }
+
+  .site-footer { padding-top: 96px; }
+  .foot-row--offices, .foot-row--nav { margin-top: 72px; }
+  .foot-logo, .foot-brand, .foot-claim { grid-column: 1 / 13; }
+  .foot-claim { margin-top: 24px; }
+  .foot-office--no { grid-column: 1 / 7; }
+  .foot-office--in { grid-column: 7 / 13; }
+  .foot-nav { grid-column: 1 / 9; }
+  .foot-in { grid-column: 9 / 13; }
+  .foot-legal { grid-column: 1 / 13; }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   MOBILE — max-width: 767px
+   ══════════════════════════════════════════════════════════════ */
+@media (max-width: 767px) {
+  :root {
+    --gutter: 20px;
+    --col-gap: 16px;
+    --space-section: 64px;
+    --space-block: 36px;
+    --space-element: 22px;
+  }
+
+  h1 { font-size: 31px; }
+  h2 { font-size: 26px; }
+  h3 { font-size: 18px; }
+  .lead { font-size: 17px; }
+
+  /* хедер: лого + бургер в одну строку, меню раскрывается колонкой */
+  .site-header { padding-block: 20px 16px; }
+  .site-header__logo { grid-column: 1 / 10; }
+  .site-header__logo img { height: 32px; }
+  .nav-toggle {
+    grid-column: 10 / 13;
+    justify-self: end;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    width: 44px;
+    height: 44px;
+    margin-right: -10px;
+    padding: 0 10px;
+    background: none;
+    border: 0;
+    cursor: pointer;
+  }
+  .nav-toggle span { display: block; height: 1px; background: var(--color-white); }
+  /* .site-header .site-nav (0,2,0) перекрывает десктопные .site-nav--* */
+  .site-header .site-nav {
+    grid-column: 1 / 13;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .site-header.is-open { background: var(--color-navy); }
+  .site-header.is-open .site-nav { display: flex; }
+  .site-header.is-open .site-nav--brands { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--hairline-on-navy); }
+  .site-header.is-open .site-nav--util { margin-top: 14px; }
+  .site-header.is-open .btn-split { margin-top: 6px; }
+
+  .hero { min-height: 620px; }
+  .hero__body { padding-bottom: 48px; }
+  .hero__body h1 { font-size: 36px; }
+
+  .cine__body { padding-top: 34vh; padding-bottom: 48px; }
+  .cine__body h2 { font-size: 28px; }
+
+  .brand-split { grid-template-columns: 1fr; }
+  .half { min-height: 400px; }
+  .half__body, .half--nor .half__body, .half--kelda .half__body { padding: 32px var(--gutter); }
+  .half h3 { font-size: 26px; }
+
+  .ledger__row { padding: 22px 0; row-gap: 14px; }
+  .ledger__n { grid-column: 1 / 3; }
+  .ledger__icon { grid-column: 3 / 5; width: 40px; height: 40px; }
+  .ledger__name, .ledger__line { grid-column: 1 / 13; }
+  .ledger__line { font-size: 26px; margin-top: 0; }
+  .ledger__row:hover .ledger__line { transform: none; }
+
+  .people__media { grid-column: 1 / 13; }
+  .quote p { font-size: 19px; }
+
+  .form__row { grid-template-columns: 1fr; }
+
+  .site-footer { padding-top: 64px; }
+  .foot-row + .foot-row, .foot-row--offices, .foot-row--nav { margin-top: 40px; }
+  .foot-office--no, .foot-office--in, .foot-nav, .foot-in, .foot-legal { grid-column: 1 / 13; }
+  .foot-office--in { margin-top: 28px; }
+  .foot-in { justify-self: start; margin-top: 20px; }
+  .foot-legal { margin-top: 24px; }
+  .foot-pattern { height: 112px; }
+}

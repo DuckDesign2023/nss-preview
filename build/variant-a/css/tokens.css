@@ -1,0 +1,30 @@
+/* Norseafood — токены. Каждая переменная мапится на Global в Elementor.
+   Таблица мапинга — spec/site-settings.md */
+:root {
+  /* → Global Colors (брендбук, стр. Color Solution) */
+  --color-white:      #FFFFFF;   /* Light   · Pure White */
+  --color-navy:       #0E203D;   /* Primary · Deep Navy */
+  --color-porcelain:  #EFECE5;   /* Surface · Warm Porcelain */
+  --color-blue:       #8DB4E3;   /* Accent  · Ice Blue — максимум 4% площади */
+  --color-brown:      #584B3C;   /* Support · Taupe Brown */
+
+  /* Производные (прозрачности navy — для вторичного текста и линий) */
+  --navy-80: rgba(14, 32, 61, .80);   /* вторичный текст: ≥ 8:1 на белом */
+  --navy-65: rgba(14, 32, 61, .65);   /* подписи/лейблы: 5.2:1 на белом, 4.8:1 на porcelain (AA). .45 давал 2.8:1 */
+  --hairline: rgba(14, 32, 61, .14);
+  --hairline-on-navy: rgba(255, 255, 255, .18);
+
+  /* → Global Fonts */
+  --font-display: 'Mozilla Text', 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-text:    'Plus Jakarta Sans', system-ui, sans-serif;
+
+  /* → Site Settings → Layout — ЕДИНАЯ СЕТКА для всех секций */
+  --content-width: 1760px;  /* Content Width — контент ближе к краям на широких экранах */
+  --gutter: 32px;            /* внешние поля — одинаковые везде */
+  --col-gap: 24px;           /* Elements Gap между колонками */
+
+  /* Вертикальный ритм — единая шкала, шаг 8px */
+  --space-section: 120px;    /* между секциями */
+  --space-block: 64px;       /* между блоками внутри секции */
+  --space-element: 28px;     /* между элементами */
+}
