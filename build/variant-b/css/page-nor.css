@@ -75,45 +75,37 @@
   letter-spacing: -0.02em;
 }
 
-/* ─── 6. Доступные продукты — текст + сетка пиктограмм 3×2 ────── */
-.prods__head { grid-column: 1 / 5; }
+/* ─── 6. Доступные продукты — «Реестр»: строки с наведением-инверсией ── */
+.prods__head { grid-column: 1 / 5; align-self: start; position: sticky; top: 120px; }
 .prods__head h2 { margin-bottom: var(--space-element); }
 .prods__head p { color: var(--navy-80); }
 .prods__head p + p { margin-top: 18px; }
-.prods {
-  grid-column: 6 / 13;
-  margin: 0; padding: 0; list-style: none;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  column-gap: var(--col-gap);
-  row-gap: 0;
+.plist { grid-column: 5 / 13; margin: 0; padding: 0; list-style: none; border-top: 1px solid rgba(14, 32, 61, .18); }
+.prow {
+  position: relative; display: flex; align-items: center; gap: 24px;
+  padding: 22px 0; border-bottom: 1px solid rgba(14, 32, 61, .18);
+  opacity: 0; transform: translateY(16px);
+  transition: color .4s ease, opacity .7s ease, transform .8s cubic-bezier(.22, 1, .36, 1);
 }
-.prod {
-  padding: 28px 0 32px;
-  border-top: 1px solid rgba(14, 32, 61, .18);
-  opacity: 0;
-  transform: translateY(18px);
-  transition: opacity .7s ease, transform .8s cubic-bezier(.22, 1, .36, 1);
-}
-.prod.is-in { opacity: 1; transform: none; }
-.prod:nth-child(2) { transition-delay: .06s; } .prod:nth-child(3) { transition-delay: .12s; }
-.prod:nth-child(5) { transition-delay: .06s; } .prod:nth-child(6) { transition-delay: .12s; }
-/* иконки Recraft через mask: цвет = background (CUSTOM-CSS #B6) */
-.prod__icon {
-  display: block;
-  width: 72px; height: 72px;
-  margin-bottom: 20px;
-  background: var(--color-navy);
-  -webkit-mask: var(--ico) center / contain no-repeat;
-  mask: var(--ico) center / contain no-repeat;
-}
+.prow.is-in { opacity: 1; transform: none; }
+.prow:nth-child(2) { transition-delay: .05s; } .prow:nth-child(3) { transition-delay: .1s; }
+.prow:nth-child(4) { transition-delay: .15s; } .prow:nth-child(5) { transition-delay: .2s; } .prow:nth-child(6) { transition-delay: .25s; }
+/* заливка строки navy снизу вверх — CUSTOM-CSS #B6 */
+.prow::before { content: ""; position: absolute; inset: 0 calc(-1 * var(--gutter)); background: var(--color-navy); transform: scaleY(0); transform-origin: 50% 100%; transition: transform .45s cubic-bezier(.22, 1, .36, 1); }
+.prow > * { position: relative; }
+.prow:hover, .prow:focus-within { color: var(--color-white); }
+.prow:hover::before, .prow:focus-within::before { transform: scaleY(1); }
+.prow__n { width: 24px; flex: none; font-family: var(--font-display); font-weight: 300; font-size: 13px; color: var(--navy-65); transition: color .4s ease; }
+.prow:hover .prow__n { color: var(--color-blue); }
+.prow__ico { width: 40px; height: 40px; flex: none; background: currentColor; -webkit-mask: var(--ico) center / contain no-repeat; mask: var(--ico) center / contain no-repeat; }
+.prow__t { font-family: var(--font-display); font-weight: 500; font-size: 22px; letter-spacing: -0.01em; transition: transform .45s cubic-bezier(.22, 1, .36, 1); }
+.prow:hover .prow__t { transform: translateX(10px); }
 .prod--salmon    { --ico: url("../../../assets/icons/pictograms/salmon-large.svg"); }
 .prod--hog       { --ico: url("../../../assets/icons/pictograms/fillet.svg"); }
 .prod--grades    { --ico: url("../../../assets/icons/pictograms/weight-class.svg"); }
 .prod--pack      { --ico: url("../../../assets/icons/pictograms/box.svg"); }
 .prod--container { --ico: url("../../../assets/icons/pictograms/vessel.svg"); }
 .prod--india     { --ico: url("../../../assets/icons/pictograms/route.svg"); }
-.prod__label { display: block; font-family: var(--font-text); font-size: 15px; font-weight: 500; line-height: 1.4; max-width: 18ch; }
 
 /* ─── 7. Why Partner With Us — navy + пять гарантий ───────────── */
 .section--partner { background: var(--color-navy); color: var(--color-white); }
@@ -121,36 +113,16 @@
 .partner__body { grid-column: 7 / 13; max-width: 58ch; }
 .partner__body > * + * { margin-top: var(--space-element); }
 .partner__body p:not(.lead) { color: rgba(255, 255, 255, .72); }
-.guarantees {
-  grid-column: 1 / 13;
-  margin: var(--space-block) 0 0; padding: 0; list-style: none;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  column-gap: var(--col-gap);
-  border-top: 1px solid var(--hairline-on-navy);
-  padding-top: 32px;
-}
-.guarantee {
-  display: flex; flex-direction: column; gap: 18px;
-  font-family: var(--font-text); font-size: 15px; font-weight: 500; line-height: 1.4;
-  opacity: 0; transform: translateY(16px);
-  transition: opacity .7s ease, transform .8s cubic-bezier(.22, 1, .36, 1);
-}
-.guarantee.is-in { opacity: 1; transform: none; }
-.guarantee:nth-child(2) { transition-delay: .06s; } .guarantee:nth-child(3) { transition-delay: .12s; }
-.guarantee:nth-child(4) { transition-delay: .18s; } .guarantee:nth-child(5) { transition-delay: .24s; }
-/* квадрат с галочкой — тот же язык, что у ссылок L3 (CUSTOM-CSS #B6) */
-.guarantee__box {
-  position: relative;
-  width: 32px; height: 32px;
-  border: 1px solid var(--hairline-on-navy);
-}
-.guarantee__box::after {
-  content: ""; position: absolute; inset: 0;
-  background: var(--color-blue);
-  -webkit-mask: url("../../../assets/icons/ui/check.svg") center / 16px 16px no-repeat;
-  mask: url("../../../assets/icons/ui/check.svg") center / 16px 16px no-repeat;
-}
+/* бегущая строка гарантий — полоса во всю ширину внизу navy-секции.
+   CUSTOM-CSS #B6: keyframes + пауза при наведении (нативного маркиза в
+   Elementor нет — либо этот код, либо виджет-аддон). */
+.section--partner { padding-bottom: 0; }
+.ticker { margin-top: var(--space-block); border-top: 1px solid var(--hairline-on-navy); padding-block: 30px; overflow: hidden; display: flex; width: 100%; }
+.ticker__line { display: flex; flex: none; gap: 56px; padding-right: 56px; animation: tick 38s linear infinite; }
+.ticker:hover .ticker__line { animation-play-state: paused; }
+.ticker__line span { display: flex; align-items: center; gap: 56px; font-family: var(--font-display); font-weight: 300; font-size: 26px; white-space: nowrap; }
+.ticker__line span::after { content: ""; width: 6px; height: 6px; flex: none; background: var(--color-blue); border-radius: 50%; }
+@keyframes tick { to { transform: translateX(-100%); } }
 
 /* ─── 8. Спецификация — porcelain, девять строк в две колонки ─── */
 .section--specs { background: var(--color-porcelain); color: var(--color-navy); }
@@ -200,7 +172,8 @@
 .two__end { margin-top: var(--space-element); font-family: var(--font-text); font-weight: 500; color: var(--color-blue); }
 
 @media (prefers-reduced-motion: reduce) {
-  .chain__step, .prod, .guarantee, .spec { opacity: 1; transform: none; transition: none; }
+  .chain__step, .prow, .spec { opacity: 1; transform: none; transition: none; }
+  .ticker__line { animation: none; }
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -218,13 +191,13 @@
 
   .punch__on { grid-column: 1 / 13; font-size: 32px; }
 
-  .prods__head { grid-column: 1 / 13; }
-  .prods { grid-column: 1 / 13; margin-top: var(--space-block); grid-template-columns: repeat(2, 1fr); column-gap: var(--col-gap); }
-  .prod__icon { width: 60px; height: 60px; }
+  .prods__head { grid-column: 1 / 13; position: static; }
+  .plist { grid-column: 1 / 13; margin-top: var(--space-block); }
 
   .partner__title { grid-column: 1 / 13; position: static; max-width: none; }
   .partner__body { grid-column: 1 / 13; margin-top: var(--space-element); max-width: none; }
-  .guarantees { grid-template-columns: repeat(2, 1fr); row-gap: 24px; }
+  .ticker__line { gap: 40px; padding-right: 40px; }
+  .ticker__line span { font-size: 22px; gap: 40px; }
 
   .specs__title { grid-column: 1 / 13; }
   .specs { grid-column: 1 / 13; margin-top: var(--space-block); }
@@ -243,11 +216,11 @@
   .chain__step { padding-top: 24px; }
   .reason__accent { font-size: 20px; }
   .punch__on { font-size: 26px; }
-  .prods { grid-template-columns: 1fr; }
-  .prod { padding: 22px 0 24px; }
-  .prod__label { max-width: none; }
-  .guarantees { grid-template-columns: 1fr; row-gap: 20px; }
-  .guarantee { flex-direction: row; align-items: center; gap: 14px; }
+  .prow { gap: 16px; padding: 18px 0; }
+  .prow__ico { width: 32px; height: 32px; }
+  .prow__t { font-size: 18px; }
+  .prow:hover .prow__t { transform: none; }
+  .ticker__line span { font-size: 19px; }
   .specs { grid-template-columns: 1fr; }
   .spec { padding: 16px 0; }
   .spec:nth-child(2) { border-top: 0; }

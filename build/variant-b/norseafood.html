@@ -173,9 +173,12 @@
     </div>
   </section>
 
-  <!-- ═══ 6. ДОСТУПНЫЕ ПРОДУКТЫ — шесть позиций клиента с пиктограммами
-       Recraft (mask, currentColor). Слева текст-подводка 1–4, справа сетка
-       3×2 (5–13). ═══ -->
+  <!-- ═══ 6. ДОСТУПНЫЕ ПРОДУКТЫ — «Реестр» (решение 2026-08-24): подводка
+       слева закреплена (1–4), справа шесть строк (5–13): номер, пиктограмма,
+       название. При наведении строка заливается navy снизу вверх, номер
+       становится Ice Blue, название сдвигается — тот же приём, что в
+       Commitment на главной. В Elementor: контейнер-строка с Hover
+       background + Transition (направление заливки — Custom CSS #B6). ═══ -->
   <section class="section section--prods" data-el="container" data-name="products">
     <div class="container grid" data-el="container">
       <div class="prods__head" data-el="container">
@@ -191,30 +194,36 @@
           for India's growing seafood industry.
         </p>
       </div>
-      <ul class="prods" data-el="container">
-        <li class="prod prod--salmon" data-el="container">
-          <span class="prod__icon" aria-hidden="true"></span>
-          <span class="prod__label" data-el="text-editor">Frozen Whole Atlantic Salmon</span>
+      <ul class="plist" data-el="container">
+        <li class="prow prod--salmon" data-el="container">
+          <span class="prow__n" data-el="text-editor">01</span>
+          <span class="prow__ico" aria-hidden="true"></span>
+          <span class="prow__t" data-el="heading">Frozen Whole Atlantic Salmon</span>
         </li>
-        <li class="prod prod--hog" data-el="container">
-          <span class="prod__icon" aria-hidden="true"></span>
-          <span class="prod__label" data-el="text-editor">Head-on / Gutted (HOG)</span>
+        <li class="prow prod--hog" data-el="container">
+          <span class="prow__n" data-el="text-editor">02</span>
+          <span class="prow__ico" aria-hidden="true"></span>
+          <span class="prow__t" data-el="heading">Head-on / Gutted (HOG)</span>
         </li>
-        <li class="prod prod--grades" data-el="container">
-          <span class="prod__icon" aria-hidden="true"></span>
-          <span class="prod__label" data-el="text-editor">Multiple size grades available</span>
+        <li class="prow prod--grades" data-el="container">
+          <span class="prow__n" data-el="text-editor">03</span>
+          <span class="prow__ico" aria-hidden="true"></span>
+          <span class="prow__t" data-el="heading">Multiple size grades available</span>
         </li>
-        <li class="prod prod--pack" data-el="container">
-          <span class="prod__icon" aria-hidden="true"></span>
-          <span class="prod__label" data-el="text-editor">Bulk export packaging</span>
+        <li class="prow prod--pack" data-el="container">
+          <span class="prow__n" data-el="text-editor">04</span>
+          <span class="prow__ico" aria-hidden="true"></span>
+          <span class="prow__t" data-el="heading">Bulk export packaging</span>
         </li>
-        <li class="prod prod--container" data-el="container">
-          <span class="prod__icon" aria-hidden="true"></span>
-          <span class="prod__label" data-el="text-editor">Container shipments</span>
+        <li class="prow prod--container" data-el="container">
+          <span class="prow__n" data-el="text-editor">05</span>
+          <span class="prow__ico" aria-hidden="true"></span>
+          <span class="prow__t" data-el="heading">Container shipments</span>
         </li>
-        <li class="prod prod--india" data-el="container">
-          <span class="prod__icon" aria-hidden="true"></span>
-          <span class="prod__label" data-el="text-editor">India-focused supply</span>
+        <li class="prow prod--india" data-el="container">
+          <span class="prow__n" data-el="text-editor">06</span>
+          <span class="prow__ico" aria-hidden="true"></span>
+          <span class="prow__t" data-el="heading">India-focused supply</span>
         </li>
       </ul>
     </div>
@@ -251,13 +260,17 @@
           seeking reliable access to premium Norwegian seafood.
         </p>
       </div>
-      <ul class="guarantees" data-el="container">
-        <li class="guarantee" data-el="container"><span class="guarantee__box" aria-hidden="true"></span>Full Traceability</li>
-        <li class="guarantee" data-el="container"><span class="guarantee__box" aria-hidden="true"></span>International Food Safety Standards</li>
-        <li class="guarantee" data-el="container"><span class="guarantee__box" aria-hidden="true"></span>Norway–India Focus</li>
-        <li class="guarantee" data-el="container"><span class="guarantee__box" aria-hidden="true"></span>Reliable Cold Chain</li>
-        <li class="guarantee" data-el="container"><span class="guarantee__box" aria-hidden="true"></span>Long-term Partnerships</li>
-      </ul>
+    </div>
+    <!-- Бегущая строка гарантий: полоса во всю ширину внизу navy-секции.
+         Вторая копия строки — для бесшовного цикла (aria-hidden).
+         CUSTOM-CSS #B6: keyframes; в Elementor нативного маркиза нет. -->
+    <div class="ticker" data-el="container" data-name="guarantees">
+      <div class="ticker__line">
+        <span>Full Traceability</span><span>International Food Safety Standards</span><span>Norway–India Focus</span><span>Reliable Cold Chain</span><span>Long-term Partnerships</span>
+      </div>
+      <div class="ticker__line" aria-hidden="true">
+        <span>Full Traceability</span><span>International Food Safety Standards</span><span>Norway–India Focus</span><span>Reliable Cold Chain</span><span>Long-term Partnerships</span>
+      </div>
     </div>
   </section>
 
@@ -390,7 +403,7 @@
      Entrance Animation с задержкой у каждого элемента). -->
 <script>
   (function () {
-    var items = document.querySelectorAll('.chain__step, .prod, .guarantee, .spec');
+    var items = document.querySelectorAll('.chain__step, .prow, .spec');
     if (!items.length) return;
     var io = new IntersectionObserver(function (en) { en.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }); }, { threshold: .3 });
     items.forEach(function (el) { io.observe(el); });
