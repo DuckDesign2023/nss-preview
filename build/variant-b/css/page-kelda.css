@@ -1,0 +1,164 @@
+/* ══════════════════════════════════════════════════════════════
+   Kelda — страница суббренда (вариант B).
+   Идентика Kelda из деки клиента «Kelda_Logo Concepts_Duck Design (Revised)»:
+   палитра Ink Black / Ember / Oat Sand / Paper Cream / Pure White,
+   шрифты Figtree (текст) + Playball (акцентная строка), логотип-леттеринг.
+   Каркас сайта (хедер, футер, сетка, кнопки) — из main.css.
+   ══════════════════════════════════════════════════════════════ */
+
+.page-kelda {
+  /* Kelda Globals → в Elementor завести отдельными Global Colors */
+  --k-white:  #FFFFFF;   /* Pure White   (Primary)   */
+  --k-ink:    #151314;   /* Ink Black    (Primary)   */
+  --k-ember:  #E05C38;   /* Ember        (Primary)   */
+  --k-oat:    #D6C7A5;   /* Oat Sand     (Secondary) */
+  --k-cream:  #FDFDF6;   /* Paper Cream  (Secondary) */
+  --k-ink-72: rgba(21, 19, 20, .72);
+  --k-ink-55: rgba(21, 19, 20, .55);
+  --k-hair:   rgba(21, 19, 20, .18);
+  --k-hair-l: rgba(255, 255, 255, .2);
+  --font-k:   'Figtree', 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-k-script: 'Playball', 'Mozilla Text', serif;
+
+  background: var(--k-cream);
+  color: var(--k-ink);
+  font-family: var(--font-k);
+}
+.page-kelda h1, .page-kelda h2, .page-kelda h3, .page-kelda h4 { font-family: var(--font-k); font-weight: 600; letter-spacing: -0.02em; }
+.page-kelda .lead { font-size: 18px; line-height: 1.5; }
+.page-kelda .site-footer { font-family: var(--font-text); } /* футер остаётся в системе NSS */
+
+/* ─── 1. Hero — «Кинокадр» в стиле Kelda ────────────────────── */
+.k-hero { position: relative; height: 100vh; min-height: 680px; overflow: hidden; display: flex; flex-direction: column; background: var(--k-ink); color: var(--k-white); }
+.k-hero__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.06); transition: transform 2.4s cubic-bezier(.22, 1, .36, 1); }
+.is-ready .k-hero__img { transform: none; }
+.k-hero__veil { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(21,19,20,.55) 0%, rgba(21,19,20,.18) 40%, rgba(21,19,20,.88) 100%); }
+.k-hero__body { position: relative; z-index: 1; margin-top: auto; width: 100%; padding-bottom: 72px; }
+.k-hero__mark { grid-column: 1 / 6; color: var(--k-white); }
+.k-hero__mark svg { width: 100%; max-width: 260px; height: auto; display: block; }
+.k-hero__text { grid-column: 7 / 13; align-self: end; }
+.k-hero__text h1 { font-size: 44px; line-height: 1.14; font-weight: 500; max-width: 18ch; }
+.k-hero__text .lead { margin-top: 20px; max-width: 42ch; color: rgba(255,255,255,.82); }
+.k-hero__actions { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 16px 28px; align-items: center; }
+.js .k-hero__body > * { opacity: 0; transform: translateY(20px); transition: opacity .8s ease .3s, transform 1s cubic-bezier(.22, 1, .36, 1) .3s; }
+.is-ready .k-hero__body > * { opacity: 1; transform: none; }
+.is-ready .k-hero__body > *:nth-child(2) { transition-delay: .42s; }
+
+/* кнопки Kelda: заливка Ember и контурная со стрелкой */
+.btn-k { display: inline-block; padding: 15px 30px; background: var(--k-ember); color: var(--k-white); font: 500 14px var(--font-k); text-decoration: none; transition: background .3s ease; }
+.btn-k:hover, .btn-k:focus-visible { background: var(--k-ink); }
+.link-k { display: inline-flex; align-items: center; gap: 14px; font: 500 14px var(--font-k); color: inherit; text-decoration: none; transition: transform .35s cubic-bezier(.22, 1, .36, 1); }
+.link-k__box { width: 32px; height: 32px; flex: none; border: 1px solid currentColor; display: inline-flex; align-items: center; justify-content: center; transition: background .35s ease, color .35s ease; }
+.link-k__box svg { width: 16px; height: 16px; }
+.link-k:hover { transform: translateX(4px); }
+.link-k:hover .link-k__box { background: var(--k-ember); border-color: var(--k-ember); color: var(--k-white); }
+
+/* ─── 2. Why Kelda — имя и принцип ──────────────────────────── */
+.k-name { padding-block: var(--space-section); background: var(--k-cream); }
+.k-name__title { grid-column: 1 / 6; align-self: start; position: sticky; top: 120px; font-size: 40px; line-height: 1.12; }
+.k-name__body { grid-column: 7 / 13; max-width: 56ch; }
+.k-name__body p { color: var(--k-ink-72); }
+.k-name__body p + p { margin-top: var(--space-element); }
+.k-name__body .lead { color: var(--k-ink); }
+.k-script { grid-column: 1 / 13; margin-top: var(--space-block); padding-top: var(--space-block); border-top: 1px solid var(--k-hair); font-family: var(--font-k-script); font-size: 38px; line-height: 1.25; color: var(--k-ember); max-width: 26ch; }
+
+/* ─── 3. Today / Tomorrow — две карточки на Oat Sand ────────── */
+.k-growth { padding-block: var(--space-section); background: var(--k-oat); }
+.k-growth__head { grid-column: 1 / 7; }
+.k-growth__head h2 { font-size: 40px; line-height: 1.12; }
+.k-growth__head p { margin-top: 18px; max-width: 40ch; color: var(--k-ink-72); }
+.k-cards { grid-column: 7 / 13; margin: 0; padding: 0; list-style: none; display: grid; gap: var(--col-gap); }
+.k-card { background: var(--k-cream); padding: 30px 32px 34px; }
+.k-card span { display: block; font: 500 13px var(--font-k); color: var(--k-ember); }
+.k-card strong { display: block; margin-top: 10px; font-size: 24px; font-weight: 600; letter-spacing: -0.02em; }
+.k-card p { margin-top: 10px; color: var(--k-ink-72); }
+
+/* ─── 4. Origin — кинополоса Норвегии ───────────────────────── */
+.k-cine { position: relative; height: 86vh; min-height: 560px; overflow: hidden; display: flex; align-items: flex-end; background: var(--k-ink); color: var(--k-white); }
+.k-cine__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(calc(1.08 - var(--p, 0) * .08)); }
+.k-cine__veil { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(21,19,20,.15) 30%, rgba(21,19,20,.85) 100%); }
+.k-cine__body { position: relative; z-index: 1; width: 100%; padding-bottom: 72px; opacity: 0; transform: translateY(24px); transition: opacity .8s ease, transform 1s cubic-bezier(.22, 1, .36, 1); }
+.k-cine__body.is-in { opacity: 1; transform: none; }
+.k-cine__body h2 { grid-column: 1 / 8; font-size: 44px; line-height: 1.1; max-width: 16ch; }
+.k-cine__body .lead { grid-column: 1 / 7; margin-top: 20px; color: rgba(255,255,255,.9); }
+.k-cine__body > p:not(.lead) { grid-column: 8 / 13; align-self: end; max-width: 44ch; color: rgba(255,255,255,.78); }
+
+/* ─── 5. Table — три сюжета с фото ──────────────────────────── */
+.k-table { padding-block: var(--space-section); background: var(--k-cream); }
+.k-table__head { grid-column: 1 / 7; }
+.k-table__head h2 { font-size: 40px; line-height: 1.12; max-width: 14ch; }
+.k-table__note { grid-column: 8 / 13; align-self: end; color: var(--k-ink-72); }
+.k-moments { grid-column: 1 / 13; margin: var(--space-block) 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); column-gap: var(--col-gap); }
+.k-moment { opacity: 0; transform: translateY(20px); transition: opacity .7s ease, transform .8s cubic-bezier(.22, 1, .36, 1); }
+.k-moment.is-in { opacity: 1; transform: none; }
+.k-moment:nth-child(2) { transition-delay: .08s; } .k-moment:nth-child(3) { transition-delay: .16s; }
+.k-moment figure { margin: 0; overflow: hidden; }
+.k-moment img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; transition: transform 1.2s cubic-bezier(.22, 1, .36, 1); }
+.k-moment:hover img { transform: scale(1.04); }
+.k-moment h3 { margin-top: 24px; font-size: 22px; }
+.k-moment p { margin-top: 12px; color: var(--k-ink-72); }
+
+/* ─── 6. Future — ink-black финал ───────────────────────────── */
+.k-future { padding-block: var(--space-section); background: var(--k-ink); color: var(--k-white); }
+.k-future__title { grid-column: 1 / 6; font-size: 40px; line-height: 1.12; }
+.k-future__body { grid-column: 7 / 13; }
+.k-future__body .lead { color: rgba(255,255,255,.9); }
+.k-future__body p:not(.lead) { margin-top: var(--space-element); color: rgba(255,255,255,.72); }
+.k-claim { grid-column: 1 / 13; margin-top: var(--space-block); padding-top: var(--space-block); border-top: 1px solid var(--k-hair-l); font-size: 34px; font-weight: 500; letter-spacing: -0.02em; color: var(--k-ember); }
+.k-future__cta { grid-column: 1 / 13; margin-top: var(--space-element); }
+
+/* ─── 7. Контакт в палитре Kelda ────────────────────────────── */
+.page-kelda .section--contact { background: var(--k-cream); color: var(--k-ink); }
+.page-kelda .section--contact .btn { background: var(--k-ember); color: var(--k-white); font-family: var(--font-k); }
+.page-kelda .section--contact .btn:hover { background: var(--k-ink); }
+.page-kelda .field input, .page-kelda .field textarea { border-color: var(--k-hair); }
+.page-kelda .field span { color: var(--k-ink-55); }
+
+@media (prefers-reduced-motion: reduce) {
+  .k-hero__img, .k-cine__img, .k-moment img, .js .k-hero__body > * { transition: none; transform: none; opacity: 1; }
+}
+
+/* ══════════════════ ТАБЛЕТ ≤ 1024 ══════════════════ */
+@media (max-width: 1024px) {
+  .k-hero__mark { grid-column: 1 / 13; }
+  .k-hero__mark svg { max-width: 200px; }
+  .k-hero__text { grid-column: 1 / 13; margin-top: 28px; }
+  .k-hero__text h1 { font-size: 34px; }
+
+  .k-name__title { grid-column: 1 / 13; position: static; font-size: 32px; }
+  .k-name__body { grid-column: 1 / 13; margin-top: var(--space-element); max-width: none; }
+  .k-script { font-size: 30px; max-width: none; }
+
+  .k-growth__head { grid-column: 1 / 13; }
+  .k-growth__head h2 { font-size: 32px; }
+  .k-cards { grid-column: 1 / 13; margin-top: var(--space-block); grid-template-columns: 1fr 1fr; }
+
+  .k-cine { height: auto; min-height: 60vh; }
+  .k-cine__body { padding-top: 34vh; }
+  .k-cine__body h2 { font-size: 32px; }
+  .k-cine__body h2, .k-cine__body .lead, .k-cine__body > p:not(.lead) { grid-column: 1 / 13; }
+  .k-cine__body > p:not(.lead) { margin-top: 16px; }
+
+  .k-table__head, .k-table__note { grid-column: 1 / 13; }
+  .k-table__head h2 { font-size: 32px; max-width: none; }
+  .k-table__note { margin-top: var(--space-element); }
+  .k-moments { grid-template-columns: 1fr 1fr; row-gap: var(--space-block); }
+
+  .k-future__title { grid-column: 1 / 13; font-size: 32px; }
+  .k-future__body { grid-column: 1 / 13; margin-top: var(--space-element); }
+  .k-claim { font-size: 28px; }
+}
+
+/* ══════════════════ МОБИЛЬНЫЙ ≤ 767 ══════════════════ */
+@media (max-width: 767px) {
+  .k-hero { min-height: 620px; }
+  .k-hero__body { padding-bottom: 48px; }
+  .k-hero__mark svg { max-width: 150px; }
+  .k-hero__text h1 { font-size: 27px; }
+  .k-name__title, .k-growth__head h2, .k-table__head h2, .k-future__title { font-size: 26px; }
+  .k-script { font-size: 24px; }
+  .k-cards { grid-template-columns: 1fr; }
+  .k-moments { grid-template-columns: 1fr; }
+  .k-cine__body h2 { font-size: 26px; }
+  .k-claim { font-size: 22px; }
+}
