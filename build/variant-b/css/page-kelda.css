@@ -108,14 +108,18 @@
 .k-moment h3 { margin-top: 26px; font-size: 24px; }
 .k-moment p { margin-top: 12px; color: var(--k-ink-72); }
 
-/* ─── 6. Future — ink-black финал ───────────────────────────── */
-.k-future { padding-block: var(--space-section); background: var(--k-ink); color: var(--k-white); }
-.k-future__title { grid-column: 1 / 6; font-size: 48px; line-height: 1.1; }
-.k-future__body { grid-column: 7 / 13; }
-.k-future__body .lead { color: rgba(255,255,255,.9); }
-.k-future__body p:not(.lead) { margin-top: var(--space-element); color: rgba(255,255,255,.72); }
-.k-claim { grid-column: 1 / 13; margin-top: var(--space-block); padding-top: var(--space-block); border-top: 1px solid var(--k-hair-l); font-size: 40px; font-weight: 500; letter-spacing: -0.02em; color: var(--k-ember); }
-.k-future__cta { grid-column: 1 / 13; margin-top: var(--space-element); }
+/* ─── 6. Future — «Горизонт»: панорама + клейм поверх ───────── */
+.k-future { position: relative; min-height: 82vh; overflow: hidden; display: flex; align-items: flex-end; background: var(--k-ink); color: var(--k-white); }
+.k-future__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.k-future__veil { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(21,19,20,.55) 0%, rgba(21,19,20,.1) 45%, rgba(21,19,20,.78) 100%); }
+.k-future__body { position: relative; z-index: 1; width: 100%; padding-bottom: 72px; }
+.k-future__tag { grid-column: 1 / 13; font: 500 13px var(--font-k); color: rgba(255,255,255,.65); }
+.k-future__body h2 { grid-column: 1 / 9; margin-top: 14px; font-size: 64px; line-height: 1.06; letter-spacing: -0.02em; max-width: 15ch; }
+.k-future__body h2 em { font-style: normal; color: var(--k-ember); }
+.k-future__side { grid-column: 9 / 13; align-self: end; }
+.k-future__side .lead { color: rgba(255,255,255,.9); }
+.k-future__side p:not(.lead) { margin-top: 12px; color: rgba(255,255,255,.75); }
+.k-future__side .link-k { margin-top: 24px; }
 
 /* ─── 7. Контакт в палитре Kelda ────────────────────────────── */
 .page-kelda .section--contact { background: var(--k-cream); color: var(--k-ink); }
@@ -155,9 +159,9 @@
   .k-table__note { margin-top: var(--space-element); }
   .k-moments { grid-template-columns: 1fr 1fr; row-gap: var(--space-block); }
 
-  .k-future__title { grid-column: 1 / 13; font-size: 32px; }
-  .k-future__body { grid-column: 1 / 13; margin-top: var(--space-element); }
-  .k-claim { font-size: 28px; }
+  .k-future { min-height: 64vh; }
+  .k-future__body h2 { grid-column: 1 / 13; font-size: 40px; }
+  .k-future__side { grid-column: 1 / 13; margin-top: 24px; }
 }
 
 /* ══════════════════ МОБИЛЬНЫЙ ≤ 767 ══════════════════ */
@@ -166,10 +170,11 @@
   .k-hero__body { padding-bottom: 48px; }
   .k-hero__mark svg { max-width: 150px; }
   .k-hero__text h1 { font-size: 27px; }
-  .k-name__title, .k-growth__head h2, .k-table__head h2, .k-future__title { font-size: 26px; }
+  .k-name__title, .k-growth__head h2, .k-table__head h2 { font-size: 26px; }
+  .k-future__body h2 { font-size: 30px; }
+  .k-future__body { padding-bottom: 48px; }
   .k-script { font-size: 24px; }
   .k-panels { grid-template-columns: 1fr; }
   .k-moments { grid-template-columns: 1fr; }
   .k-cine__body h2 { font-size: 26px; }
-  .k-claim { font-size: 22px; }
 }
