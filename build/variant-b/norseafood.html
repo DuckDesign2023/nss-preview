@@ -274,23 +274,31 @@
     </div>
   </section>
 
-  <!-- ═══ 8. СПЕЦИФИКАЦИЯ — porcelain: девять строк «параметр → значение»
-       в две колонки, разделители-волосинки. В Elementor: два контейнера
-       по 5 и 4 строки, строка = контейнер с двумя текстами. ═══ -->
+  <!-- ═══ 8. СПЕЦИФИКАЦИЯ — «Лист» (решение 2026-08-24): porcelain, слева
+       закреплённое фото продукта (1–6, 4:5), справа девять строк одной
+       колонкой (7–13): параметр слева, значение крупно справа; под ними CTA.
+       Фото стоит на месте, пока прокручиваются строки. В Elementor:
+       контейнер-колонка с Advanced → Motion Effects → Sticky: Top. ═══ -->
   <section class="section section--specs" data-el="container" data-name="specs">
     <div class="container grid" data-el="container">
-      <h2 class="specs__title" data-el="heading">Product specifications</h2>
-      <dl class="specs" data-el="container">
-        <div class="spec" data-el="container"><dt data-el="text-editor">Product</dt><dd data-el="text-editor">Frozen Whole Atlantic Salmon</dd></div>
-        <div class="spec" data-el="container"><dt data-el="text-editor">Origin</dt><dd data-el="text-editor">Norway</dd></div>
-        <div class="spec" data-el="container"><dt data-el="text-editor">Species</dt><dd data-el="text-editor">Atlantic Salmon (Salmo salar)</dd></div>
-        <div class="spec" data-el="container"><dt data-el="text-editor">Processing</dt><dd data-el="text-editor">Head-on, gutted</dd></div>
-        <div class="spec" data-el="container"><dt data-el="text-editor">Packaging</dt><dd data-el="text-editor">Export cartons</dd></div>
-        <div class="spec" data-el="container"><dt data-el="text-editor">Storage</dt><dd data-el="text-editor">Frozen</dd></div>
-        <div class="spec" data-el="container"><dt data-el="text-editor">Traceability</dt><dd data-el="text-editor">Full batch traceability</dd></div>
-        <div class="spec" data-el="container"><dt data-el="text-editor">Supply</dt><dd data-el="text-editor">Container shipments</dd></div>
-        <div class="spec" data-el="container"><dt data-el="text-editor">Market</dt><dd data-el="text-editor">India</dd></div>
-      </dl>
+      <figure class="specs__media" data-el="image">
+        <img src="../../assets/salmon-rows.webp" alt="Whole Atlantic salmon laid in rows on ice" width="2048" height="1152" loading="lazy">
+      </figure>
+      <div class="specs__body" data-el="container">
+        <h2 class="specs__title" data-el="heading">Product specifications</h2>
+        <dl class="specs" data-el="container">
+          <div class="spec" data-el="container"><dt data-el="text-editor">Product</dt><dd data-el="heading">Frozen Whole Atlantic Salmon</dd></div>
+          <div class="spec" data-el="container"><dt data-el="text-editor">Origin</dt><dd data-el="heading">Norway</dd></div>
+          <div class="spec" data-el="container"><dt data-el="text-editor">Species</dt><dd data-el="heading">Atlantic Salmon (Salmo salar)</dd></div>
+          <div class="spec" data-el="container"><dt data-el="text-editor">Processing</dt><dd data-el="heading">Head-on, gutted</dd></div>
+          <div class="spec" data-el="container"><dt data-el="text-editor">Packaging</dt><dd data-el="heading">Export cartons</dd></div>
+          <div class="spec" data-el="container"><dt data-el="text-editor">Storage</dt><dd data-el="heading">Frozen</dd></div>
+          <div class="spec" data-el="container"><dt data-el="text-editor">Traceability</dt><dd data-el="heading">Full batch traceability</dd></div>
+          <div class="spec" data-el="container"><dt data-el="text-editor">Supply</dt><dd data-el="heading">Container shipments</dd></div>
+          <div class="spec" data-el="container"><dt data-el="text-editor">Market</dt><dd data-el="heading">India</dd></div>
+        </dl>
+        <a class="btn-split specs__cta" href="#contact" data-el="button"><span class="btn-split__t">Become a Partner</span><span class="btn-split__s"><svg class="link-sq__icon" aria-hidden="true"><use href="#i-arrow"/></svg></span></a>
+      </div>
     </div>
   </section>
 
