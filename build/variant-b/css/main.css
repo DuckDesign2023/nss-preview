@@ -209,7 +209,15 @@ a { color: inherit; }
   display: flex;
   align-items: flex-end;
   overflow: hidden;
+  /* Наружная сторона половины — на линии сетки (колонка 1 / край контейнера,
+     как у остальных секций), внутренняя (шов между половинами) — свой,
+     больший отступ: иначе текст правой половины прилипает к стыку.
+     Фон абсолютный (inset: 0 → padding box), поэтому паддинг его не режет. */
+  --pad-edge: calc(max(0px, 100% - var(--content-width) / 2) + var(--gutter)); /* 100% = ширина половины (грид-ячейка), не всей секции */
+  --pad-seam: 64px;
 }
+.half--nor   { padding-inline: var(--pad-edge) var(--pad-seam); }
+.half--kelda { padding-inline: var(--pad-seam) var(--pad-edge); }
 .half__bg {
   position: absolute;
   inset: 0;
@@ -224,13 +232,10 @@ a { color: inherit; }
 .half__body {
   position: relative;
   z-index: 1;
-  padding: 56px 48px 56px;
+  padding-block: 56px;
   color: var(--color-white);
   max-width: 30rem;
 }
-/* текст половин стоит на линиях сетки: NorSeafood — колонка 1, Kelda — колонка 7 */
-.half--nor   .half__body { padding-inline: calc(max(0px, 100% - var(--content-width) / 2) + var(--gutter)) calc(var(--col-gap) / 2); }
-.half--kelda .half__body { padding-inline: calc(var(--col-gap) / 2) calc(max(0px, 100% - var(--content-width) / 2) + var(--gutter)); }
 .half__role {
   display: block;
   margin-bottom: 14px;
@@ -476,6 +481,8 @@ a { color: inherit; }
   .quote p { font-size: 21px; }
 
   /* Why India: без закрепления — кадры стопкой, карточка в потоке */
+  .half { --pad-seam: 40px; } /* сплит остаётся двухколоночным — шов уже */
+
   .why__track { height: auto; }
   .why__stage { position: static; height: auto; overflow: visible; background: none; }
   .why__img { position: static; height: 56vh; clip-path: none; transform: none; }
@@ -561,7 +568,8 @@ a { color: inherit; }
 
   .brand-split { grid-template-columns: 1fr; }
   .half { min-height: 400px; }
-  .half__body, .half--nor .half__body, .half--kelda .half__body { padding: 32px var(--gutter); }
+  .half { --pad-seam: var(--pad-edge); } /* половины идут одна за другой — отступ одинаковый */
+  .half__body { padding-block: 32px; }
   .half h3 { font-size: 26px; }
 
   .ledger__row { padding: 22px 0; row-gap: 14px; }
