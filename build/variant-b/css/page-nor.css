@@ -7,9 +7,8 @@
 
 /* ─── 2. Цепочка — «Линия»: заголовок слева, под ним пять шагов ── */
 .section--approach { background: var(--color-porcelain); color: var(--color-navy); }
-.approach__head { grid-column: 1 / 7; }
-.approach__title { font-size: 44px; line-height: 1.1; letter-spacing: -0.02em; }
-.approach__note { margin-top: 16px; max-width: 40ch; color: var(--navy-80); }
+.approach__title { grid-column: 1 / 6; font-size: 44px; line-height: 1.1; letter-spacing: -0.02em; }
+.approach__note { grid-column: 7 / 13; align-self: end; max-width: 44ch; color: var(--navy-80); }
 .chain {
   grid-column: 1 / 13;
   margin: var(--space-block) 0 0; padding: 0; list-style: none;
@@ -76,11 +75,11 @@
 }
 
 /* ─── 6. Доступные продукты — «Реестр»: строки с наведением-инверсией ── */
-.prods__head { grid-column: 1 / 5; align-self: start; position: sticky; top: 120px; }
+.prods__head { grid-column: 1 / 6; align-self: start; position: sticky; top: 120px; }
 .prods__head h2 { margin-bottom: var(--space-element); }
 .prods__head p { color: var(--navy-80); }
 .prods__head p + p { margin-top: 18px; }
-.plist { grid-column: 5 / 13; margin: 0; padding: 0; list-style: none; border-top: 1px solid rgba(14, 32, 61, .18); }
+.plist { grid-column: 7 / 13; margin: 0; padding: 0; list-style: none; border-top: 1px solid rgba(14, 32, 61, .18); }
 .prow {
   position: relative; display: flex; align-items: center; gap: 24px;
   padding: 22px 0; border-bottom: 1px solid rgba(14, 32, 61, .18);
@@ -126,7 +125,7 @@
 
 /* ─── 8. Спецификация — «Лист»: закреплённое фото + строки данных ── */
 .section--specs { background: var(--color-porcelain); color: var(--color-navy); }
-.specs__media { grid-column: 1 / 6; margin: 0; align-self: start; position: sticky; top: 96px; }
+.specs__media { grid-column: 1 / 7; margin: 0; align-self: start; position: sticky; top: 96px; }
 .specs__media img { width: 100%; aspect-ratio: 4 / 5; max-height: 68vh; object-fit: cover; display: block; }
 .specs__body { grid-column: 7 / 13; }
 .specs__title { margin-bottom: var(--space-block); }
@@ -150,7 +149,7 @@
 .section--two { background: var(--color-navy); color: var(--color-white); }
 .two__map {
   grid-column: 1 / 7;
-  align-self: center;
+  align-self: start;
   /* viewBox карты квадратный (1006×1001) — иначе contain оставляет поля */
   aspect-ratio: 1 / 1;
   width: 100%;
@@ -159,7 +158,7 @@
   -webkit-mask: url("../../../assets/illustrations/map-norway-india.svg") center / contain no-repeat;
   mask: url("../../../assets/illustrations/map-norway-india.svg") center / contain no-repeat;
 }
-.two__text { grid-column: 7 / 13; align-self: center; }
+.two__text { grid-column: 7 / 13; align-self: start; }
 .two__intro { margin-top: var(--space-element); color: rgba(255, 255, 255, .6); }
 .two__belief {
   margin-top: 12px;
@@ -180,9 +179,8 @@
    ТАБЛЕТ ≤ 1024
    ══════════════════════════════════════════════════════════════ */
 @media (max-width: 1024px) {
-  .approach__head { grid-column: 1 / 13; }
-  .approach__title { font-size: 34px; }
-  .approach__note { max-width: none; }
+  .approach__title { grid-column: 1 / 13; font-size: 34px; }
+  .approach__note { grid-column: 1 / 13; margin-top: var(--space-element); max-width: none; }
   .chain { grid-template-columns: repeat(2, 1fr); row-gap: 32px; }
 
   .reason__head { grid-column: 1 / 13; position: static; }

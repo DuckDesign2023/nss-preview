@@ -227,7 +227,7 @@ a { color: inherit; }
 }
 .half__veil { position: absolute; inset: 0; }
 .half--nor   .half__veil { background: linear-gradient(180deg, rgba(14,32,61,.30) 0%, rgba(14,32,61,.88) 100%); }
-.half--kelda .half__veil { background: linear-gradient(180deg, rgba(88,75,60,.30) 0%, rgba(88,75,60,.88) 100%); }
+.half--kelda .half__veil { background: linear-gradient(180deg, rgba(21,19,20,.45) 0%, rgba(21,19,20,.92) 100%); } /* Ink Black идентики Kelda: тёплое фото стола требует плотнее вуаль */
 
 .half__body {
   position: relative;
@@ -243,7 +243,12 @@ a { color: inherit; }
   font-weight: 500;
   color: rgba(255,255,255,.75);
 }
-.half h3 { font-size: 34px; font-weight: 600; letter-spacing: -0.015em; }
+/* Логотипы брендов вместо заголовков (решение 2026-08-24): оба из
+   фирменных леттерингов, без охранных полей, белые. Высоты подобраны так,
+   чтобы знаки читались соразмерно (у Kelda леттеринг вертикальный). */
+.half__logo { display: block; width: auto; }
+.half__logo--nor { height: 40px; }
+.half__logo--kelda { height: 96px; }
 .half p { margin-top: 18px; color: rgba(255,255,255,.82); }
 .half .half__focus { margin-top: 12px; font-size: 13px; font-weight: 500; color: var(--color-white); }
 .half .link-sq { margin-top: 26px; }
@@ -570,7 +575,8 @@ a { color: inherit; }
   .half { min-height: 400px; }
   .half { --pad-seam: var(--pad-edge); } /* половины идут одна за другой — отступ одинаковый */
   .half__body { padding-block: 32px; }
-  .half h3 { font-size: 26px; }
+  .half__logo--nor { height: 32px; }
+  .half__logo--kelda { height: 72px; }
 
   .ledger__row { padding: 22px 0; row-gap: 14px; }
   .ledger__n { grid-column: 1 / 3; }
