@@ -1,0 +1,222 @@
+/* ══════════════════════════════════════════════════════════════
+   NorSeafood — страница бренда, вариант B (выбран клиентом 2026-08-24).
+   Общие блоки (хедер, .hero, .cine, .btn/.btn-split/.link-sq, контакт,
+   футер) берутся из main.css; здесь — только секции этой страницы.
+   Тексты — дословно со страницы клиента /norseafood/.
+   ══════════════════════════════════════════════════════════════ */
+
+/* ─── 2. Подход — porcelain-полоса-передышка ─────────────────── */
+.section--approach { background: var(--color-porcelain); color: var(--color-navy); }
+.approach__title { grid-column: 1 / 8; font-size: 44px; line-height: 1.1; letter-spacing: -0.02em; }
+.approach__note { grid-column: 8 / 13; align-self: end; max-width: 34ch; color: var(--navy-80); }
+
+/* ─── 3. Why NorSeafood — закреплённый заголовок + колонка текста ── */
+.section--reason { padding-block: var(--space-section); }
+.reason__head { grid-column: 1 / 6; align-self: start; position: sticky; top: 120px; }
+.reason__head h2 { max-width: 14ch; }
+.reason__body { grid-column: 7 / 13; max-width: 58ch; }
+.reason__body > * + * { margin-top: var(--space-element); }
+.reason__body p:not(.lead):not(.reason__accent) { color: var(--navy-80); }
+/* строка-акцент клиента «For us, that market is India.» */
+.reason__accent {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  color: var(--color-navy);
+  margin-top: var(--space-block);
+  padding-top: var(--space-element);
+  border-top: 1px solid rgba(14, 32, 61, .18);
+}
+.reason__accent + p { margin-top: var(--space-block); }
+
+/* ─── 4. Пунч — navy-полоса с двумя фразами ──────────────────── */
+.section--punch { background: var(--color-navy); color: var(--color-white); padding-block: var(--space-block); }
+.punch__off { grid-column: 1 / 13; font-size: 18px; color: rgba(255, 255, 255, .5); }
+.punch__on {
+  grid-column: 1 / 11;
+  margin-top: 14px;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 44px;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+}
+
+/* ─── 6. Доступные продукты — текст + сетка пиктограмм 3×2 ────── */
+.prods__head { grid-column: 1 / 5; }
+.prods__head h2 { margin-bottom: var(--space-element); }
+.prods__head p { color: var(--navy-80); }
+.prods__head p + p { margin-top: 18px; }
+.prods {
+  grid-column: 6 / 13;
+  margin: 0; padding: 0; list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: var(--col-gap);
+  row-gap: 0;
+}
+.prod {
+  padding: 28px 0 32px;
+  border-top: 1px solid rgba(14, 32, 61, .18);
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .7s ease, transform .8s cubic-bezier(.22, 1, .36, 1);
+}
+.prod.is-in { opacity: 1; transform: none; }
+.prod:nth-child(2) { transition-delay: .06s; } .prod:nth-child(3) { transition-delay: .12s; }
+.prod:nth-child(5) { transition-delay: .06s; } .prod:nth-child(6) { transition-delay: .12s; }
+/* иконки Recraft через mask: цвет = background (CUSTOM-CSS #B6) */
+.prod__icon {
+  display: block;
+  width: 72px; height: 72px;
+  margin-bottom: 20px;
+  background: var(--color-navy);
+  -webkit-mask: var(--ico) center / contain no-repeat;
+  mask: var(--ico) center / contain no-repeat;
+}
+.prod--salmon    { --ico: url("../../../assets/icons/pictograms/salmon-large.svg"); }
+.prod--hog       { --ico: url("../../../assets/icons/pictograms/fillet.svg"); }
+.prod--grades    { --ico: url("../../../assets/icons/pictograms/weight-class.svg"); }
+.prod--pack      { --ico: url("../../../assets/icons/pictograms/box.svg"); }
+.prod--container { --ico: url("../../../assets/icons/pictograms/vessel.svg"); }
+.prod--india     { --ico: url("../../../assets/icons/pictograms/route.svg"); }
+.prod__label { display: block; font-family: var(--font-text); font-size: 15px; font-weight: 500; line-height: 1.4; max-width: 18ch; }
+
+/* ─── 7. Why Partner With Us — navy + пять гарантий ───────────── */
+.section--partner { background: var(--color-navy); color: var(--color-white); }
+.partner__title { grid-column: 1 / 6; align-self: start; position: sticky; top: 120px; max-width: 10ch; }
+.partner__body { grid-column: 7 / 13; max-width: 58ch; }
+.partner__body > * + * { margin-top: var(--space-element); }
+.partner__body p:not(.lead) { color: rgba(255, 255, 255, .72); }
+.guarantees {
+  grid-column: 1 / 13;
+  margin: var(--space-block) 0 0; padding: 0; list-style: none;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  column-gap: var(--col-gap);
+  border-top: 1px solid var(--hairline-on-navy);
+  padding-top: 32px;
+}
+.guarantee {
+  display: flex; flex-direction: column; gap: 18px;
+  font-family: var(--font-text); font-size: 15px; font-weight: 500; line-height: 1.4;
+  opacity: 0; transform: translateY(16px);
+  transition: opacity .7s ease, transform .8s cubic-bezier(.22, 1, .36, 1);
+}
+.guarantee.is-in { opacity: 1; transform: none; }
+.guarantee:nth-child(2) { transition-delay: .06s; } .guarantee:nth-child(3) { transition-delay: .12s; }
+.guarantee:nth-child(4) { transition-delay: .18s; } .guarantee:nth-child(5) { transition-delay: .24s; }
+/* квадрат с галочкой — тот же язык, что у ссылок L3 (CUSTOM-CSS #B6) */
+.guarantee__box {
+  position: relative;
+  width: 32px; height: 32px;
+  border: 1px solid var(--hairline-on-navy);
+}
+.guarantee__box::after {
+  content: ""; position: absolute; inset: 0;
+  background: var(--color-blue);
+  -webkit-mask: url("../../../assets/icons/ui/check.svg") center / 16px 16px no-repeat;
+  mask: url("../../../assets/icons/ui/check.svg") center / 16px 16px no-repeat;
+}
+
+/* ─── 8. Спецификация — porcelain, девять строк в две колонки ─── */
+.section--specs { background: var(--color-porcelain); color: var(--color-navy); }
+.specs__title { grid-column: 1 / 5; align-self: start; }
+.specs {
+  grid-column: 5 / 13;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: var(--col-gap);
+}
+.spec {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 20px;
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(14, 32, 61, .18);
+  opacity: 0; transform: translateY(12px);
+  transition: opacity .6s ease, transform .7s cubic-bezier(.22, 1, .36, 1);
+}
+.spec.is-in { opacity: 1; transform: none; }
+.spec:nth-child(1), .spec:nth-child(2) { border-top: 1px solid rgba(14, 32, 61, .18); }
+.spec dt { font-family: var(--font-text); font-size: 13px; font-weight: 500; color: var(--navy-65); }
+.spec dd { margin: 0; font-family: var(--font-display); font-weight: 500; font-size: 17px; text-align: right; }
+
+/* ─── 9. Built Between Two Countries — navy + карта ───────────── */
+.section--two { background: var(--color-navy); color: var(--color-white); }
+.two__map {
+  grid-column: 1 / 7;
+  align-self: center;
+  /* viewBox карты квадратный (1006×1001) — иначе contain оставляет поля */
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  max-width: 560px;
+  background: rgba(255, 255, 255, .9);
+  -webkit-mask: url("../../../assets/illustrations/map-norway-india.svg") center / contain no-repeat;
+  mask: url("../../../assets/illustrations/map-norway-india.svg") center / contain no-repeat;
+}
+.two__text { grid-column: 7 / 13; align-self: center; }
+.two__intro { margin-top: var(--space-element); color: rgba(255, 255, 255, .6); }
+.two__belief {
+  margin-top: 12px;
+  font-family: var(--font-display); font-weight: 300; font-size: 34px; line-height: 1.15; letter-spacing: -0.02em;
+  max-width: 22ch;
+}
+.two__pair { margin: var(--space-block) 0 0; padding: 0; list-style: none; }
+.two__pair li { padding: 16px 0; border-top: 1px solid var(--hairline-on-navy); font-size: 18px; }
+.two__pair li:last-child { border-bottom: 1px solid var(--hairline-on-navy); }
+.two__end { margin-top: var(--space-element); font-family: var(--font-text); font-weight: 500; color: var(--color-blue); }
+
+@media (prefers-reduced-motion: reduce) {
+  .prod, .guarantee, .spec { opacity: 1; transform: none; transition: none; }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   ТАБЛЕТ ≤ 1024
+   ══════════════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .approach__title { grid-column: 1 / 13; font-size: 34px; }
+  .approach__note { grid-column: 1 / 13; margin-top: var(--space-element); max-width: none; }
+
+  .reason__head { grid-column: 1 / 13; position: static; }
+  .reason__body { grid-column: 1 / 13; margin-top: var(--space-element); max-width: none; }
+  .reason__accent { font-size: 22px; }
+
+  .punch__on { grid-column: 1 / 13; font-size: 32px; }
+
+  .prods__head { grid-column: 1 / 13; }
+  .prods { grid-column: 1 / 13; margin-top: var(--space-block); grid-template-columns: repeat(2, 1fr); column-gap: var(--col-gap); }
+  .prod__icon { width: 60px; height: 60px; }
+
+  .partner__title { grid-column: 1 / 13; position: static; max-width: none; }
+  .partner__body { grid-column: 1 / 13; margin-top: var(--space-element); max-width: none; }
+  .guarantees { grid-template-columns: repeat(2, 1fr); row-gap: 24px; }
+
+  .specs__title { grid-column: 1 / 13; }
+  .specs { grid-column: 1 / 13; margin-top: var(--space-block); }
+
+  .two__map { grid-column: 1 / 13; max-width: 380px; }
+  .two__text { grid-column: 1 / 13; margin-top: var(--space-block); }
+  .two__belief { font-size: 28px; max-width: none; }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   МОБИЛЬНЫЙ ≤ 767
+   ══════════════════════════════════════════════════════════════ */
+@media (max-width: 767px) {
+  .approach__title { font-size: 28px; }
+  .reason__accent { font-size: 20px; }
+  .punch__on { font-size: 26px; }
+  .prods { grid-template-columns: 1fr; }
+  .prod { padding: 22px 0 24px; }
+  .prod__label { max-width: none; }
+  .guarantees { grid-template-columns: 1fr; row-gap: 20px; }
+  .guarantee { flex-direction: row; align-items: center; gap: 14px; }
+  .specs { grid-template-columns: 1fr; }
+  .spec { padding: 16px 0; }
+  .spec:nth-child(2) { border-top: 0; }
+  .spec dd { font-size: 16px; }
+  .two__belief { font-size: 24px; }
+  .two__pair li { font-size: 16px; }
+}

@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NorSeafood — Norwegian Sustainable Seafood (Variant B)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mozilla+Text:wght@300;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/page-nor.css">
+</head>
+<body>
+
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-arrow" viewBox="0 0 256 256"><path fill="currentColor" d="m220.24 132.24l-72 72a6 6 0 0 1-8.48-8.48L201.51 134H40a6 6 0 0 1 0-12h161.51l-61.75-61.76a6 6 0 0 1 8.48-8.48l72 72a6 6 0 0 1 0 8.48"/></symbol>
+  <symbol id="i-in" viewBox="0 0 256 256"><path fill="currentColor" d="M216 26H40a14 14 0 0 0-14 14v176a14 14 0 0 0 14 14h176a14 14 0 0 0 14-14V40a14 14 0 0 0-14-14m2 190a2 2 0 0 1-2 2H40a2 2 0 0 1-2-2V40a2 2 0 0 1 2-2h176a2 2 0 0 1 2 2ZM94 112v64a6 6 0 0 1-12 0v-64a6 6 0 0 1 12 0m88 28v36a6 6 0 0 1-12 0v-36a22 22 0 0 0-44 0v36a6 6 0 0 1-12 0v-64a6 6 0 0 1 12 0v2.11A34 34 0 0 1 182 140M98 84a10 10 0 1 1-10-10a10 10 0 0 1 10 10"/></symbol>
+</svg>
+
+<!-- ═══ HEADER — тот же, что на главной B: «Две цепочки» поверх фото героя,
+     без фона (Header-шаблон Elementor: Position Absolute). Активный пункт —
+     NorSeafood. ═══ -->
+<header class="site-header" data-el="container" data-name="header">
+  <div class="container grid" data-el="container">
+    <a class="site-header__logo" href="index.html" data-el="image">
+      <img src="../../assets/logo-nss-white-tight.svg" alt="Norwegian Sustainable Seafood">
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
+      <span></span><span></span>
+    </button>
+    <nav class="site-nav site-nav--brands" id="site-nav" aria-label="Brands" data-el="nav-menu">
+      <a class="is-active" href="norseafood.html" aria-current="page">NorSeafood</a>
+      <a href="index.html#brands">Kelda</a>
+    </nav>
+    <div class="site-nav site-nav--util" data-el="container">
+      <a href="index.html#people" data-el="button">About</a>
+      <a class="btn-split btn-split--light" href="#contact" data-el="button"><span class="btn-split__t">Get in touch</span><span class="btn-split__s"><svg class="link-sq__icon" aria-hidden="true"><use href="#i-arrow"/></svg></span></a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ═══ 1. HERO — «Кинокадр» (язык B): фото во весь экран, вуаль, H1 внизу
+       слева, лид справа на той же линии, две кнопки. Тексты — со страницы
+       norseafood.com/norseafood/. ═══ -->
+  <section class="hero" data-el="container" data-name="hero">
+    <img class="hero__img" src="../../assets/hero-salmon-ice.webp" alt="Whole Atlantic salmon on ice" width="2048" height="1152" fetchpriority="high">
+    <span class="hero__veil" aria-hidden="true"></span>
+    <div class="hero__body container grid" data-el="container">
+      <h1 data-el="heading">Building the Norway–India Seafood Bridge.</h1>
+      <p class="hero__lead lead" data-el="text-editor">
+        Connecting Norwegian Atlantic Salmon with Indian processors, distributors
+        and importers through a dedicated value chain.
+      </p>
+      <div class="hero__actions" data-el="container">
+        <a class="btn btn--light" href="#contact" data-el="button">Become a Partner</a>
+        <a class="btn-split btn-split--light" href="#supply" data-el="button"><span class="btn-split__t">What we supply</span><span class="btn-split__s"><svg class="link-sq__icon" aria-hidden="true"><use href="#i-arrow"/></svg></span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 2. ПОДХОД — короткая порцелановая полоса-передышка после героя:
+       заголовок 1–7, утверждение 8–13 на нижней линии. ═══ -->
+  <section class="section section--approach" data-el="container" data-name="approach">
+    <div class="container grid" data-el="container">
+      <h2 class="approach__title" data-el="heading">A Dedicated Value Chain.</h2>
+      <p class="approach__note lead" data-el="text-editor">
+        We believe successful seafood businesses are built through relationships,
+        not transactions.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══ 3. WHY NORSEAFOOD — закреплённый заголовок слева (1–5), текст
+       справа (7–13). В Elementor: контейнер-колонка с Advanced → Motion
+       Effects → Sticky: Top для левой части. ═══ -->
+  <section class="section section--reason" id="why" data-el="container" data-name="why-norseafood">
+    <div class="container grid" data-el="container">
+      <div class="reason__head" data-el="container">
+        <h2 data-el="heading">Building for One Market. Building for the Long Term.</h2>
+      </div>
+      <div class="reason__body" data-el="container">
+        <p class="lead" data-el="text-editor">
+          NorSeafood was established with a clear purpose: to create a dedicated
+          seafood bridge between Norway and India.
+        </p>
+        <p data-el="text-editor">
+          Rather than spreading our focus across multiple export markets, we have
+          chosen a different path. We believe lasting partnerships are built through
+          commitment, local understanding and a long-term presence in a single market.
+        </p>
+        <p class="reason__accent" data-el="text-editor">For us, that market is India.</p>
+        <p data-el="text-editor">
+          India is one of the world's fastest-growing food markets, driven by rapid
+          urbanisation, rising disposable incomes and increasing demand for premium
+          international food products. As cold-chain infrastructure continues to
+          develop and consumer expectations evolve, the opportunity for high-quality
+          Norwegian seafood has never been stronger.
+        </p>
+        <p data-el="text-editor">
+          Through Norwegian Sustainable Seafood, we are building a value chain
+          designed specifically for India, connecting Norwegian producers with Indian
+          importers, processors and distributors through trusted partnerships,
+          responsible sourcing and a shared ambition for sustainable growth.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 4. ПУНЧ — navy-полоса с двумя фразами клиента: первая приглушена,
+       вторая белая. Разрывает светлую часть перед кинополосой. ═══ -->
+  <section class="section section--punch" data-el="container" data-name="punch">
+    <div class="container grid" data-el="container">
+      <p class="punch__off" data-el="text-editor">We are not building a global seafood company.</p>
+      <p class="punch__on" data-el="heading">We are building Norway's most dedicated seafood partnership with India.</p>
+    </div>
+  </section>
+
+  <!-- ═══ 5. WHAT WE SUPPLY — кинополоса (язык B): фото продукта во весь
+       экран, вуаль, крупный H2 и текст внизу; фото «садится» по скроллу
+       (CUSTOM-JS #B3). ═══ -->
+  <section class="cine" id="supply" data-el="container" data-name="supply">
+    <img class="cine__img" src="../../assets/salmon-boxes.webp" alt="Whole Atlantic salmon on ice in export boxes at a Norwegian processing facility" width="2048" height="1152">
+    <span class="cine__veil" aria-hidden="true"></span>
+    <div class="container grid cine__body" data-el="container">
+      <h2 data-el="heading">Frozen Whole Atlantic Salmon</h2>
+      <p class="lead" data-el="text-editor">
+        We supply premium frozen whole Atlantic salmon sourced from carefully
+        selected Norwegian farming operations and processed in modern facilities
+        along the Norwegian coast.
+      </p>
+      <p data-el="text-editor">
+        Our focus is simple: consistent quality, predictable supply and long-term
+        commercial partnerships. Every shipment is handled through an integrated
+        cold chain designed to preserve freshness, product integrity and
+        traceability from harvest to delivery.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══ 6. ДОСТУПНЫЕ ПРОДУКТЫ — шесть позиций клиента с пиктограммами
+       Recraft (mask, currentColor). Слева текст-подводка 1–4, справа сетка
+       3×2 (5–13). ═══ -->
+  <section class="section section--prods" data-el="container" data-name="products">
+    <div class="container grid" data-el="container">
+      <div class="prods__head" data-el="container">
+        <h2 data-el="heading">Available products</h2>
+        <p data-el="text-editor">
+          Our salmon is intended for importers, processors, distributors and food
+          industry partners seeking a reliable supply of Norwegian raw material for
+          further processing and distribution within the Indian market.
+        </p>
+        <p data-el="text-editor">
+          Whether supplying container volumes or supporting long-term sourcing
+          programmes, our ambition is to become a dependable Norway-based partner
+          for India's growing seafood industry.
+        </p>
+      </div>
+      <ul class="prods" data-el="container">
+        <li class="prod prod--salmon" data-el="container">
+          <span class="prod__icon" aria-hidden="true"></span>
+          <span class="prod__label" data-el="text-editor">Frozen Whole Atlantic Salmon</span>
+        </li>
+        <li class="prod prod--hog" data-el="container">
+          <span class="prod__icon" aria-hidden="true"></span>
+          <span class="prod__label" data-el="text-editor">Head-on / Gutted (HOG)</span>
+        </li>
+        <li class="prod prod--grades" data-el="container">
+          <span class="prod__icon" aria-hidden="true"></span>
+          <span class="prod__label" data-el="text-editor">Multiple size grades available</span>
+        </li>
+        <li class="prod prod--pack" data-el="container">
+          <span class="prod__icon" aria-hidden="true"></span>
+          <span class="prod__label" data-el="text-editor">Bulk export packaging</span>
+        </li>
+        <li class="prod prod--container" data-el="container">
+          <span class="prod__icon" aria-hidden="true"></span>
+          <span class="prod__label" data-el="text-editor">Container shipments</span>
+        </li>
+        <li class="prod prod--india" data-el="container">
+          <span class="prod__icon" aria-hidden="true"></span>
+          <span class="prod__label" data-el="text-editor">India-focused supply</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══ 7. WHY PARTNER WITH US — navy: заголовок 1–5, текст 7–13, ниже
+       пять гарантий клиента строкой (1px-квадрат с галочкой — язык L3). ═══ -->
+  <section class="section section--partner" data-el="container" data-name="why-partner">
+    <div class="container grid" data-el="container">
+      <h2 class="partner__title" data-el="heading">Why Partner With Us</h2>
+      <div class="partner__body" data-el="container">
+        <p class="lead" data-el="text-editor">
+          Choosing a seafood supplier is about more than product availability. It is
+          about consistency, traceability and the confidence that every shipment will
+          meet the standards your business depends on.
+        </p>
+        <p data-el="text-editor">
+          NorSeafood was established to build a dedicated Norway–India seafood value
+          chain, combining Norwegian sourcing expertise with long-term partnerships
+          and a clear commitment to the Indian market.
+        </p>
+        <p data-el="text-editor">
+          We work with carefully selected production partners operating modern
+          processing facilities that adhere to internationally recognised food safety
+          and quality management standards. Depending on the production facility and
+          product, this includes certifications such as Certified Kosher, FSSC 22000,
+          GlobalG.A.P. and ASC, together with comprehensive quality assurance and full
+          product traceability throughout the supply chain.
+        </p>
+        <p data-el="text-editor">
+          By combining trusted Norwegian sourcing with local market understanding,
+          transparent communication and dependable logistics, our ambition is to become
+          a long-term sourcing partner for Indian importers, processors and distributors
+          seeking reliable access to premium Norwegian seafood.
+        </p>
+      </div>
+      <ul class="guarantees" data-el="container">
+        <li class="guarantee" data-el="container"><span class="guarantee__box" aria-hidden="true"></span>Full Traceability</li>
+        <li class="guarantee" data-el="container"><span class="guarantee__box" aria-hidden="true"></span>International Food Safety Standards</li>
+        <li class="guarantee" data-el="container"><span class="guarantee__box" aria-hidden="true"></span>Norway–India Focus</li>
+        <li class="guarantee" data-el="container"><span class="guarantee__box" aria-hidden="true"></span>Reliable Cold Chain</li>
+        <li class="guarantee" data-el="container"><span class="guarantee__box" aria-hidden="true"></span>Long-term Partnerships</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══ 8. СПЕЦИФИКАЦИЯ — porcelain: девять строк «параметр → значение»
+       в две колонки, разделители-волосинки. В Elementor: два контейнера
+       по 5 и 4 строки, строка = контейнер с двумя текстами. ═══ -->
+  <section class="section section--specs" data-el="container" data-name="specs">
+    <div class="container grid" data-el="container">
+      <h2 class="specs__title" data-el="heading">Product specifications</h2>
+      <dl class="specs" data-el="container">
+        <div class="spec" data-el="container"><dt data-el="text-editor">Product</dt><dd data-el="text-editor">Frozen Whole Atlantic Salmon</dd></div>
+        <div class="spec" data-el="container"><dt data-el="text-editor">Origin</dt><dd data-el="text-editor">Norway</dd></div>
+        <div class="spec" data-el="container"><dt data-el="text-editor">Species</dt><dd data-el="text-editor">Atlantic Salmon (Salmo salar)</dd></div>
+        <div class="spec" data-el="container"><dt data-el="text-editor">Processing</dt><dd data-el="text-editor">Head-on, gutted</dd></div>
+        <div class="spec" data-el="container"><dt data-el="text-editor">Packaging</dt><dd data-el="text-editor">Export cartons</dd></div>
+        <div class="spec" data-el="container"><dt data-el="text-editor">Storage</dt><dd data-el="text-editor">Frozen</dd></div>
+        <div class="spec" data-el="container"><dt data-el="text-editor">Traceability</dt><dd data-el="text-editor">Full batch traceability</dd></div>
+        <div class="spec" data-el="container"><dt data-el="text-editor">Supply</dt><dd data-el="text-editor">Container shipments</dd></div>
+        <div class="spec" data-el="container"><dt data-el="text-editor">Market</dt><dd data-el="text-editor">India</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ═══ 9. BUILT BETWEEN TWO COUNTRIES — navy с иллюстрацией-картой
+       (mask, цвет из background): слева карта 1–6, справа кредо 7–13. ═══ -->
+  <section class="section section--two" data-el="container" data-name="two-countries">
+    <div class="container grid" data-el="container">
+      <div class="two__map" aria-hidden="true" data-el="image"></div>
+      <div class="two__text" data-el="container">
+        <h2 data-el="heading">Built Between Two Countries</h2>
+        <p class="two__intro" data-el="text-editor">Everything we do is guided by a simple belief:</p>
+        <p class="two__belief" data-el="heading">The future belongs to companies willing to invest in relationships.</p>
+        <ul class="two__pair" data-el="container">
+          <li data-el="text-editor">Norway provides world-class seafood.</li>
+          <li data-el="text-editor">India provides one of the world's most exciting growth opportunities.</li>
+        </ul>
+        <p class="two__end" data-el="text-editor">NorSeafood exists to connect the two.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 10. LET'S BUILD TOGETHER — контакт-форма, как на главной B
+       (в WP — Contact Form 7, поля те же). ═══ -->
+  <section class="section section--contact" id="contact" data-el="container" data-name="contact">
+    <div class="container grid" data-el="container">
+      <div class="contact__head" data-el="container">
+        <h2 data-el="heading">Let's Build Together</h2>
+        <p class="lead" data-el="text-editor">Looking for a Long-Term Seafood Partner?</p>
+        <p data-el="text-editor">
+          Whether you are an importer, processor, distributor or food industry
+          partner, we would welcome a conversation. We will support your demand for
+          Norwegian salmon.
+        </p>
+      </div>
+      <form class="form" data-el="form" novalidate>
+        <div class="form__row" data-el="container">
+          <label class="field" data-el="container">
+            <span>Name</span>
+            <input type="text" name="name" autocomplete="name">
+          </label>
+          <label class="field" data-el="container">
+            <span>Company</span>
+            <input type="text" name="company" autocomplete="organization">
+          </label>
+        </div>
+        <label class="field" data-el="container">
+          <span>Email</span>
+          <input type="email" name="email" autocomplete="email">
+        </label>
+        <label class="field" data-el="container">
+          <span>Message</span>
+          <textarea name="message" rows="4"></textarea>
+        </label>
+        <button class="btn" type="submit" data-el="button">Send enquiry</button>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<!-- ═══ FOOTER — F3, как на главной B ═══ -->
+<footer class="site-footer" data-el="container" data-name="footer">
+  <div class="container" data-el="container">
+    <div class="grid foot-row" data-el="container">
+      <div class="foot-brand" data-el="container">
+        <a class="foot-logo" href="index.html" data-el="image"><img src="../../assets/logo-nss-white-tight.svg" alt="Norwegian Sustainable Seafood"></a>
+        <p class="foot-claim" data-el="text-editor">Building a dedicated Norway–India seafood value chain.</p>
+      </div>
+      <div class="foot-office foot-office--no" data-el="container">
+        <span class="foot-label" data-el="heading">Norway</span>
+        <p class="foot-addr" data-el="text-editor">Norwegian Sustainable Seafood AS<br>Lensmannslia 4, 1386 Asker</p>
+      </div>
+      <div class="foot-office foot-office--in" data-el="container">
+        <span class="foot-label" data-el="heading">India</span>
+        <p class="foot-addr" data-el="text-editor">Norwegian Sustainable Seafood PVT.&nbsp;LTD.<br>413 Ascent Avenue, Amanora Park Town<br>Hadapsar, Pune 411028</p>
+      </div>
+    </div>
+    <div class="grid foot-row foot-row--nav" data-el="container">
+      <nav class="foot-nav" data-el="nav-menu" aria-label="Footer">
+        <a href="index.html">Home</a>
+        <a href="norseafood.html">NorSeafood</a>
+        <a href="index.html#brands">Kelda</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="foot-in" href="#" data-el="button"><svg class="foot-in__icon" aria-hidden="true"><use href="#i-in"/></svg>LinkedIn</a>
+    </div>
+    <div class="grid foot-row foot-row--legal" data-el="container">
+      <p class="foot-legal" data-el="text-editor">© 2026 Norwegian Sustainable Seafood AS · Org.no. 937 910 460<br>
+      NorSeafood is the commercial platform of Norwegian Sustainable Seafood AS.
+      Kelda is a consumer brand owned by Norwegian Sustainable Seafood AS.</p>
+    </div>
+  </div>
+  <div class="foot-pattern" data-el="container" aria-hidden="true"></div>
+</footer>
+
+<!-- CUSTOM-JS #B3 — кинополоса: прогресс сцены → масштаб фото, подъём текста. -->
+<script>
+  (function () {
+    var scenes = document.querySelectorAll('.cine'); if (!scenes.length) return;
+    var io = new IntersectionObserver(function (en) { en.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }); }, { threshold: .25 });
+    scenes.forEach(function (sc) { io.observe(sc.querySelector('.cine__body')); });
+    var tick = false;
+    function upd() { tick = false; var vh = window.innerHeight; scenes.forEach(function (sc) { var r = sc.getBoundingClientRect(); var p = Math.max(0, Math.min(1, (vh - r.top) / (vh + r.height))); sc.style.setProperty('--p', p.toFixed(3)); }); }
+    function onS() { if (!tick) { tick = true; requestAnimationFrame(upd); } }
+    window.addEventListener('scroll', onS, { passive: true }); window.addEventListener('resize', onS); upd();
+  })();
+</script>
+
+<!-- CUSTOM-JS #B6 — появление позиций и гарантий лесенкой (в Elementor —
+     Entrance Animation с задержкой у каждого элемента). -->
+<script>
+  (function () {
+    var items = document.querySelectorAll('.prod, .guarantee, .spec');
+    if (!items.length) return;
+    var io = new IntersectionObserver(function (en) { en.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }); }, { threshold: .3 });
+    items.forEach(function (el) { io.observe(el); });
+  })();
+</script>
+
+<!-- CUSTOM-JS #B5 — .is-ready на загрузке (масштаб фото героя, подъём текста)
+     + бургер (в Elementor — нативный Dropdown виджета Nav Menu). -->
+<script>
+  (function () {
+    document.documentElement.classList.add('js');
+    window.addEventListener('load', function () { document.documentElement.classList.add('is-ready'); });
+    var btn = document.querySelector('.nav-toggle');
+    var header = document.querySelector('.site-header');
+    if (!btn || !header) return;
+    btn.addEventListener('click', function () {
+      var open = header.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  })();
+</script>
+
+</body>
+</html>
