@@ -182,9 +182,9 @@ a { color: inherit; }
 .cine__veil { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(14,32,61,.1) 30%, rgba(14,32,61,.82) 100%); }
 .cine__body { position: relative; z-index: 1; width: 100%; padding-bottom: 88px; opacity: 0; transform: translateY(24px); transition: opacity .8s ease, transform 1s cubic-bezier(.22, 1, .36, 1); }
 .cine__body.is-in { opacity: 1; transform: none; }
-.cine__body h2 { grid-column: 1 / 8; font-size: 48px; line-height: 1.08; letter-spacing: -0.02em; max-width: 14ch; }
+.cine__body h2 { grid-column: 1 / 7; font-size: 48px; line-height: 1.08; letter-spacing: -0.02em; max-width: 14ch; }
 .cine__body .lead { grid-column: 1 / 7; margin-top: 24px; max-width: 40ch; color: rgba(255,255,255,.9); }
-.cine__body > p:not(.lead) { grid-column: 8 / 13; align-self: end; max-width: 46ch; color: rgba(255,255,255,.78); }
+.cine__body > p:not(.lead) { grid-column: 7 / 13; align-self: end; max-width: 46ch; color: rgba(255,255,255,.78); }
 /* Переход между сценами — «наезд»: первая закреплена, вторая наезжает с тенью (CUSTOM-CSS #B5) */
 .cine-stack { position: relative; }
 .cine--pin { position: sticky; top: 0; }
