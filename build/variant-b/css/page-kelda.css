@@ -101,8 +101,8 @@
 
 /* ─── 5. Table — три сюжета с фото ──────────────────────────── */
 .k-table { padding-block: var(--space-section); background: var(--k-cream); }
-.k-table__head { grid-column: 1 / 6; }
-.k-table__head h2 { font-size: 48px; line-height: 1.1; max-width: 14ch; }
+.k-table__head { grid-column: 1 / 7; } /* 6 колонок: «Shared Around Your Table» = 559px, в 5 колонках (553) срывалась «Table» */
+.k-table__head h2 { font-size: 48px; line-height: 1.1; max-width: none; } /* перенос задан <br> */
 .k-table__note { grid-column: 7 / 13; align-self: end; color: var(--k-ink-72); }
 .k-moments { grid-column: 1 / 13; margin: var(--space-block) 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); column-gap: var(--col-gap); }
 .k-moment { opacity: 0; transform: translateY(20px); transition: opacity .7s ease, transform .8s cubic-bezier(.22, 1, .36, 1); }
@@ -163,7 +163,7 @@
   .k-cine__body > p:not(.lead) { margin-top: 16px; }
 
   .k-table__head, .k-table__note { grid-column: 1 / 13; }
-  .k-table__head h2 { font-size: 32px; max-width: none; }
+  .k-table__head h2 { font-size: 32px; }
   .k-table__note { margin-top: var(--space-element); }
   .k-moments { grid-template-columns: 1fr 1fr; row-gap: var(--space-block); }
 
