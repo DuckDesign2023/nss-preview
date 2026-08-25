@@ -62,31 +62,30 @@
 .link-k:hover { transform: translateX(4px); }
 .link-k:hover .link-k__box { background: var(--k-ember); border-color: var(--k-ember); color: var(--k-white); }
 
-/* ─── 2. Why Kelda — имя и принцип ──────────────────────────── */
-.k-name { padding-block: var(--space-section); background: var(--k-cream); }
-.k-name__title { grid-column: 1 / 6; align-self: start; position: sticky; top: 120px; font-size: 48px; line-height: 1.1; }
-.k-name__body { grid-column: 7 / 13; max-width: 56ch; }
-.k-name__body p { color: var(--k-ink-72); }
-.k-name__body p + p { margin-top: var(--space-element); }
-.k-name__body .lead { color: var(--k-ink); }
-.k-script { grid-column: 7 / 13; margin-top: var(--space-block); padding-top: var(--space-block); border-top: 1px solid var(--k-hair); font-family: var(--font-k-script); font-size: 38px; line-height: 1.3; color: var(--k-ember); max-width: 26ch; }
+/* ─── 2. Why Kelda — «Журнал»: пул-квот + три колонки ─────────── */
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.k-quote { padding: 88px 0 var(--space-section); background: var(--k-cream); }
+.k-quote__text { grid-column: 1 / 12; margin: 0; border: 0; font-family: var(--font-k-script); font-weight: 400; font-size: 64px; line-height: 1.2; color: var(--k-ember); }
+.k-cols { grid-column: 1 / 13; margin-top: var(--space-block); display: grid; grid-template-columns: repeat(3, 1fr); column-gap: var(--col-gap); border-top: 1px solid var(--k-hair); }
+.k-col { padding-top: 28px; }
+.k-col__tag { display: block; font: 500 13px var(--font-k); color: var(--k-ember); }
+.k-col h3 { margin-top: 12px; font-size: 24px; }
+.k-col p { margin-top: 12px; color: var(--k-ink-72); }
 
-/* ─── 3. Today / Tomorrow — две карточки на Oat Sand ────────── */
-.k-growth { padding-block: var(--space-section); background: var(--k-oat); }
-.k-growth__head { grid-column: 1 / 6; align-self: start; position: sticky; top: 120px; }
-.k-growth__head h2 { font-size: 48px; line-height: 1.1; max-width: 10ch; }
-.k-growth__head p { margin-top: 18px; max-width: 40ch; color: var(--k-ink-72); }
-.k-panels { grid-column: 7 / 13; display: grid; gap: var(--col-gap); }
-.k-panel { position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; padding: 30px 34px; background: var(--k-ink); color: var(--k-white); }
-.k-panel--today { min-height: 320px; }
-.k-panel--today img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-/* градиент поверх фото — читаемость подписи (CUSTOM-CSS: Overlay в Elementor) */
-.k-panel--today::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(21,19,20,0) 30%, rgba(21,19,20,.82) 100%); }
-.k-panel > * { position: relative; z-index: 1; }
-.k-panel--future { min-height: 220px; }
-.k-panel__tag { display: block; font: 500 13px var(--font-k); color: var(--k-ember); }
-.k-panel strong { display: block; margin-top: 10px; font-size: 28px; font-weight: 500; letter-spacing: -0.02em; }
-.k-panel p { margin-top: 10px; max-width: 46ch; color: rgba(255,255,255,.75); }
+/* ─── 3. Growth — фото-сплит на Oat Sand ─────────────────────── */
+.k-growth { background: var(--k-oat); }
+.k-growth__wrap { display: grid; grid-template-columns: 1fr 1fr; }
+.k-growth__photo { position: relative; margin: 0; min-height: 640px; }
+.k-growth__photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+/* правый край текста — линия сетки (100% = ширина половины), от шва — 64px */
+.k-growth__body { padding: var(--space-section) calc(max(0px, 100% - var(--content-width) / 2) + var(--gutter)) var(--space-section) 64px; }
+.k-growth__body h2 { font-size: 48px; line-height: 1.1; max-width: 10ch; }
+.k-growth__body > p { margin-top: 18px; max-width: 40ch; color: var(--k-ink-72); }
+.k-rows { margin-top: var(--space-block); border-top: 1px solid rgba(21, 19, 20, .25); }
+.k-row { padding: 22px 0; border-bottom: 1px solid rgba(21, 19, 20, .25); display: grid; grid-template-columns: 110px 1fr; column-gap: 20px; }
+.k-row__tag { font: 500 13px var(--font-k); color: var(--k-ember); padding-top: 6px; }
+.k-row strong { display: block; font-size: 24px; font-weight: 500; letter-spacing: -0.02em; }
+.k-row p { margin-top: 6px; color: var(--k-ink-72); }
 
 /* ─── 4. Origin — кинополоса Норвегии ───────────────────────── */
 .k-cine { position: relative; height: 86vh; min-height: 560px; overflow: hidden; display: flex; align-items: flex-end; background: var(--k-ink); color: var(--k-white); }
@@ -144,15 +143,16 @@
   .k-hero__text { grid-column: 1 / 13; margin-top: 28px; }
   .k-hero__text h1 { font-size: 34px; }
 
-  .k-name__title { grid-column: 1 / 13; position: static; font-size: 32px; }
-  .k-script { grid-column: 1 / 13; }
-  .k-name__body { grid-column: 1 / 13; margin-top: var(--space-element); max-width: none; }
-  .k-script { font-size: 30px; max-width: none; }
+  .k-quote { padding-top: 64px; }
+  .k-quote__text { grid-column: 1 / 13; font-size: 40px; }
+  .k-cols { grid-template-columns: 1fr; row-gap: 8px; }
+  .k-col { padding-top: 24px; border-top: 1px solid var(--k-hair); }
+  .k-col:first-child { border-top: 0; }
 
-  .k-growth__head { grid-column: 1 / 13; position: static; }
-  .k-growth__head h2 { font-size: 32px; }
-  .k-panels { grid-column: 1 / 13; margin-top: var(--space-block); grid-template-columns: 1fr 1fr; }
-  .k-panel--today { min-height: 280px; }
+  .k-growth__wrap { grid-template-columns: 1fr; }
+  .k-growth__photo { min-height: 60vw; }
+  .k-growth__body { padding: var(--space-section) var(--gutter); }
+  .k-growth__body h2 { font-size: 32px; }
 
   .k-cine { height: auto; min-height: 60vh; }
   .k-cine__body { padding-top: 34vh; }
@@ -176,11 +176,13 @@
   .k-hero__body { padding-bottom: 48px; }
   .k-hero__mark svg { max-width: 150px; }
   .k-hero__text h1 { font-size: 27px; }
-  .k-name__title, .k-growth__head h2, .k-table__head h2 { font-size: 26px; }
+  .k-growth__body h2, .k-table__head h2 { font-size: 26px; }
   .k-future__body h2 { font-size: 30px; }
   .k-future__body { padding-bottom: 48px; }
-  .k-script { font-size: 24px; }
-  .k-panels { grid-template-columns: 1fr; }
+  .k-quote { padding-top: 48px; }
+  .k-quote__text { font-size: 30px; }
+  .k-row { grid-template-columns: 1fr; row-gap: 4px; }
+  .k-row strong { font-size: 20px; }
   .k-moments { grid-template-columns: 1fr; }
   .k-cine__body h2 { font-size: 26px; }
 }

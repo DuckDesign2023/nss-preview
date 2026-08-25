@@ -70,53 +70,63 @@
     </div>
   </section>
 
-  <!-- ═══ 2. WHY KELDA — имя и принцип: заголовок слева закреплён,
-       текст справа, внизу акцентная строка шрифтом Playball (Ember). ═══ -->
-  <section class="section k-name" data-el="container" data-name="why-kelda">
+  <!-- ═══ 2. WHY KELDA — «Журнал» (решение 2026-08-25): Playball-цитата на
+       всю ширину как пул-квот (без линии сверху, уменьшенный верхний отступ),
+       под ней три колонки 01/02/03 с волосинкой над рядом. Заголовок клиента
+       «A Name Chosen With Purpose.» сохранён для структуры (скрыт визуально). ═══ -->
+  <section class="k-quote" data-el="container" data-name="why-kelda">
     <div class="container grid" data-el="container">
-      <h2 class="k-name__title" data-el="heading">A Name Chosen With Purpose.</h2>
-      <div class="k-name__body" data-el="container">
-        <p class="lead" data-el="text-editor">
-          Kelda takes its name from the Old Norse word for a pure spring. The name
-          reflects a belief that exceptional food begins with exceptional origins.
-        </p>
-        <p data-el="text-editor">
-          For us, purity is not a marketing claim. It is a principle that guides
-          every decision we make, from sourcing and quality standards to how we
-          build our partnerships.
-        </p>
-      </div>
-      <p class="k-script" data-el="heading">
+      <h2 class="sr-only">A Name Chosen With Purpose.</h2>
+      <p class="k-quote__text" data-el="heading">
         Because the right way and the sustainable way should always be the same way.
       </p>
+      <div class="k-cols" data-el="container">
+        <div class="k-col" data-el="container">
+          <span class="k-col__tag" data-el="text-editor">01 · The name</span>
+          <h3 data-el="heading">A pure spring</h3>
+          <p data-el="text-editor">Kelda takes its name from the Old Norse word for a pure spring. The name reflects a belief that exceptional food begins with exceptional origins.</p>
+        </div>
+        <div class="k-col" data-el="container">
+          <span class="k-col__tag" data-el="text-editor">02 · The principle</span>
+          <h3 data-el="heading">Purity, not a claim</h3>
+          <p data-el="text-editor">For us, purity is not a marketing claim. It is a principle that guides every decision we make, from sourcing and quality standards to how we build our partnerships.</p>
+        </div>
+        <div class="k-col" data-el="container">
+          <span class="k-col__tag" data-el="text-editor">03 · The idea</span>
+          <h3 data-el="heading">Great food deserves a story</h3>
+          <p data-el="text-editor">Every product begins with Norwegian origin, carefully selected seafood and a commitment to quality.</p>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- ═══ 3. TODAY AND TOMORROW — Oat Sand, две карточки Paper Cream ═══ -->
-  <section class="section k-growth" data-el="container" data-name="growth">
-    <div class="container grid" data-el="container">
-      <div class="k-growth__head" data-el="container">
+  <!-- ═══ 3. A BRAND BUILT FOR GROWTH — фото-сплит: стейк Kelda на всю левую
+       половину до края экрана, справа заголовок и строки Today / Future на
+       Oat Sand. В Elementor: контейнер Full Width, две колонки 50/50, левая —
+       Background Image cover; правый паддинг = линия сетки (как сплит брендов). ═══ -->
+  <section class="k-growth" data-el="container" data-name="growth">
+    <div class="k-growth__wrap" data-el="container">
+      <figure class="k-growth__photo" data-el="image">
+        <img src="../../assets/kelda-fillet.webp" alt="A portion of premium Norwegian salmon" width="1536" height="1750" loading="lazy">
+      </figure>
+      <div class="k-growth__body" data-el="container">
         <h2 data-el="heading">A Brand Built for Growth.</h2>
-        <p data-el="text-editor">
-          Kelda was created from a simple idea: great food deserves a story.
-          Every product begins with Norwegian origin, carefully selected seafood
-          and a commitment to quality.
-        </p>
-      </div>
-      <!-- «Сегодня и завтра» (решение 2026-08-24): Today — фото продукта с
-           подписью поверх, Future — Ink Black панель. В Elementor: контейнеры
-           с Background Image + Overlay / Background Color. -->
-      <div class="k-panels" data-el="container">
-        <div class="k-panel k-panel--today" data-el="container">
-          <img src="../../assets/kelda-fillet.webp" alt="A portion of premium Norwegian salmon" width="1536" height="1750" loading="lazy">
-          <span class="k-panel__tag" data-el="text-editor">Today</span>
-          <strong data-el="heading">Kelda Salmon</strong>
-          <p data-el="text-editor">Premium Norwegian salmon, prepared for Indian homes, restaurants and food businesses.</p>
-        </div>
-        <div class="k-panel k-panel--future" data-el="container">
-          <span class="k-panel__tag" data-el="text-editor">Future</span>
-          <strong data-el="heading">Additional premium seafood products</strong>
-          <p data-el="text-editor">The range grows as the brand grows — always from Norwegian origin.</p>
+        <p data-el="text-editor">Kelda was created from a simple idea: great food deserves a story.</p>
+        <div class="k-rows" data-el="container">
+          <div class="k-row" data-el="container">
+            <span class="k-row__tag" data-el="text-editor">Today</span>
+            <div>
+              <strong data-el="heading">Kelda Salmon</strong>
+              <p data-el="text-editor">Premium Norwegian salmon, prepared for Indian homes, restaurants and food businesses.</p>
+            </div>
+          </div>
+          <div class="k-row" data-el="container">
+            <span class="k-row__tag" data-el="text-editor">Future</span>
+            <div>
+              <strong data-el="heading">Additional premium seafood products</strong>
+              <p data-el="text-editor">The range grows as the brand grows — always from Norwegian origin.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
