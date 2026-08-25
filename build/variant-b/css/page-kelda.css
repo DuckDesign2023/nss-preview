@@ -65,7 +65,9 @@
 /* ─── 2. Why Kelda — «Журнал»: пул-квот + три колонки ─────────── */
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .k-quote { padding: 88px 0 var(--space-section); background: var(--k-cream); }
-.k-quote__text { grid-column: 1 / 12; margin: 0; border: 0; font-family: var(--font-k-script); font-weight: 400; font-size: 64px; line-height: 1.2; color: var(--k-ember); }
+/* max-width подобран замером (2026-08-25): строка «…the sustainable» = 995px,
+   «…sustainable way» = 1112px при 64px → 1040px даёт перенос после «sustainable» */
+.k-quote__text { grid-column: 1 / 12; margin: 0; border: 0; max-width: 1040px; font-family: var(--font-k-script); font-weight: 400; font-size: 64px; line-height: 1.2; color: var(--k-ember); }
 .k-cols { grid-column: 1 / 13; margin-top: var(--space-block); display: grid; grid-template-columns: repeat(3, 1fr); column-gap: var(--col-gap); border-top: 1px solid var(--k-hair); }
 .k-col { padding-top: 28px; }
 .k-col__tag { display: block; font: 500 13px var(--font-k); color: var(--k-ember); }
@@ -144,7 +146,7 @@
   .k-hero__text h1 { font-size: 34px; }
 
   .k-quote { padding-top: 64px; }
-  .k-quote__text { grid-column: 1 / 13; font-size: 40px; }
+  .k-quote__text { grid-column: 1 / 13; font-size: 40px; max-width: none; }
   .k-cols { grid-template-columns: 1fr; row-gap: 8px; }
   .k-col { padding-top: 24px; border-top: 1px solid var(--k-hair); }
   .k-col:first-child { border-top: 0; }
